@@ -1,4 +1,5 @@
 
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 # auth-laravel10-1
 
 Role based authentication system where we can give the user permission according to his role.
@@ -29,4 +30,3 @@ Role based authentication system where we can give the user permission according
 - Hash::make($variable) => to hash the password
 - Hash::check($plainPassword , $dbHashPassword); => to check the password
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
