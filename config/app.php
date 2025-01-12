@@ -16,7 +16,12 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'PolyBookLib'),
+    'address' => env('APP_ADDRESS', '123 Main Street, Cityville"'),
+    'priary_contact' => env('APP_PRIMARY_CONTACT', '1234567890'),
+    'secondary_contact' => env('APP_SECONDARY_CONTACT', '9876543210'),
+    'email' => env('APP_EMAIL', 'info@polybooklib.com'),
+    'logo' => env('APP_LOGO', '/favicon.ico'),
 
     /*
     |--------------------------------------------------------------------------
@@ -167,7 +172,8 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        App\Providers\RouteServiceProvider::class
+
     ])->toArray(),
 
     /*
@@ -183,6 +189,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+
+        'Settings' => App\Facades\Settings::class,
     ])->toArray(),
 
 ];

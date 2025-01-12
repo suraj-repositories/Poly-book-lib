@@ -19,10 +19,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'dob',
         'email',
         'password',
         'role',
+        'image'
     ];
 
     /**
@@ -49,5 +49,12 @@ class User extends Authenticatable
     public function hasRole($role){
         return ($this->role === $role) ? true:false;
     }
-    
+
+    public function getImageURL(){
+        if($this->image){
+            return url('storage/'.$this->image);
+        }
+        return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={$this->name}";
+    }
+
 }

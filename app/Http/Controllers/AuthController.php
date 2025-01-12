@@ -13,13 +13,14 @@ class AuthController extends Controller
 {
 
     public function loginPage(){
-        return view("login");
+        return view("auth.login");
     }
-    public function signupPage(){
-        return view("signup");
+    public function registerPage(){
+        return view("auth.register");
     }
 
     public function login(Request $request){
+
         $validated = $request->validate([
             'email'=> 'email|required',
             'password'=>'required|min:3'
@@ -33,18 +34,17 @@ class AuthController extends Controller
         return redirect('/login')->with('error', 'Wrong Credentials');
     }
 
-    public function signup(Request $request){
+    public function register(Request $request){
 
         $validated = $request->validate([
             'name'=> 'required|min:3|max:255',
-            'dob'=> 'required|date',
+            'terms'=> 'required',
             'email'=>'required|email|unique:users,email',
             'password'=>'required|min:3'
         ]);
 
         $user = User::create([
             'name' => $validated['name'],
-            'dob'=> $validated['dob'],
             'email' => $validated['email'],
             'password' => Hash::make( $validated['password']),
             'role' => 'USER'
@@ -58,7 +58,7 @@ class AuthController extends Controller
        if(Auth::check()){
         Auth::logout();
         return redirect('/login')->with('success', 'Logout successful!');
-       }       
+       }
        return redirect('/');
     }
 

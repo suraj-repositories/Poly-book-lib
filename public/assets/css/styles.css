@@ -1,0 +1,15 @@
+.hide{
+    display: none;
+}
+.hidden{
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+.branches .dz-remove{
+    display: none !important;
+    }
+
+    .branches #dropzone-preview-list{
+        list-style-type: none !important;
+    }
