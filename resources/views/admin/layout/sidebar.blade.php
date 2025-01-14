@@ -71,7 +71,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.branches')}}">
                     <span class="nav-icon">
-                        <iconify-icon icon="solar:clipboard-broken"></iconify-icon>
+                        <iconify-icon icon="solar:floor-lamp-broken"></iconify-icon>
                     </span>
                     <span class="nav-text">Branches</span>
                 </a>
@@ -80,7 +80,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="apps-email.html">
                     <span class="nav-icon">
-                        <iconify-icon icon="solar:letter-broken"></iconify-icon>
+                        <iconify-icon icon="solar:clipboard-broken"></iconify-icon>
+
                     </span>
                     <span class="nav-text"> Semesters </span>
                 </a>
@@ -101,7 +102,7 @@
                     <span class="nav-icon">
                         <iconify-icon icon="solar:calendar-broken"></iconify-icon>
                     </span>
-                    <span class="nav-text">  </span>
+                    <span class="nav-text"> Calenders </span>
                 </a>
                 <div class="collapse" id="sidebarCalendar">
                     <ul class="nav sub-navbar-nav">

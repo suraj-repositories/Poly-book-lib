@@ -3,6 +3,7 @@
 namespace App\Services\Impl;
 
 use App\Services\FileService;
+use Illuminate\Support\Facades\Storage;
 
 class FileServiceImpl implements FileService
 {
@@ -66,6 +67,15 @@ class FileServiceImpl implements FileService
         }
 
         return round($size, 2) . ' ' . $units[$unitIndex];
+    }
+
+    function deleteIfExists($filePath){
+        if (Storage::disk('public')->exists($filePath)) {
+            Storage::disk('public')->delete($filePath);
+            return 1;
+        }
+
+        return 0;
     }
 
 }

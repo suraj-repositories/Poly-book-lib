@@ -6,6 +6,8 @@ interface FileService
 {
     function uploadFile(\Illuminate\Http\UploadedFile $file, string $folder = "uploads", string $disk = "public"): string;
 
+    function deleteIfExists($filePath);
+
     function getFileName(\Illuminate\Http\UploadedFile $file): string;
 
     function getExtension(\Illuminate\Http\UploadedFile $file): string;

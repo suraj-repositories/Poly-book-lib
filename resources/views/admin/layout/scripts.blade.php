@@ -12,7 +12,7 @@
   <!-- Dashboard Js -->
   <script src="{{asset('assets/js/pages/dashboard.js')}}"></script>
 
-  <script src="{{ asset('assets/vendor/dropzone/dropzone.js') }}"></script>
 
+  <script src="{{ asset('assets/vendor/dropzone/dropzone.js') }}"></script>
 
 

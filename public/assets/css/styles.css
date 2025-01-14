@@ -2,14 +2,13 @@
     display: none;
 }
 .hidden{
-    height: 0;
-    width: 0;
+   display: hidden;
     visibility: hidden;
 }
 .branches .dz-remove{
     display: none !important;
     }
 
-    .branches #dropzone-preview-list{
+    .branches li{
         list-style-type: none !important;
     }
