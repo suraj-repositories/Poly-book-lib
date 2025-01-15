@@ -5,59 +5,77 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BranchResource;
 use App\Models\Branch;
+use App\Models\Semester;
 use App\Services\FileService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class BranchController extends Controller
 {
 
     private $fileService;
 
-    public function __construct(FileService $fileService) {
+    public function __construct(FileService $fileService)
+    {
         $this->fileService = $fileService;
     }
 
     //
-    public function index(){
+    public function index()
+    {
         $branches = Branch::all();
-        return view('admin.branches', compact('branches'));
+        $semesters = Semester::take(100)->get();
+
+        return view('admin.branches', compact('branches', 'semesters'));
     }
 
-    public function store(Request $request){
 
+
+    public function store(Request $request)
+    {
         $validated = $request->validate([
-            'name' => 'required',
-            'image' => 'nullable'
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'semester_id' => 'nullable|exists:semesters,id',
         ]);
 
-
-        $validated['image'] = $validated['image'] ?? null;
-
-        if ($request->file('image')) {
-            $image = $this->fileService->uploadFile($request->image, "branches", "public");
-            $validated['image'] = $image;
+        if ($request->hasFile('image')) {
+            $validated['image'] = $this->fileService->uploadFile($request->file('image'), "branches", "public");
         }
 
-        $branch = new Branch();
-        $branch->name = $validated['name'];
-        $branch->image = $validated['image'];
-        $branch->save();
+        $branch = Branch::create([
+            'name' => $validated['name'],
+            'image' => $validated['image'] ?? null,
+        ]);
+
+        if ($validated['semester_id']) {
+            $semesters = Semester::where('id', '<=', $validated['semester_id'])->pluck('id');
+
+            if ($semesters->isEmpty()) {
+                return redirect()->back()->with('error', 'Invalid Semester Choice!');
+            }
+
+            $branch->semesters()->attach($semesters, [
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
 
         return redirect()->back()->with('success', 'Branch Created Successfully!');
     }
 
-    public function edit(){
 
+    public function edit() {}
 
-    }
-
-    public function fetchBranches(){
+    public function fetchBranches()
+    {
         $branches = Branch::get();
         return BranchResource::collection($branches);
     }
 
-    public function destroy(Branch $branch){
-        if(!$branch){
+    public function destroy(Branch $branch)
+    {
+        if (!$branch) {
             return abort('404', 'Branch Not Found!');
         }
 
@@ -67,7 +85,8 @@ class BranchController extends Controller
         return redirect()->back()->with('success', 'Branch Deleted Successfully!');
     }
 
-    public function update(Branch $branch, Request $request){
+    public function update(Branch $branch, Request $request)
+    {
 
         $validated = $request->validate([
             'name' => 'required',
@@ -90,10 +109,5 @@ class BranchController extends Controller
         $branch->save();
 
         return redirect()->back()->with('success', 'Branch Updated Successfully!');
-
-
     }
-
-
-
 }

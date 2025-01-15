@@ -7,6 +7,9 @@
                 <div class="col-xl-5">
                     <div class="card auth-card">
                         <div class="card-body px-3 py-5">
+
+
+
                             <div class="mx-auto mb-4 text-center auth-logo">
                                 <a href="{{route('home')}}" class="logo-dark">
                                     <img src="{{ asset('assets/images/logo-sm.png') }}" height="30" class="me-1" alt="logo sm">

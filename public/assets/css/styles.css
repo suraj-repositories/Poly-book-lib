@@ -1,14 +1,73 @@
-.hide{
+.hide {
     display: none;
 }
-.hidden{
-   display: hidden;
+
+.hidden {
+    display: hidden;
     visibility: hidden;
 }
-.branches .dz-remove{
-    display: none !important;
-    }
 
-    .branches li{
-        list-style-type: none !important;
-    }
+.branches .dz-remove {
+    display: none !important;
+}
+
+.branches li {
+    list-style-type: none !important;
+}
+
+.semesters .semester-card{
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    padding: 0;
+
+}
+.semesters .semester-card .card-body{
+    padding: 15px 10px;
+    display: flex;
+    align-items: center;
+}
+.semesters .semester-card .image-with-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.semesters .semester-card .image-with-title img{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+    border: 1px solid rgba(210, 210, 210, 0.459);
+}
+
+.semesters .semester-card .image-with-title .img-alt{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    color: rgba(53, 61, 79, 0.547);
+    border: 1px solid rgba(210, 210, 210, 0.459);
+}
+.semesters .semester-card .image-with-title .title{
+    font-weight: 500;
+    font-size: 16px;
+}
+.semesters .semester-card .image-with-title .sub-title{
+    font-weight: 300;
+    font-size: 10px;
+}
+.semesters .semester-card .actions{
+    display: flex;
+    height: 100%;
+    margin-left: auto;
+    align-items: center;
+
+}

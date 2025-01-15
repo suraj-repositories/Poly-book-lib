@@ -6,16 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
-class Branch extends Model
+class Semester extends Model
 {
     use HasFactory;
 
+    public $duration = "6 Months";
     protected $fillable = ['name', 'image'];
 
-    public function semesters()
+    public function branches()
     {
-        return $this->belongsToMany(Semester::class);
+        return $this->belongsToMany(Branch::class);
     }
+
 
     public function getImageUrl()
     {

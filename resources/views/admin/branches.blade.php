@@ -14,6 +14,16 @@
                             <div class="text-dark fs-3 fw-semibold ">
                                 <iconify-icon icon="solar:floor-lamp-broken" class="me-1 pt-1"></iconify-icon>
                                 Branches
+
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             </div>
                             <div>
                                 <a href="#!" class="btn btn-success" data-bs-toggle="modal"
@@ -23,7 +33,7 @@
 
                                 <div class="modal fade create-branch-modal" id="createBranchModal" tabindex="-1"
                                     aria-labelledby="createBranchModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
                                         <div class="modal-content">
                                             <form action="{{ route('admin.branches.store') }}" method="post"
                                                 enctype="multipart/form-data" class="needs-validation">
@@ -37,21 +47,51 @@
                                                 <div class="modal-body">
 
 
-                                                    <div class="mb-3">
-                                                        <label for="branchName" class="form-label">Branch Name</label>
+                                                    <div class="row">
+                                                        <div class="col-lg-7">
+                                                            <div class="mb-3">
+                                                                <label for="branchName" class="form-label">Branch Name</label>
 
-                                                        <div class="input-group mb-3">
-                                                            <span class="input-group-text" id="basic-addon1">
-                                                                <iconify-icon icon="solar:book-broken"></iconify-icon>
-                                                            </span>
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Enter branch name..." id="branchName" name="name" required>
+                                                                <div class="input-group mb-3">
+                                                                    <span class="input-group-text" id="basic-addon1">
+                                                                        <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                                                    </span>
+                                                                    <input type="text" class="form-control"
+                                                                        placeholder="Enter branch name..." id="branchName"
+                                                                        name="name" required>
+
+                                                                </div>
                                                                 <div class="invalid-feedback">
-                                                                    Please select a valid state.
-                                                                  </div>
+                                                                    Invalid input!
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-5">
+                                                            <div class="mb-3">
+                                                                <label for="branchName" class="form-label">Semesters</label>
 
+                                                                <div class="input-group mb-3">
+                                                                    <span class="input-group-text">
+                                                                        <iconify-icon icon="solar:calendar-minimalistic-broken"></iconify-icon>
+
+                                                                    </span>
+                                                                    <select class="form-select" name="semester_id">
+                                                                        <option selected value="">Decide later</option>
+                                                                        @foreach ($semesters as $semester)
+                                                                        <option value="{{$semester->id}}">{{ $loop->iteration }}</option>
+                                                                        @endforeach
+                                                                      </select>
+                                                                    <span class="input-group-text">semesters</span>
+                                                                </div>
+                                                                <div class="invalid-feedback">
+                                                                    Invalid input!
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
+
+
+
 
 
 
@@ -215,9 +255,9 @@
 
     <div class="modal fade create-branch-modal" id="updateBranchModal" tabindex="-1"
         aria-labelledby="updateBranchModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
-                <form action="{{ route('admin.branches.update', "") }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.branches.update', '') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="updateBranchModalLabel">Edit
@@ -234,8 +274,8 @@
                                 <span class="input-group-text" id="basic-addon1">
                                     <iconify-icon icon="solar:book-broken"></iconify-icon>
                                 </span>
-                                <input type="text" class="form-control" placeholder="Enter branch name..." id="branchName"
-                                    name="name">
+                                <input type="text" class="form-control" placeholder="Enter branch name..."
+                                    id="branchName" name="name">
                             </div>
                         </div>
 
@@ -244,40 +284,40 @@
                             <label for="branchName" class="form-label">Branch Image</label>
 
                             <!-- Hidden input to store file data -->
-                            <input type="file" name="image" id="hiddenFileInput"
-                                class="hidden">
+                            <input type="file" name="image" id="hiddenFileInput" class="hidden">
 
-                        <div class="dropzone dz-clickable" id="branchEditImageDropzone">
-                            <div class="dz-message needsclick">
-                                <i class="h1 bx bx-cloud-upload"></i>
-                                <h3>Drop files here or click to upload.</h3>
-                                <span class="text-muted fs-13">(This is just a demo dropzone.)</span>
+                            <div class="dropzone dz-clickable" id="branchEditImageDropzone">
+                                <div class="dz-message needsclick">
+                                    <i class="h1 bx bx-cloud-upload"></i>
+                                    <h3>Drop files here or click to upload.</h3>
+                                    <span class="text-muted fs-13">(This is just a demo dropzone.)</span>
+                                </div>
                             </div>
-                        </div>
 
-                        <ul id="dropzone-preview" style="display: none;">
-                            <li id="dropzone-preview-template">
-                                <div class="border rounded">
-                                    <div class="d-flex p-2">
-                                        <div class="flex-shrink-0 me-3">
-                                            <div class="avatar-sm bg-light rounded">
-                                                <img data-dz-thumbnail class="img-fluid rounded d-block" src="#" alt="Dropzone-Image">
+                            <ul id="dropzone-preview" style="display: none;">
+                                <li id="dropzone-preview-template">
+                                    <div class="border rounded">
+                                        <div class="d-flex p-2">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar-sm bg-light rounded">
+                                                    <img data-dz-thumbnail class="img-fluid rounded d-block"
+                                                        src="#" alt="Dropzone-Image">
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h5 data-dz-name>&nbsp;</h5>
+                                                <p data-dz-size class="text-muted"></p>
+                                                <strong data-dz-errormessage class="error text-danger hide"></strong>
+                                            </div>
+                                            <div class="flex-shrink-0 ms-3">
+                                                <button data-dz-remove class="btn btn-danger btn-sm">Delete</button>
                                             </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                            <h5 data-dz-name>&nbsp;</h5>
-                                            <p data-dz-size class="text-muted"></p>
-                                            <strong data-dz-errormessage class="error text-danger hide"></strong>
-                                        </div>
-                                        <div class="flex-shrink-0 ms-3">
-                                            <button data-dz-remove class="btn btn-danger btn-sm">Delete</button>
-                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
 
-                    </div>
+                        </div>
 
 
                     </div>
