@@ -466,3 +466,15 @@
   border-right: 6px solid transparent;
   border-bottom: 6px solid #be2626;
 }
+.singleFileDropzone li{
+    list-style-type: none !important;
+}
+.singleFileDropzone .dz-remove{
+    display: none !important;
+}
+.dropzone-prime-selector-area li{
+    list-style-type: none !important;
+}
+.dropzone-prime-selector-area .dz-remove{
+    display: none !important;
+}

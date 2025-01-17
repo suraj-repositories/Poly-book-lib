@@ -23,6 +23,8 @@ class BranchController extends Controller
     //
     public function index()
     {
+
+
         $branches = Branch::all();
         $semesters = Semester::take(100)->get();
 
@@ -89,15 +91,16 @@ class BranchController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => 'required',
-            'image' => 'nullable'
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'semester_id' => 'nullable|exists:semesters,id',
         ]);
 
 
         $validated['image'] = $branch->image ?? null;
 
 
-        if ($request->file('image')) {
+        if ($request->hasFile('image')) {
 
             $image = $this->fileService->uploadFile($request->image, "branches", "public");
             $validated['image'] = $image;
@@ -107,6 +110,28 @@ class BranchController extends Controller
         $branch->name = $validated['name'];
         $branch->image = $validated['image'];
         $branch->save();
+
+        if (isset($validated['semester_id'])) {
+
+            $selectedSemesterIndex = $validated['semester_id'];
+            $semestersToKeep = Semester::where('id', '<=', $selectedSemesterIndex)->pluck('id');
+
+            $currentSemesters = $branch->semesters()->pluck('semesters.id');
+
+            $semestersToAdd = $semestersToKeep->diff($currentSemesters);
+            $semestersToRemove = $currentSemesters->diff($semestersToKeep);
+
+            if ($semestersToRemove->isNotEmpty()) {
+                $branch->semesters()->detach($semestersToRemove);
+            }
+
+            if ($semestersToAdd->isNotEmpty()) {
+                $branch->semesters()->attach($semestersToAdd, [
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+        }
 
         return redirect()->back()->with('success', 'Branch Updated Successfully!');
     }

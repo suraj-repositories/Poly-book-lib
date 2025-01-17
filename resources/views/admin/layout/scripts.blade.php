@@ -1,8 +1,6 @@
   <!-- Vendor Javascript (Require in all Page) -->
   <script src="{{asset('assets/js/vendor.js')}}"></script>
 
-  <!-- App Javascript (Require in all Page) -->
-  <script src="{{asset('assets/js/app.js')}}"></script>
 
   <!-- Vector Map Js -->
   <script src="{{asset('assets/vendor/jsvectormap/js/jsvectormap.min.js')}}"></script>
@@ -16,3 +14,5 @@
   <script src="{{ asset('assets/vendor/dropzone/dropzone.js') }}"></script>
 
 
+  <!-- App Javascript (Require in all Page) -->
+  <script src="{{asset('assets/js/app.js')}}"></script>

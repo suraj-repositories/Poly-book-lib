@@ -25,4 +25,8 @@ class Branch extends Model
 
         return Storage::url($this->image);
     }
+
+    public function semestersCount(){
+        return count($this->semesters);
+    }
 }

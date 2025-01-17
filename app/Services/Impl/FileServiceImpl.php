@@ -70,7 +70,7 @@ class FileServiceImpl implements FileService
     }
 
     function deleteIfExists($filePath){
-        if (Storage::disk('public')->exists($filePath)) {
+        if ($filePath && Storage::disk('public')->exists($filePath)) {
             Storage::disk('public')->delete($filePath);
             return 1;
         }

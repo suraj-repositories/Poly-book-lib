@@ -22,6 +22,7 @@
                                     Create Semester
                                 </a>
 
+
                                 <div class="modal fade create-branch-modal" id="createBranchModal" tabindex="-1"
                                     aria-labelledby="createBranchModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -31,21 +32,21 @@
                                                 @csrf
                                                 <div class="modal-header">
                                                     <h1 class="modal-title fs-5" id="createBranchModalLabel">Create New
-                                                        Branch</h1>
+                                                        Semester</h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
 
                                                     <div class="mb-3">
-                                                        <label for="branchName" class="form-label">Branch Name</label>
+                                                        <label for="semesterName" class="form-label">Semester Name</label>
 
                                                         <div class="input-group mb-3">
                                                             <span class="input-group-text" id="basic-addon1">
                                                                 <iconify-icon icon="solar:book-broken"></iconify-icon>
                                                             </span>
                                                             <input type="text" class="form-control"
-                                                                placeholder="Enter branch name..." id="branchName" name="name" required>
+                                                                placeholder="Enter semester name..." id="semesterName" name="name" required>
                                                                 <div class="invalid-feedback">
                                                                     Please select a valid state.
                                                                   </div>
@@ -54,14 +55,14 @@
                                                     </div>
 
                                                     <div class="mb-3 image-area">
-                                                        <label for="branchName" class="form-label">Branch Image</label>
+                                                        <label for="semesterName" class="form-label">Semester Image</label>
 
                                                         <!-- Hidden input to store file data -->
                                                         <input type="file" name="image" id="hiddenFileInput"
                                                             class="hidden">
 
 
-                                                        <div class="dropzone dz-clickable" id="branchImageDropzone">
+                                                        <div class="dropzone dz-clickable create_semester_file_input_dropzone">
                                                             <div class="dz-message needsclick">
                                                                 <i class="h1 bx bx-cloud-upload"></i>
                                                                 <h3>Drop files here or click to upload.</h3>
@@ -113,7 +114,7 @@
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-primary">Create New
-                                                        Branch</button>
+                                                        Semester</button>
                                                 </div>
 
                                             </form>
@@ -185,7 +186,7 @@
 
     <!-- update semester modal -->
 
-    <div class="modal fade create-semester-modal" id="updateBranchModal" tabindex="-1"
+    {{-- <div class="modal fade create-semester-modal" id="updateBranchModal" tabindex="-1"
         aria-labelledby="updateBranchModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -262,7 +263,10 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+
+
 
     <script src="{{ asset('assets/js/admin/semesters.js') }}"></script>
 @endsection

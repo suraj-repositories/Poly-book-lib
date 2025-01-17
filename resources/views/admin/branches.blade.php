@@ -16,14 +16,14 @@
                                 Branches
 
                                 @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </div>
                             <div>
                                 <a href="#!" class="btn btn-success" data-bs-toggle="modal"
@@ -50,11 +50,13 @@
                                                     <div class="row">
                                                         <div class="col-lg-7">
                                                             <div class="mb-3">
-                                                                <label for="branchName" class="form-label">Branch Name</label>
+                                                                <label for="branchName" class="form-label">Branch
+                                                                    Name</label>
 
                                                                 <div class="input-group mb-3">
                                                                     <span class="input-group-text" id="basic-addon1">
-                                                                        <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                                                        <iconify-icon
+                                                                            icon="solar:book-broken"></iconify-icon>
                                                                     </span>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Enter branch name..." id="branchName"
@@ -72,15 +74,18 @@
 
                                                                 <div class="input-group mb-3">
                                                                     <span class="input-group-text">
-                                                                        <iconify-icon icon="solar:calendar-minimalistic-broken"></iconify-icon>
+                                                                        <iconify-icon
+                                                                            icon="solar:calendar-minimalistic-broken"></iconify-icon>
 
                                                                     </span>
                                                                     <select class="form-select" name="semester_id">
-                                                                        <option selected value="">Decide later</option>
+                                                                        <option selected value="">Decide later
+                                                                        </option>
                                                                         @foreach ($semesters as $semester)
-                                                                        <option value="{{$semester->id}}">{{ $loop->iteration }}</option>
+                                                                            <option value="{{ $semester->id }}">
+                                                                                {{ $loop->iteration }}</option>
                                                                         @endforeach
-                                                                      </select>
+                                                                    </select>
                                                                     <span class="input-group-text">semesters</span>
                                                                 </div>
                                                                 <div class="invalid-feedback">
@@ -89,12 +94,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-
-
-
-
-
 
                                                     <div class="mb-3 image-area">
                                                         <label for="branchName" class="form-label">Branch Image</label>
@@ -211,7 +210,13 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>1</td>
+                                            <td>
+                                                @if ($branch->semestersCount() == 0)
+                                                    <small class="soft-danger">Not decided yet.</small>
+                                                @else
+                                                    {{ $branch->semestersCount() }}
+                                                @endif
+                                            </td>
                                             <td>1</td>
                                             <td> {{ date('d M, Y', strtotime($branch->created_at)) }}
                                                 <small>{{ date('h:i A', strtotime($branch->created_at)) }}</small>
@@ -223,7 +228,7 @@
                                                     data-branch-id="{{ $branch->id }}"
                                                     data-branch-name="{{ $branch->name }}"
                                                     data-branch-image="{{ $branch->getImageUrl() }}"
-                                                    data-branch-semesters="{{ $branch->id }}">
+                                                    data-branch-semesters="{{ $branch->semestersCount() }}">
                                                     <i class="bx bx-edit fs-16"></i>
                                                 </button>
                                                 <form action="{{ route('admin.branches.destroy', $branch->id) }}"
@@ -266,19 +271,45 @@
                     </div>
                     <div class="modal-body branches">
 
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="mb-3">
+                                    <label for="branchName" class="form-label">Branch Name</label>
 
-                        <div class="mb-3">
-                            <label for="branchName" class="form-label">Branch Name</label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">
+                                            <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="Enter branch name..."
+                                            id="branchName" name="name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="mb-3">
+                                    <label for="semesterId" class="form-label">Semesters</label>
 
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">
-                                    <iconify-icon icon="solar:book-broken"></iconify-icon>
-                                </span>
-                                <input type="text" class="form-control" placeholder="Enter branch name..."
-                                    id="branchName" name="name">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">
+                                            <iconify-icon icon="solar:calendar-minimalistic-broken"></iconify-icon>
+
+                                        </span>
+                                        <select class="form-select" name="semester_id" id="semesterId">
+
+                                            <option selected value="" class="decide_later_option">Decide later</option>
+
+                                            @foreach ($semesters as $semester)
+                                                <option value="{{ $semester->id }}">{{ $loop->iteration }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="input-group-text">semesters</span>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Invalid input!
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
 
                         <div class="mb-3 image-area">
                             <label for="branchName" class="form-label">Branch Image</label>

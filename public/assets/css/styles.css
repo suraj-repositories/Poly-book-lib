@@ -71,3 +71,16 @@
     align-items: center;
 
 }
+
+.singleFileDropzone li{
+    list-style-type: none !important;
+}
+.singleFileDropzone .dz-remove{
+    display: none !important;
+}
+.dropzone-prime-selector-area li{
+    list-style-type: none !important;
+}
+.dropzone-prime-selector-area .dz-remove{
+    display: none !important;
+}
