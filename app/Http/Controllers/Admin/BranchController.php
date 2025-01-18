@@ -23,8 +23,6 @@ class BranchController extends Controller
     //
     public function index()
     {
-
-
         $branches = Branch::all();
         $semesters = Semester::take(100)->get();
 
@@ -36,7 +34,7 @@ class BranchController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:branches,name',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'semester_id' => 'nullable|exists:semesters,id',
         ]);
@@ -91,7 +89,7 @@ class BranchController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:branches,name',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'semester_id' => 'nullable|exists:semesters,id',
         ]);

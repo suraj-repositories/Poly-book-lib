@@ -10,7 +10,6 @@ class Semester extends Model
 {
     use HasFactory;
 
-    public $duration = "6 Months";
     protected $fillable = ['name', 'image'];
 
     public function branches()
@@ -22,7 +21,7 @@ class Semester extends Model
     public function getImageUrl()
     {
         if (empty($this->image) || !Storage::disk('public')->exists($this->image)) {
-            return config('constants.default_branch_image');
+            return config('constants.default_semester_image');
         }
 
         return Storage::url($this->image);
