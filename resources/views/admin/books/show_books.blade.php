@@ -1,5 +1,5 @@
 @extends('admin.layout.layout')
-@section('title', Route::is('admin.branches') ? 'Branch List' : '')
+@section('title', Route::is('admin.branches') ? 'Book List' : '')
 @section('content')
 
     <div class="container-fluid branches">
@@ -11,149 +11,24 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-wrap justify-content-between gap-3">
-                            <div class="text-dark fs-3 fw-semibold ">
-                                <iconify-icon icon="solar:floor-lamp-broken" class="me-1 pt-1"></iconify-icon>
-                                Branches
+                            <div class="text-dark fs-3 fw-semibold d-flex align-items-center">
+                                <iconify-icon icon="solar:notebook-broken"></iconify-icon>
+                                &nbsp;Books
+
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </div>
                             <div>
-                                <a href="#!" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#createBranchModal">
-                                    <i class="bx bx-plus me-1"></i>Create Branch
+                                <a href="#!" class="btn btn-success">
+                                    <i class="bx bx-plus me-1"></i>Add Book
                                 </a>
-
-                                <div class="modal fade create-branch-modal" id="createBranchModal" tabindex="-1"
-                                    aria-labelledby="createBranchModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <form action="{{ route('admin.branches.store') }}" method="post"
-                                                enctype="multipart/form-data" class="needs-validation">
-                                                @csrf
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="createBranchModalLabel">Create New
-                                                        Branch</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-
-
-                                                    <div class="row">
-                                                        <div class="col-lg-7">
-                                                            <div class="mb-3">
-                                                                <label for="branchName" class="form-label">Branch
-                                                                    Name</label>
-
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text" id="basic-addon1">
-                                                                        <iconify-icon
-                                                                            icon="solar:book-broken"></iconify-icon>
-                                                                    </span>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Enter branch name..." id="branchName"
-                                                                        name="name" required>
-
-                                                                </div>
-                                                                <div class="invalid-feedback">
-                                                                    Invalid input!
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-5">
-                                                            <div class="mb-3">
-                                                                <label for="branchName" class="form-label">Semesters</label>
-
-                                                                <div class="input-group mb-3">
-                                                                    <span class="input-group-text">
-                                                                        <iconify-icon
-                                                                            icon="solar:calendar-minimalistic-broken"></iconify-icon>
-
-                                                                    </span>
-                                                                    <select class="form-select" name="semester_id">
-                                                                        <option selected value="">Decide later
-                                                                        </option>
-                                                                        @foreach ($semesters as $semester)
-                                                                            <option value="{{ $semester->id }}">
-                                                                                {{ $loop->iteration }}</option>
-                                                                        @endforeach
-                                                                    </select>
-                                                                    <span class="input-group-text">semesters</span>
-                                                                </div>
-                                                                <div class="invalid-feedback">
-                                                                    Invalid input!
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="mb-3 image-area">
-                                                        <label for="branchName" class="form-label">Branch Image</label>
-
-                                                        <!-- Hidden input to store file data -->
-                                                        <input type="file" name="image" id="hiddenFileInput"
-                                                            class="hidden">
-
-
-                                                        <div class="dropzone dz-clickable" id="branchImageDropzone">
-                                                            <div class="dz-message needsclick">
-                                                                <i class="h1 bx bx-cloud-upload"></i>
-                                                                <h3>Drop files here or click to upload.</h3>
-                                                                <span class="text-muted fs-13">
-                                                                    (This is just a demo dropzone. Selected files are
-                                                                    <strong>not</strong> actually uploaded.)
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                        <ul class="list-unstyled mb-0" id="dropzone-preview"
-                                                            style="display: none;">
-                                                            <li class="mt-2" id="dropzone-preview-list">
-                                                                <div class="border rounded">
-                                                                    <div class="d-flex p-2">
-                                                                        <div class="flex-shrink-0 me-3">
-                                                                            <div class="avatar-sm bg-light rounded">
-                                                                                <img data-dz-thumbnail
-                                                                                    class="img-fluid rounded d-block"
-                                                                                    src="#" alt="Dropzone-Image" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="flex-grow-1">
-                                                                            <div class="pt-1">
-                                                                                <h5 class="fs-14 mb-1" data-dz-name>&nbsp;
-                                                                                </h5>
-                                                                                <p class="fs-13 text-muted mb-0"
-                                                                                    data-dz-size></p>
-                                                                                <strong class="error text-danger hide"
-                                                                                    data-dz-errormessage></strong>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="flex-shrink-0 ms-3">
-                                                                            <button data-dz-remove
-                                                                                class="btn btn-sm btn-danger">Delete</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                        </ul>
-
-                                                    </div>
-
-
-
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Create New
-                                                        Branch</button>
-                                                </div>
-
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-
-
                             </div>
                         </div> <!-- end row -->
                     </div>
@@ -182,7 +57,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($branches as $branch)
+                                    <tr>
+                                        <td>1</td>
+                                        <td>2</td>
+                                        <td>3</td>
+                                        <td>4</td>
+                                        <td>5</td>
+                                        <td>6</td>
+                                        <td>7</td>
+                                    </tr>
+                                    {{-- @foreach ($branches as $branch)
                                         <tr>
                                             <td>
                                                 <div class="form-check">
@@ -231,7 +115,7 @@
 
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @endforeach --}}
 
 
                                 </tbody>
@@ -288,9 +172,9 @@
 
                                             <option selected value="" class="decide_later_option">Decide later</option>
 
-                                            @foreach ($semesters as $semester)
+                                            {{-- @foreach ($semesters as $semester)
                                                 <option value="{{ $semester->id }}">{{ $loop->iteration }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </select>
                                         <span class="input-group-text">semesters</span>
                                     </div>

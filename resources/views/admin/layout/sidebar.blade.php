@@ -69,15 +69,6 @@
             <li class="menu-title">Poly</li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.branches')}}">
-                    <span class="nav-icon">
-                        <iconify-icon icon="solar:floor-lamp-broken"></iconify-icon>
-                    </span>
-                    <span class="nav-text">Branches</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.semesters')}}">
                     <span class="nav-icon">
                         <iconify-icon icon="solar:clipboard-broken"></iconify-icon>
@@ -88,7 +79,16 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="apps-email.html">
+                <a class="nav-link" href="{{route('admin.branches')}}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:floor-lamp-broken"></iconify-icon>
+                    </span>
+                    <span class="nav-text">Branches</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.books')}}">
                     <span class="nav-icon">
                         <iconify-icon icon="solar:notebook-broken"></iconify-icon>
                     </span>
@@ -97,6 +97,18 @@
             </li>
 
             <li class="nav-item">
+                <form action="{{route('logout')}}" method="POST" >
+                    @csrf
+                    <button class="nav-link w-100" >
+                        <span class="nav-icon text-danger fs-3">
+                            <i class="bx bx-log-out fs-20"></i>
+                        </span>
+                        <span class="nav-text text-danger"> Logout </span>
+                    </button>
+                </form>
+            </li>
+
+            {{-- <li class="nav-item">
                 <a class="nav-link menu-arrow" href="#sidebarCalendar" data-bs-toggle="collapse" role="button"
                     aria-expanded="false" aria-controls="sidebarCalendar">
                     <span class="nav-icon">
@@ -545,7 +557,7 @@
                     </span>
                     <span class="nav-text"> Disable Item </span>
                 </a>
-            </li> <!-- end Demo Menu Item -->
+            </li> <!-- end Demo Menu Item --> --}}
         </ul>
     </div>
 </div>

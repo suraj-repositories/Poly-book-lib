@@ -84,3 +84,9 @@
 .dropzone-prime-selector-area .dz-remove{
     display: none !important;
 }
+
+.poly-book-logo{
+    scale: 1.444;
+    margin-left: 15px !important;
+    margin-top: 6px;
+}
