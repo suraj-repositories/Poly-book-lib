@@ -1027,7 +1027,7 @@ class DropZone {
 
     createSimpleSingleFileDropzone(dropzoneSelector) {
         const dropzoneOptions = {
-            url: "/upload",
+            url: "#",
             acceptedFiles: "image/*",
             maxFilesize: 2,
             addRemoveLinks: true,
@@ -1048,16 +1048,34 @@ class DropZone {
         let myDropzone = new Dropzone(dropzoneElement, options);
 
         myDropzone.on("addedfile", (file) => {
-            console.log("File added:", file);
+            console.log("File added :", file);
+
+            const hiddenFileInput = dropzoneElement.parentElement.querySelector("#hiddenFileInput");
+            if(hiddenFileInput){
+                let dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                hiddenFileInput.files = dataTransfer.files;
+            }
+
             dropzoneElement.querySelectorAll('.dz-image-preview').forEach(imgBox => {
                 imgBox.remove();
-
                 if (myDropzone.files.length > 1) {
                     myDropzone.removeAllFiles(true);
                     myDropzone.addFile(file);
                     console.log('added file : ' . file);
                 }
             });
+
+            dropzoneElement.querySelectorAll('.dz-complete').forEach(fileBox => {
+                fileBox.remove();
+                if (myDropzone.files.length > 1) {
+                    myDropzone.removeAllFiles(true);
+                    myDropzone.addFile(file);
+                    console.log('added file : ' . file);
+                }
+            });
+
+
         });
 
         myDropzone.on("error", (file, errorMessage) => {

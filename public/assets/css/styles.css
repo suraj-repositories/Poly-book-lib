@@ -90,3 +90,49 @@
     margin-left: 15px !important;
     margin-top: 6px;
 }
+
+.files .upload-progress-card{
+
+    padding: 10px 15px;
+    border-radius: 0;
+
+
+}
+.files .upload-data{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.files .upload-data i.bi{
+    font-size: 28px;
+    font-weight: 900;
+    padding: 0 5px;
+}
+.files .upload-data .title-area{
+    display: flex;
+    flex-direction: column;
+}
+.files .upload-data .title-area .title{
+    font-size: 14px;
+}
+.files .upload-data .title-area .sub-title{
+    font-size: 10px;
+    display: flex;
+    gap: 5px;
+}
+.files .upload-data .sub-title .divider{
+    color: rgb(255, 184, 184);
+}
+.files .btn.stop-upload{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: transparent;
+
+}
+.files .btn.stop-upload:active{
+    border: none !important;
+    border-color: transparent;
+}

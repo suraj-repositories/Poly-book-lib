@@ -17540,7 +17540,9 @@ html[data-menu-size=hidden] .topbar {
 }
 
 .wrapper .main-nav .navbar-nav .sub-navbar-nav .sub-nav-item {
-    padding: calc(var(--bs-main-nav-item-padding-y) * .5) var(--bs-main-nav-item-padding-x)
+    padding: calc(var(--bs-main-nav-item-padding-y) * .5) var(--bs-main-nav-item-padding-x);
+    display: flex;
+    align-items: center;
 }
 
 .wrapper .main-nav .navbar-nav .sub-navbar-nav .sub-nav-item .sub-nav-link {

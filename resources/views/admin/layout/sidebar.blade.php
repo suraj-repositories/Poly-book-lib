@@ -87,13 +87,56 @@
                 </a>
             </li>
 
+
+
             <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.books')}}">
+                <a class="nav-link menu-arrow" href="#sidebarBooks" data-bs-toggle="collapse"
+                    role="button" aria-expanded="false" aria-controls="sidebarBooks">
                     <span class="nav-icon">
                         <iconify-icon icon="solar:notebook-broken"></iconify-icon>
                     </span>
                     <span class="nav-text"> Books </span>
                 </a>
+                <div class="collapse" id="sidebarBooks">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <i class='bx bx-minus'></i>
+                            <a class="sub-nav-link" href="{{route('admin.books')}}">Book List</a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <i class='bx bx-minus'></i>
+                            <a class="sub-nav-link" href="auth-signin.html">Upload Book</a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <i class='bx bx-minus'></i>
+                            <a class="sub-nav-link" href="auth-signup.html">Add Book</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebarFiles" data-bs-toggle="collapse"
+                    role="button" aria-expanded="false" aria-controls="sidebarFiles">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:file-broken"></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Files </span>
+                </a>
+                <div class="collapse" id="sidebarFiles">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <i class='bx bx-minus'></i>
+                            <a class="sub-nav-link" href="#!">View files</a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <i class='bx bx-minus'></i>
+                            <a class="sub-nav-link" href="{{ route('admin.files.create') }}">Upload File</a>
+                        </li>
+
+                    </ul>
+                </div>
             </li>
 
             <li class="nav-item">

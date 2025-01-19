@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\FileController;
 use App\Models\Branch;
 use Illuminate\Support\Facades\Route;
 
@@ -23,3 +24,11 @@ Route::delete('/semesters/{semester}', [SemesterController::class, 'destroy'])->
 
 Route::get('/books', [BookController::class, 'index'])->name('admin.books');
 Route::get('/books/create', [BookController::class, 'create'])->name('admin.books.create');
+
+Route::get('/files', [FileController::class, 'index'])->name('admin.files');
+Route::get('/files/create', [FileController::class, 'create'])->name('admin.files.create');
+Route::post('/files/store', [FileController::class, 'store'])->name('admin.files.store');
+Route::delete('/files/{file}', [FileController::class, 'destroy'])->name('admin.files.destroy');
+
+Route::get('/files/upload/status', [FileController::class, 'uploadStatus'])->name('admin.file.upload.status');
+Route::post('/files/upload', [FileController::class, 'uploadChunk'])->name('admin.files.upload.chunk');

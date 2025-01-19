@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('pages')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2)->nullable();
-            $table->softDeletes();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
