@@ -35,4 +35,38 @@ class Utility{
         var uuid = s.join("");
         return uuid;
     }
+
+    static secondsToTime(seconds) {
+        const days = Math.floor(seconds / (24 * 60 * 60));
+        const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60));
+        const minutes = Math.floor((seconds % (60 * 60)) / 60);
+        const remainingSeconds = seconds % 60;
+
+        return { days, hours, minutes, seconds: remainingSeconds };
+      }
+
+    static formatTimeFromSeconds(seconds){
+        const days = Math.floor(seconds / (24 * 60 * 60));
+        const hours = Math.floor((seconds % (24 * 60 * 60)) / (60 * 60));
+        const minutes = Math.floor((seconds % (60 * 60)) / 60);
+        const remainingSeconds = seconds % 60;
+
+        const timeParts = [];
+
+        if (days > 0) {
+            timeParts.push(`${days} day${days > 1 ? 's' : ''}`);
+        }
+        if (hours > 0) {
+            timeParts.push(`${hours} hour${hours > 1 ? 's' : ''}`);
+        }
+        if (minutes > 0) {
+            timeParts.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
+        }
+        if (remainingSeconds > 0) {
+            timeParts.push(`${remainingSeconds} second${remainingSeconds > 1 ? 's' : ''}`);
+        }
+
+        return timeParts.join(', ');
+    }
+
 }

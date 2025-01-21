@@ -1,8 +1,13 @@
-document.addEventListener('beforeunload', function(e) {
-    const uploadingFiles = JSON.parse(localStorage.getItem('resumable-uploads')) || [];
-    if (uploadingFiles.length > 0) {
+const UPLOADING_FILES_KEY = '0x-uploading-file';
+const UPLOAD_CHUNK_SIZE = 1 * 1024 * 1024;
+
+let uploadChunkTimes = {};
+
+window.addEventListener("beforeunload", (e) => {
+    const inProgress = localStorage.getItem(UPLOADING_FILES_KEY) ?? null;
+    if (inProgress) {
         e.preventDefault();
-        e.returnValue = "You have ongoing file uploads. Leaving this page will cancel them.";
+        if (!confirm("Running... Leave?")) e.preventDefault();
     }
 });
 
@@ -21,8 +26,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     uploadDropzone = new DropZone().singleFileDropzone(dropzone, dropzoneOptions);
+    emptyUploadHistoryFormLocal();
     init();
 });
+
+function emptyUploadHistoryFormLocal() {
+    let uploadkeys = JSON.parse(localStorage.getItem(UPLOADING_FILES_KEY)) ?? [];
+    if (uploadkeys.length > 0) {
+        uploadkeys.forEach(key => {
+            if (localStorage.getItem(key) !== null) {
+                localStorage.removeItem(key);
+            }
+        });
+    }
+    if (localStorage.getItem(UPLOADING_FILES_KEY) !== null) {
+        localStorage.removeItem(UPLOADING_FILES_KEY);
+    }
+}
 
 function init() {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -46,8 +66,10 @@ function init() {
 }
 
 async function uploadFile(file, key, csrfToken) {
-    const chunkSize = 1 * 1024 * 1024;
-    const totalChunks = Math.ceil(file.size / chunkSize);
+
+    uploadChunkTimes[key] = [];
+
+    const totalChunks = Math.ceil(file.size / UPLOAD_CHUNK_SIZE);
     const maxParallelUploads = 3;
 
     let uploadedChunks = await getUploadedChunks(key, csrfToken);
@@ -55,9 +77,8 @@ async function uploadFile(file, key, csrfToken) {
     uploadedChunks = Array.from(new Set([...uploadedChunks, ...savedProgress]));
 
     let currentChunk = uploadedChunks.length;
-    if (currentChunk > 0) {
-        addToUploadingFiles(key);
-    }
+    console.log(currentChunk);
+    addToUploadingFiles(key);
 
     let progressBar = createProgressBar(key, file, uploadedChunks, totalChunks);
 
@@ -65,8 +86,8 @@ async function uploadFile(file, key, csrfToken) {
         if (uploadedChunks.includes(index) || index >= totalChunks) return;
 
         console.log("progress bar : ", progressBar);
-        const start = index * chunkSize;
-        const end = Math.min(start + chunkSize, file.size);
+        const start = index * UPLOAD_CHUNK_SIZE;
+        const end = Math.min(start + UPLOAD_CHUNK_SIZE, file.size);
         const chunk = file.slice(start, end);
         const formData = new FormData();
         formData.append('file', chunk);
@@ -78,6 +99,9 @@ async function uploadFile(file, key, csrfToken) {
         const maxRetries = 3;
 
         while (retryCount < maxRetries) {
+
+            const startTime = performance.now();
+
             try {
                 await delay(2000);
 
@@ -94,11 +118,16 @@ async function uploadFile(file, key, csrfToken) {
                 uploadedChunks.push(index);
                 localStorage.setItem(key, JSON.stringify(uploadedChunks));
 
-                updateProgressBar(progressBar, file, uploadedChunks, totalChunks);
+                updateProgressBar(key, progressBar, file, uploadedChunks, totalChunks);
 
                 if (uploadedChunks.length === totalChunks) {
                     onCompleteUpload(key, progressBar);
                 }
+
+                const endTime = performance.now();
+                const chunkUploadTime = (endTime - startTime) / 1000;
+
+                uploadChunkTimes[key].push(chunkUploadTime);
 
                 return;
             } catch (error) {
@@ -154,6 +183,7 @@ function createProgressBar(key, file, uploadedChunks, totalChunks) {
     uploadProgress.querySelector('#file_name').innerHTML = fileService.getName();
     uploadProgress.querySelector('#time_remaining').innerHTML = "time calculating...";
     uploadProgress.querySelector('#completed_percentage').innerHTML = "0% Completed";
+    uploadProgress.querySelector('#file_size').innerHTML = "calculating...";
     uploadProgress.querySelector('#progress_bar').style.width = "0%";
     uploadProgress.querySelector('#progress_bar').textContent = "%";
     uploadProgress.querySelector('#file_icon').classList.add(fileService.getIconFromExtension(fileService.getExtension()));
@@ -161,13 +191,12 @@ function createProgressBar(key, file, uploadedChunks, totalChunks) {
     const container = document.querySelector("#processing_files");
     const appendedElement = container.appendChild(uploadProgress);
 
-    // Return the appended element
     console.log(uploadProgress, document.querySelector(`#${progressBarId}`));
     return container.querySelector(`#${progressBarId}`);
 }
 
 
-function updateProgressBar(progressBar, file, uploadedChunks, totalChunks) {
+function updateProgressBar(key, progressBar, file, uploadedChunks, totalChunks) {
     if (!progressBar) {
         console.error('Progress bar element not found');
         return;
@@ -175,37 +204,57 @@ function updateProgressBar(progressBar, file, uploadedChunks, totalChunks) {
 
     const progress = Math.round((uploadedChunks.length / totalChunks) * 100);
 
+
+    const fileService = new FileService();
     progressBar.querySelector('#progress_bar').style.width = `${progress}%`;
     progressBar.querySelector('#progress_bar').textContent = `${progress}%`;
     progressBar.querySelector('#completed_percentage').innerHTML = `${progress}% Completed`;
+    progressBar.querySelector('#file_size').innerHTML = fileService.getSize(file);
 
-    const fileService = new FileService();
-    progressBar.querySelector('#time_remaining').innerHTML = fileService.getSize(file);
+    let secondsToComplete = calculateAverageUploadTimeForFile(key, uploadedChunks, totalChunks);
+    const readableTime = Utility.formatTimeFromSeconds(secondsToComplete);
+
+    progressBar.querySelector('#time_remaining').innerHTML = readableTime;
 }
 
+function calculateAverageUploadTimeForFile(fileName, uploadedChunks, totalChunks) {
+
+    console.log(fileName, totalChunks, uploadedChunks);
+    if (!uploadChunkTimes.hasOwnProperty(fileName)) {
+        console.error(`File "${fileName}" not found in uploadTimes.`);
+        return null;
+    }
+
+    const fileUploadTimes = uploadChunkTimes[fileName];
+    const averageUploadTime = fileUploadTimes.reduce((sum, time) => sum + time, 0) / fileUploadTimes.length;
+    const timeToComplete = (totalChunks * averageUploadTime) - (uploadedChunks.length * averageUploadTime);
+    return timeToComplete.toFixed();
+}
 
 function onCompleteUpload(key, progressBar) {
     localStorage.removeItem(key);
     removeFromUploadingFiles(key);
     setTimeout(() => {
         progressBar.remove();
-    }, 2000);
+    }, 1000);
 }
 
 function addToUploadingFiles(key) {
-    const savedUploadings = JSON.parse(localStorage.getItem('resumable-uploads')) || [];
+    const savedUploadings = JSON.parse(localStorage.getItem(UPLOADING_FILES_KEY)) || [];
     const newUploadings = Array.from(new Set([...savedUploadings, key]));
-    localStorage.setItem('resumable-uploads', JSON.stringify(newUploadings));
+    console.log('adding to upload files : -------------+-------------');
+    localStorage.setItem(UPLOADING_FILES_KEY, JSON.stringify(newUploadings));
 }
 
 function removeFromUploadingFiles(key) {
-    const savedUploadings = JSON.parse(localStorage.getItem('resumable-uploads')) || [];
+    const savedUploadings = JSON.parse(localStorage.getItem(UPLOADING_FILES_KEY)) || [];
     const updatedUploadings = savedUploadings.filter(item => item !== key);
 
+    console.log("------------------------------------------------local host : ", savedUploadings);
     if (updatedUploadings.length > 0) {
-        localStorage.setItem('resumable-uploads', JSON.stringify(updatedUploadings));
+        localStorage.setItem(UPLOADING_FILES_KEY, JSON.stringify(updatedUploadings));
     } else {
-        localStorage.removeItem('resumable-uploads');
+        localStorage.removeItem(UPLOADING_FILES_KEY);
     }
 }
 
@@ -213,7 +262,8 @@ function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function emptyFileSelection(){
+function emptyFileSelection() {
+
     const uploadArea = document.querySelector("#uploadFileArea");
     const hiddenFileInput = uploadArea.querySelector("input[type='file']");
     uploadDropzone.removeAllFiles(true);

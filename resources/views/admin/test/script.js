@@ -1,4 +1,6 @@
 let inProgress = false;
+let UPLOADING_FILES = [];
+
 
 function start() {
   inProgress = true;

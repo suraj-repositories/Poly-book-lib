@@ -1,5 +1,5 @@
 @extends('admin.layout.layout')
-@section('title', Route::is('admin.branches') ? 'File List' : '')
+@section('title', Route::is('admin.files.create') ? 'Upload File' : '')
 @section('content')
 
     <div class="container-fluid files">
@@ -104,6 +104,8 @@
                                         </div>
                                         <div class="sub-title">
                                             <span class="precentage" id="completed_percentage">0% completed</span>
+                                            <span class="divider">|</span>
+                                            <span class="time" id="file_size">45 MB</span>
                                             <span class="divider">|</span>
                                             <span class="time" id="time_remaining">00:00 minutes remaining</span>
                                         </div>
