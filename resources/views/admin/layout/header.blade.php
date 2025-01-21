@@ -23,8 +23,9 @@
 
      <!-- Plugin Scripts -->
      <script src="{{ asset('assets/vendor/gridjs/gridjs.umd.js') }}"></script>
-     <script src="{{ asset('assets/js/orange-bundle/url_utility.js') }}"></script>
+     <script src="{{ asset('assets/js/orange-bundle/utility.js') }}"></script>
      <script src="{{ asset('assets/js/orange-bundle/laravel_form.js') }}"></script>
+     <script src="{{ asset('assets/js/orange-bundle/file_service.js') }}"></script>
 
      <!-- Vendor css (Require in all Page) -->
      <link href="{{asset('assets/css/vendor.min.css')}}" rel="stylesheet" type="text/css" />

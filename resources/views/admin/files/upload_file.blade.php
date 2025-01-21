@@ -53,7 +53,8 @@
                                         <div class="d-flex p-2">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar-sm bg-light rounded">
-                                                    <img data-dz-thumbnail class="img-fluid rounded d-block" src="{{ config('constants.default_upload_file_dropzone_image') }}"
+                                                    <img data-dz-thumbnail class="img-fluid rounded d-block"
+                                                        src="{{ config('constants.default_upload_file_dropzone_image') }}"
                                                         alt="Dropzone-Image" />
                                                 </div>
                                             </div>
@@ -81,60 +82,56 @@
                             <button type="button" class="btn btn-success ms-auto" id="fileUploadBtn">
                                 Upload
                             </button>
-                            <button type="button" id="restartButton">restart</button>
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                                aria-valuemin="0" aria-valuemax="100" id="uploadProgress">25%</div>
                         </div>
 
                     </div>
                 </div>
 
+                <div class="processing_files" id="processing_files"></div>
 
 
-                <div class="card upload-progress-card">
 
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="upload-data">
-                                <i class="bi bi-filetype-pdf"></i>
-                                <div class="title-area">
-                                    <div class="title">apps-invoices.html</div>
-                                    <div class="sub-title"><span class="precentage">12% completed</span> <span
-                                            class="divider">|</span> <span class="time">12:23 minutes remaining</span>
+                <template id="file-progress-template" >
+                    <div class="card upload-progress-card">
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="upload-data">
+                                    <i class="bi " id="file_icon"></i> <!-- bi-filetype-pdf -->
+                                    <div class="title-area">
+                                        <div class="title" id="file_name">
+                                            <span class="placeholder col-12 bg-secondary"></span>
+                                        </div>
+                                        <div class="sub-title">
+                                            <span class="precentage" id="completed_percentage">0% completed</span>
+                                            <span class="divider">|</span>
+                                            <span class="time" id="time_remaining">00:00 minutes remaining</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 d-flex align-items-center">
-                            <div class="h-100 w-100 align-content-center me-1">
-                                <div class="progress rounded-0">
-                                    <div class="progress-bar bg-secondary progress-bar-striped progress-bar-animated"
-                                        role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
-                                        aria-valuemax="100"></div>
-                                </div>
+                            <div class="col-md-4 d-flex align-items-center">
+                                <div class="h-100 w-100 align-content-center me-1">
+                                    <div class="progress rounded-0">
+                                        <div class="progress-bar bg-secondary progress-bar-striped progress-bar-animated"
+                                            role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0"
+                                            aria-valuemax="100" id="progress_bar"></div>
+                                    </div>
 
+                                </div>
+                                <form action="">
+                                    <button class="btn stop-upload p-0 m-0" type="submit">
+                                        <iconify-icon class="text-danger fs-2"
+                                            icon="solar:close-circle-bold-duotone"></iconify-icon>
+                                    </button>
+                                </form>
                             </div>
-                            <form action="">
-                                <button class="btn stop-upload p-0 m-0" type="submit">
-                                    <iconify-icon class="text-success fs-2"
-                                        icon="solar:pause-circle-bold-duotone"></iconify-icon>
-                                </button>
-                            </form>
-                            <form action="">
-                                <button class="btn stop-upload p-0 m-0" type="submit">
-                                    <iconify-icon class="text-danger fs-2"
-                                        icon="solar:close-circle-bold-duotone"></iconify-icon>
-                                </button>
-                            </form>
                         </div>
                     </div>
 
+                </template>
 
 
-
-                </div>
 
             </div>
 
