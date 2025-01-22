@@ -60,7 +60,7 @@ function init() {
         }
         emptyFileSelection();
 
-        const key = new Date().getTime() + file.name;
+        const key = new Date().getTime() + "_x_" + file.name;
         await uploadFile(file, key, csrfToken);
     });
 }
@@ -169,6 +169,23 @@ async function getUploadedChunks(fileName, csrfToken) {
         return [];
     }
 }
+async function cancelUploading(key, csrfToken){
+    try{
+        const response = await fetch(route('admin.files.upload.cancel'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-csrf-token': csrfToken
+            },
+            body: JSON.stringify({ fileName: key }),
+        });
+        const data = await response.json();
+        return data.success || false;
+    }catch(error){
+        console.error('Failed to cancel uploading: ', error);
+        return [];
+    }
+}
 
 
 function createProgressBar(key, file, uploadedChunks, totalChunks) {
@@ -176,7 +193,6 @@ function createProgressBar(key, file, uploadedChunks, totalChunks) {
     const uploadProgress = template.content.cloneNode(true);
 
     const fileService = new FileService(file);
-
     const progressBarId = `progress-` + Utility.createUUID();
 
     uploadProgress.querySelector('.upload-progress-card').id = progressBarId;
@@ -190,6 +206,17 @@ function createProgressBar(key, file, uploadedChunks, totalChunks) {
 
     const container = document.querySelector("#processing_files");
     const appendedElement = container.appendChild(uploadProgress);
+
+    let cancelBtn = container.querySelector('#stop-upload');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    console.log(cancelBtn, uploadProgress, cancelBtn);
+    cancelBtn.addEventListener('click', async ()=>{
+        const response = await cancelUploading(key, csrfToken);
+
+        console.log('stoped : ' , response);
+        // removeFromUploadingFiles(key);
+        // uploadProgress.remove();
+    });
 
     console.log(uploadProgress, document.querySelector(`#${progressBarId}`));
     return container.querySelector(`#${progressBarId}`);
@@ -232,7 +259,7 @@ function calculateAverageUploadTimeForFile(fileName, uploadedChunks, totalChunks
 }
 
 function onCompleteUpload(key, progressBar) {
-    localStorage.removeItem(key);
+
     removeFromUploadingFiles(key);
     setTimeout(() => {
         progressBar.remove();
@@ -247,6 +274,8 @@ function addToUploadingFiles(key) {
 }
 
 function removeFromUploadingFiles(key) {
+    localStorage.removeItem(key);
+
     const savedUploadings = JSON.parse(localStorage.getItem(UPLOADING_FILES_KEY)) || [];
     const updatedUploadings = savedUploadings.filter(item => item !== key);
 
@@ -263,7 +292,6 @@ function delay(ms) {
 }
 
 function emptyFileSelection() {
-
     const uploadArea = document.querySelector("#uploadFileArea");
     const hiddenFileInput = uploadArea.querySelector("input[type='file']");
     uploadDropzone.removeAllFiles(true);

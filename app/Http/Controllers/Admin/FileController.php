@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\File;
 use App\Services\FileService;
 use Illuminate\Http\Request;
@@ -82,7 +83,8 @@ class FileController extends Controller
         $file->move($tempDir, $chunkIndex);
 
         if (count(scandir($tempDir)) - 2 === (int) $totalChunks) {
-            $finalPath = Storage::path('public/files/'.$fileName);
+            $finalFileName = "F-" . rand(100, 999) . $fileName;
+            $finalPath = Storage::path('public/files/'.$finalFileName);
             $finalFile = fopen($finalPath, 'w');
 
             for ($i = 0; $i < $totalChunks; $i++) {
@@ -98,10 +100,33 @@ class FileController extends Controller
             fclose($finalFile);
             rmdir($tempDir);
 
+            $mimeType = $this->fileService->getFileMimeTypeByPath($finalPath);
+
+            File::create([
+                'file_path' =>  'files/' . $finalFileName,
+                'file_name' => substr($fileName, strpos($fileName, '_x_') + 3),
+                'mime_type' => $mimeType,
+                'fileable_id' => null,
+                'fileable_type' => null
+            ]);
+
             return response()->json(['message' => 'Upload complete']);
         }
 
         return response()->json(['message' => 'Chunk uploaded']);
+    }
+
+    public function cancelUpload(Request $request){
+
+        $fileName = $request->query('fileName');
+        if (!$fileName) {
+            return response()->json(['error' => 'Invalid file name'], 400);
+        }
+
+
+
+
+        return response()->json(['success' => true,'message' => 'File upload canceled!']);
     }
 
 }

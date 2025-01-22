@@ -3,10 +3,9 @@
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SemesterController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\FileController;
-use App\Models\Branch;
+use App\Http\Controllers\Admin\BookController;
+use App\Http\Controllers\Admin\FileController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,3 +31,4 @@ Route::delete('/files/{file}', [FileController::class, 'destroy'])->name('admin.
 
 Route::get('/files/upload/status', [FileController::class, 'uploadStatus'])->name('admin.file.upload.status');
 Route::post('/files/upload', [FileController::class, 'uploadChunk'])->name('admin.files.upload.chunk');
+Route::post('/files/upload/cancel', [FileController::class, 'cancelUpload'])->name('admin.files.upload.cancel');

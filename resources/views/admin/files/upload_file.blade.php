@@ -121,12 +121,12 @@
                                     </div>
 
                                 </div>
-                                <form action="">
-                                    <button class="btn stop-upload p-0 m-0" type="submit">
+
+                                    <button id="stop-upload" class="btn stop-upload p-0 m-0" >
                                         <iconify-icon class="text-danger fs-2"
                                             icon="solar:close-circle-bold-duotone"></iconify-icon>
                                     </button>
-                                </form>
+
                             </div>
                         </div>
                     </div>
