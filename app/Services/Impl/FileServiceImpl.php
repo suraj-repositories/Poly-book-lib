@@ -74,8 +74,27 @@ class FileServiceImpl implements FileService
             Storage::disk('public')->delete($filePath);
             return 1;
         }
-
         return 0;
+    }
+
+    function deleteDirectoryIfExists($dir){
+        if (!file_exists($dir)) {
+           return false;
+        }
+
+        if (is_dir($dir)) {
+            $files = array_diff(scandir($dir), array('.', '..'));
+            foreach ($files as $file) {
+                $filePath = $dir . DIRECTORY_SEPARATOR . $file;
+                if (is_dir($filePath)) {
+                    $this->deleteDirectoryIfExists($filePath);
+                } else {
+                    unlink($filePath);
+                }
+            }
+            return rmdir($dir);
+        }
+        return false;
     }
 
 }

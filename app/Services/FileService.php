@@ -24,6 +24,9 @@ interface FileService
 
     function getAllAvailableIcons(): array;
 
-    public function getSizeByPath($filePath): string;
+    function getSizeByPath($filePath): string;
+
+    function deleteDirectoryIfExists($dir);
+
 
 }

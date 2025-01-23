@@ -69,101 +69,52 @@ function init() {
 async function uploadFile(file, key, csrfToken) {
     uploadChunkTimes[key] = [];
     const totalChunks = Math.ceil(file.size / UPLOAD_CHUNK_SIZE);
-    const maxParallelUploads = 3;
 
     let uploadedChunks = await getUploadedChunks(key, csrfToken);
-    const savedProgress = JSON.parse(localStorage.getItem(key)) || [];
-    uploadedChunks = Array.from(new Set([...uploadedChunks, ...savedProgress]));
-
-    let currentChunk = uploadedChunks.length;
-    addToUploadingFiles(key);
-
-    if (!uploadProcesses[key]) {
-        uploadProcesses[key] = [];
-    }
-
-    let progressBar = createProgressBar(key, file, uploadedChunks, totalChunks);
+    uploadedChunks = Array.from(new Set(uploadedChunks)); // Remove duplicates
+    const progressBar = createProgressBar(key, file, uploadedChunks, totalChunks);
 
     const uploadChunk = async (index) => {
-        if (uploadedChunks.includes(index) || index >= totalChunks) return;
+        if (uploadedChunks.includes(index)) return;
 
-        const start = index * UPLOAD_CHUNK_SIZE;
-        const end = Math.min(start + UPLOAD_CHUNK_SIZE, file.size);
-        const chunk = file.slice(start, end);
+        const chunk = file.slice(index * UPLOAD_CHUNK_SIZE, (index + 1) * UPLOAD_CHUNK_SIZE);
         const formData = new FormData();
         formData.append('file', chunk);
         formData.append('chunkIndex', index);
         formData.append('totalChunks', totalChunks);
         formData.append('fileName', key);
 
-        let retryCount = 0;
-        const maxRetries = 3;
-
-        while (retryCount < maxRetries) {
-            const controller = new AbortController();
-            uploadProcesses[key].push(controller);
-
+        try {
             const startTime = performance.now();
+            const response = await fetch(route('admin.files.upload.chunk'), {
+                method: 'POST',
+                headers: { 'x-csrf-token': csrfToken },
+                body: formData,
+            });
 
-            try {
-                // await delay(2000);
-                const response = await fetch(route('admin.files.upload.chunk'), {
-                    method: 'POST',
-                    headers: { 'x-csrf-token': csrfToken },
-                    body: formData,
-                    signal: controller.signal,
-                });
+            if (!response.ok) throw new Error(`Chunk ${index} upload failed.`);
 
-                if (!response.ok) {
-                    throw new Error(`Upload chunk ${index} failed with status ${response.status}`);
-                }
+            uploadedChunks.push(index);
+            localStorage.setItem(key, JSON.stringify(uploadedChunks));
+            updateProgressBar(key, progressBar, file, uploadedChunks, totalChunks);
 
-                uploadedChunks.push(index);
-                localStorage.setItem(key, JSON.stringify(uploadedChunks));
+            if (uploadedChunks.length === totalChunks) onCompleteUpload(key, progressBar);
 
-                updateProgressBar(key, progressBar, file, uploadedChunks, totalChunks);
-
-                if (uploadedChunks.length === totalChunks) {
-                    onCompleteUpload(key, progressBar);
-                }
-
-                const endTime = performance.now();
-                const chunkUploadTime = (endTime - startTime) / 1000;
-
-                uploadChunkTimes[key].push(chunkUploadTime);
-
-                return;
-            } catch (error) {
-                if (error.name === 'AbortError') {
-                    console.log(`Upload for chunk ${index} aborted`);
-                    return;
-                }
-
-                retryCount++;
-                console.warn(`Retrying chunk ${index}... (${retryCount}/${maxRetries})`, error);
-                // await delay(2000);
-            }
+            uploadChunkTimes[key].push(performance.now() - startTime);
+        } catch (error) {
+            console.warn(`Retrying chunk ${index}: ${error.message}`);
+            return uploadChunk(index); // Retry the same chunk
         }
-
-        alert(`Failed to upload chunk ${index} after ${maxRetries} attempts.`);
     };
 
-    const uploadChunksInParallel = async () => {
-        const promises = [];
-        for (let i = 0; i < maxParallelUploads; i++) {
-            promises.push(processNextChunk(i));
-        }
-        await Promise.all(promises);
-    };
-
-    async function processNextChunk(startIndex) {
-        for (let i = startIndex; i < totalChunks; i += maxParallelUploads) {
-            await uploadChunk(i);
-        }
-    }
-
-    uploadChunksInParallel();
+    const parallelUploads = Array.from({ length: 3 }, (_, i) =>
+        Promise.all(
+            Array.from({ length: totalChunks / 3 }, (_, j) => uploadChunk(i + j * 3))
+        )
+    );
+    await Promise.all(parallelUploads);
 }
+
 
 async function getUploadedChunks(fileName, csrfToken) {
     try {
@@ -177,24 +128,8 @@ async function getUploadedChunks(fileName, csrfToken) {
         return [];
     }
 }
-async function cancelUploading(key, csrfToken) {
-    try {
-        const response = await fetch(route('admin.files.upload.cancel'), {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-csrf-token': csrfToken
-            },
-            body: JSON.stringify({ fileName: key }),
-        });
-        const data = await response.json();
-        return data.success || false;
-    } catch (error) {
-        console.error('Failed to cancel uploading: ', error);
-        return [];
-    }
-}
 
+// Removed cancelUploading function
 
 function createProgressBar(key, file, uploadedChunks, totalChunks) {
     const template = document.getElementById("file-progress-template");
@@ -215,25 +150,7 @@ function createProgressBar(key, file, uploadedChunks, totalChunks) {
     const container = document.querySelector("#processing_files");
     container.appendChild(uploadProgress.cloneNode(true));
 
-    let cancelBtn = container.querySelector(`#${progressBarId} `+'#stop-upload');
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    cancelBtn.addEventListener('click', async () => {
-
-        if (uploadProcesses[key]) {
-            uploadProcesses[key].forEach(controller => controller.abort());
-            delete uploadProcesses[key];
-        }
-
-        removeFromUploadingFiles(key);
-        const response = await cancelUploading(key, csrfToken);
-        const removeElement = document.querySelector(`#${progressBarId}`);
-        if (removeElement) {
-            removeElement.remove();
-        }
-
-        console.log('Stopped upload: ', response);
-    });
 
     return container.querySelector(`#${progressBarId}`);
 }
@@ -266,13 +183,7 @@ function calculateAverageUploadTimeForFile(fileName, uploadedChunks, totalChunks
         console.error(`File "${fileName}" not found in uploadTimes.`);
         return null;
     }
-
-    const fileUploadTimes = uploadChunkTimes[fileName];
-    const averageUploadTime = fileUploadTimes.reduce((sum, time) => sum + time, 0) / fileUploadTimes.length;
-    const timeToComplete = (totalChunks * averageUploadTime) - (uploadedChunks.length * averageUploadTime);
-    return timeToComplete.toFixed();
 }
-
 function onCompleteUpload(key, progressBar) {
 
     removeFromUploadingFiles(key);
@@ -302,9 +213,9 @@ function removeFromUploadingFiles(key) {
     }
 }
 
-// function delay(ms) {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-// }
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function emptyFileSelection() {
     const uploadArea = document.querySelector("#uploadFileArea");

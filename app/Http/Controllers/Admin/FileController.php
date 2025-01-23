@@ -118,13 +118,13 @@ class FileController extends Controller
 
     public function cancelUpload(Request $request){
 
-        $fileName = $request->query('fileName');
+        $fileName = $request->input('fileName');
         if (!$fileName) {
             return response()->json(['error' => 'Invalid file name'], 400);
         }
 
-
-
+        $dir = Storage::path('public/files/temp/'.$fileName);
+        $this->fileService->deleteDirectoryIfExists($dir);
 
         return response()->json(['success' => true,'message' => 'File upload canceled!']);
     }
