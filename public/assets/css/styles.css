@@ -136,3 +136,18 @@
     border: none !important;
     border-color: transparent;
 }
+.image-box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  .image-box img {
+    max-width: 100%;
+    height: auto;
+  }

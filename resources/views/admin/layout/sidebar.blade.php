@@ -128,7 +128,7 @@
                     <ul class="nav sub-navbar-nav">
                         <li class="sub-nav-item">
                             <i class='bx bx-minus'></i>
-                            <a class="sub-nav-link" href="#!">View files</a>
+                            <a class="sub-nav-link" href="{{ route('admin.files') }}">View files</a>
                         </li>
                         <li class="sub-nav-item">
                             <i class='bx bx-minus'></i>

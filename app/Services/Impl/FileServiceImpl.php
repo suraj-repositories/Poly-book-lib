@@ -5,8 +5,10 @@ namespace App\Services\Impl;
 use App\Services\FileService;
 use Illuminate\Support\Facades\Storage;
 
+
 class FileServiceImpl implements FileService
 {
+
 
 
     public function uploadFile(\Illuminate\Http\UploadedFile $file, string $folder = "uploads", string $disk = "public"): string
@@ -52,12 +54,12 @@ class FileServiceImpl implements FileService
         return config('extension')['icons'] ?? [];
     }
 
-    public function getSizeByPath($filePath): string{
-        if (!file_exists($filePath)) {
+    public function getSizeByPath($filePath, $disk = "public"): string{
+        if (!Storage::disk($disk)->exists($filePath)) {
             return "File does not exist.";
         }
 
-        $size = filesize($filePath);
+        $size = Storage::disk($disk)->size($filePath);
         $units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
 
         $unitIndex = 0;
@@ -97,4 +99,8 @@ class FileServiceImpl implements FileService
         return false;
     }
 
+
+    function getFirstPage($pdfFilePath){
+
+    }
 }

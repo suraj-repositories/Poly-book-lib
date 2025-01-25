@@ -697,6 +697,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     new ToastNotification().init();
     new _DataTable().init();
     // new DropZone().init();
+    new FileIcon().init();
 });
 
 
@@ -1019,126 +1020,6 @@ class _DataTable {
 * Author: Shubham
 * Module/App: Dropzone Customizer Js
 */
-// class DropZone {
-
-//     init() {
-//         this.createSimpleSingleFileDropzone(".singleFileDropzone");
-//     }
-
-//     createSimpleSingleFileDropzone(dropzoneSelector) {
-//         const dropzoneOptions = {
-//             url: "#",
-//             acceptedFiles: "image/*",
-//             maxFilesize: 2,
-//             addRemoveLinks: true,
-//             dictDefaultMessage: "Drop files here or click to upload (multiple files allowed).",
-//             previewTemplate: document.querySelector("#dropzone-preview-list").outerHTML,
-//         };
-
-//         let dropzone = document.querySelector(dropzoneSelector);
-//         dropzone.classList.add("dropzone-prime-selector-area");
-
-//         return this.singleFileDropzone(dropzone, dropzoneOptions);
-
-//     }
-
-//     singleFileDropzone(dropzoneElement, options) {
-
-
-//         let myDropzone = new Dropzone(dropzoneElement, options);
-
-//         myDropzone.on("addedfile", (file) => {
-//             console.log("File added :", file);
-
-//             const hiddenFileInput = dropzoneElement.parentElement.querySelector("#hiddenFileInput");
-//             if(hiddenFileInput){
-//                 let dataTransfer = new DataTransfer();
-//                 dataTransfer.items.add(file);
-//                 hiddenFileInput.files = dataTransfer.files;
-//             }
-
-//             dropzoneElement.querySelectorAll('.dz-image-preview').forEach(imgBox => {
-//                 imgBox.remove();
-//                 if (myDropzone.files.length > 1) {
-//                     myDropzone.removeAllFiles(true);
-//                     myDropzone.addFile(file);
-//                     console.log('added file : ' . file);
-//                 }
-//             });
-
-//             dropzoneElement.querySelectorAll('.dz-complete').forEach(fileBox => {
-//                 fileBox.remove();
-//                 if (myDropzone.files.length > 1) {
-//                     myDropzone.removeAllFiles(true);
-//                     myDropzone.addFile(file);
-//                     console.log('added file : ' . file);
-//                 }
-//             });
-
-
-//         });
-
-//         myDropzone.on("error", (file, errorMessage) => {
-//             if (typeof errorMessage === "object" && errorMessage !== null) {
-//                 errorMessage = errorMessage.message || JSON.stringify(errorMessage);
-//             }
-//             const errorMessageElement = file.previewElement.querySelector('.error');
-//             if (errorMessageElement) {
-//                 errorMessageElement.textContent = errorMessage;
-//             }
-//         });
-
-//         myDropzone.on("success", (file, response) => {
-//             console.log("Success:", response);
-//         });
-//         this.dropzoneObj = myDropzone;
-//         this.styleDropzoneElement(dropzoneElement);
-//         this.handleFormSubmitForFiles(dropzoneElement, 1);
-//         return myDropzone;
-//     }
-
-//     handleFormSubmitForFiles(dropzoneElement, fileCount = -1) {
-//         let form = dropzoneElement.closest('form');
-//         if (form) {
-//             form.addEventListener('submit', (event) => {
-//                 event.preventDefault();
-
-//                 const files = this.dropzoneObj.getAcceptedFiles();
-
-//                 if (files.length > 0) {
-//                     const hiddenFileInput = form.querySelector("#hiddenFileInput");
-//                     let dataTransfer = new DataTransfer();
-//                     files.forEach((file, index) => {
-//                         if (index == fileCount) {
-//                             return;
-//                         }
-//                         dataTransfer.items.add(file);
-//                     });
-
-//                     hiddenFileInput.files = dataTransfer.files;
-//                 }
-
-//                 form.submit();
-//             });
-//         }
-//     }
-
-//     styleDropzoneElement(dropzoneElement) {
-//         dropzoneElement.style.border = '2px dashed #ccc';
-//         dropzoneElement.style.padding = '20px';
-//         dropzoneElement.style.borderRadius = '5px';
-
-
-//         const messageArea = dropzoneElement.querySelector('.dz-message');
-//         messageArea.style.textAlign = 'center';
-
-//         const form = dropzoneElement.closest('form');
-//         if (form) {
-//             form.addEventListener('submit', this.handleFormSubmitForFiles.bind(this));
-//         }
-//     }
-
-// }
 
 class DropZone {
 
@@ -1171,9 +1052,13 @@ class DropZone {
 
             const hiddenFileInput = dropzoneElement.parentElement.querySelector("#hiddenFileInput");
             if (hiddenFileInput) {
-                let dataTransfer = new DataTransfer();
-                dataTransfer.items.add(file);
-                hiddenFileInput.files = dataTransfer.files;
+                if (file instanceof File) {
+                    let dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    hiddenFileInput.files = dataTransfer.files;
+                } else {
+                    console.error("The variable `file` is not a File object.");
+                }
             }
 
             // Ensure only one file is allowed at a time
@@ -1257,3 +1142,36 @@ class DropZone {
 
 }
 
+/**
+* Theme: ProjectsAndPrograms
+* Author: Shubham
+* Module/App: FileIcon Customizer Js
+*/
+
+class FileIcon{
+
+    init(){
+        this.addIconRenderer();
+    }
+
+    addIconRenderer(){
+        let renderables = document.querySelectorAll('.files table tr td i.file_icon');
+
+        renderables.forEach(renderable => {
+            const extension = renderable.getAttribute('data-extension');
+            if(extension != null){
+                const icon = new FileService().getIconFromExtension(extension);
+
+                const i_tag = document.createElement('i');
+                i_tag.classList.add('bi');
+                i_tag.classList.add(icon);
+                i_tag.classList.add('file_icon');
+
+                renderable.replaceWith(i_tag);
+            }
+
+        });
+
+    }
+
+}

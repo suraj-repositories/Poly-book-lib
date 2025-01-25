@@ -23775,5 +23775,10 @@ p.no-span::after {
 
 /*# sourceMappingURL=app.min.css.map */
 
+/* custom */
 
-
+.files .bi-files-icon{
+    font-size: 24px;
+    margin-right: 10px;
+    color: var(--bs-secondary-text-emphasis);
+}

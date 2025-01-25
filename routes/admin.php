@@ -32,3 +32,4 @@ Route::delete('/files/{file}', [FileController::class, 'destroy'])->name('admin.
 Route::get('/files/upload/status', [FileController::class, 'uploadStatus'])->name('admin.file.upload.status');
 Route::post('/files/upload', [FileController::class, 'uploadChunk'])->name('admin.files.upload.chunk');
 Route::post('/files/upload/cancel', [FileController::class, 'cancelUpload'])->name('admin.files.upload.cancel');
+Route::get('/document/preview/{type}', [FileController::class, 'documentPreview'])->name('admin.files.document.preview');

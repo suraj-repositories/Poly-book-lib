@@ -16,7 +16,7 @@
                                 &nbsp;Upload File
                             </div>
                             <div>
-                                <a href="#!" class="btn btn-success">
+                                <a href="{{ route('admin.files') }}" class="btn btn-success">
                                     <i class='bx bx-list-ul me-1 fs-4'></i>Show Files
                                 </a>
                             </div>
@@ -91,7 +91,7 @@
 
 
 
-                <template id="file-progress-template" >
+                <template id="file-progress-template">
                     <div class="card upload-progress-card">
 
                         <div class="row">
@@ -122,10 +122,10 @@
 
                                 </div>
 
-                                    <button id="stop-upload" class="btn stop-upload p-0 m-0" >
-                                        <iconify-icon class="text-danger fs-2"
-                                            icon="solar:close-circle-bold-duotone"></iconify-icon>
-                                    </button>
+                                <button id="stop-upload" class="btn stop-upload p-0 m-0">
+                                    <iconify-icon class="text-danger fs-2"
+                                        icon="solar:close-circle-bold-duotone"></iconify-icon>
+                                </button>
 
                             </div>
                         </div>

@@ -27,7 +27,7 @@ class File extends Model
         if(Storage::disk('public')->exists($this->file_path)){
             return url('storage/'.$this->file_path);
         }
-        return config('constants.default_file_image');
+        return config('constants.question_mark_image_a4');
     }
 
 }

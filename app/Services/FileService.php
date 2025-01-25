@@ -24,9 +24,9 @@ interface FileService
 
     function getAllAvailableIcons(): array;
 
-    function getSizeByPath($filePath): string;
+    function getSizeByPath($filePath, $disk = "public"): string;
 
     function deleteDirectoryIfExists($dir);
 
-
+    function getFirstPage($pdfFilePath);
 }

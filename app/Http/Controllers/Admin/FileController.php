@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+
 use App\Http\Controllers\Controller;
 use App\Models\File;
 use App\Services\FileService;
@@ -16,6 +17,18 @@ class FileController extends Controller
     public function __construct(FileService $fileService)
     {
         $this->fileService = $fileService;
+    }
+
+    public function index(){
+        $files  = File::latest()->get();
+
+        foreach ($files as $file) {
+            $filePath = $file->file_path;
+            $size = Storage::disk('public')->exists($filePath) ? $this->fileService->getSizeByPath($filePath) : '-';
+            $file->size = $size;
+            $file->icon = $this->fileService->getIconFromExtension($this->fileService->getExtensionByPath($filePath));
+        }
+        return view('admin.files.show_files', compact('files'));
     }
 
     public function create()
@@ -128,5 +141,28 @@ class FileController extends Controller
 
         return response()->json(['success' => true,'message' => 'File upload canceled!']);
     }
+
+    public function destroy(File $file){
+
+        $this->fileService->deleteIfExists($file->file_path);
+
+        $file->delete();
+
+        return redirect()->back()->with('success', 'File deleted successfully!');
+    }
+
+    // public function documentPreview($type, Request $request){
+
+    //     $filePath = $request->query('fileName');
+    //     $imagick = new Imagick();
+    //     $imagick->readImage($filePath . '[0]'); // Read the first page
+    //     $imagick->setImageFormat('png');
+
+    //     // Set the appropriate headers for the image
+    //     return response($imagick->getImagesBlob(), 200, [
+    //         'Content-Type' => 'image/png',
+    //         'Cache-Control' => 'no-store, no-cache, must-revalidate, max-age=0',
+    //     ]);
+    // }
 
 }
