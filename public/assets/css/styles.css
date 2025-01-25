@@ -7,6 +7,12 @@
     visibility: hidden;
 }
 
+.must::after {
+    content: "*";
+    color: rgb(255, 122, 122);
+    padding-left: 2px;
+}
+
 .branches .dz-remove {
     display: none !important;
 }
@@ -15,25 +21,28 @@
     list-style-type: none !important;
 }
 
-.semesters .semester-card{
+.semesters .semester-card {
     border: none;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
     padding: 0;
 
 }
-.semesters .semester-card .card-body{
+
+.semesters .semester-card .card-body {
     padding: 15px 10px;
     display: flex;
     align-items: center;
 }
-.semesters .semester-card .image-with-title{
+
+.semesters .semester-card .image-with-title {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
 }
-.semesters .semester-card .image-with-title img{
+
+.semesters .semester-card .image-with-title img {
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -44,7 +53,7 @@
     border: 1px solid rgba(210, 210, 210, 0.459);
 }
 
-.semesters .semester-card .image-with-title .img-alt{
+.semesters .semester-card .image-with-title .img-alt {
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -56,15 +65,18 @@
     color: rgba(53, 61, 79, 0.547);
     border: 1px solid rgba(210, 210, 210, 0.459);
 }
-.semesters .semester-card .image-with-title .title{
+
+.semesters .semester-card .image-with-title .title {
     font-weight: 500;
     font-size: 16px;
 }
-.semesters .semester-card .image-with-title .sub-title{
+
+.semesters .semester-card .image-with-title .sub-title {
     font-weight: 300;
     font-size: 10px;
 }
-.semesters .semester-card .actions{
+
+.semesters .semester-card .actions {
     display: flex;
     height: 100%;
     margin-left: auto;
@@ -72,58 +84,68 @@
 
 }
 
-.singleFileDropzone li{
+.singleFileDropzone li {
     list-style-type: none !important;
 }
-.singleFileDropzone .dz-remove{
-    display: none !important;
-}
-.dropzone-prime-selector-area li{
-    list-style-type: none !important;
-}
-.dropzone-prime-selector-area .dz-remove{
+
+.singleFileDropzone .dz-remove {
     display: none !important;
 }
 
-.poly-book-logo{
+.dropzone-prime-selector-area li {
+    list-style-type: none !important;
+}
+
+.dropzone-prime-selector-area .dz-remove {
+    display: none !important;
+}
+
+.poly-book-logo {
     scale: 1.444;
     margin-left: 15px !important;
     margin-top: 6px;
 }
 
-.files .upload-progress-card{
+.files .upload-progress-card {
 
     padding: 10px 15px;
     border-radius: 0;
 
 
 }
-.files .upload-data{
+
+.files .upload-data {
     display: flex;
     gap: 8px;
     align-items: center;
 }
-.files .upload-data i.bi{
+
+.files .upload-data i.bi {
     font-size: 28px;
     font-weight: 900;
     padding: 0 5px;
 }
-.files .upload-data .title-area{
+
+.files .upload-data .title-area {
     display: flex;
     flex-direction: column;
 }
-.files .upload-data .title-area .title{
+
+.files .upload-data .title-area .title {
     font-size: 14px;
 }
-.files .upload-data .title-area .sub-title{
+
+.files .upload-data .title-area .sub-title {
     font-size: 10px;
     display: flex;
     gap: 5px;
 }
-.files .upload-data .sub-title .divider{
+
+.files .upload-data .sub-title .divider {
     color: rgb(255, 184, 184);
 }
-.files .btn.stop-upload{
+
+.files .btn.stop-upload {
     padding: 0;
     margin: 0;
     display: flex;
@@ -132,10 +154,12 @@
     border-color: transparent;
 
 }
-.files .btn.stop-upload:active{
+
+.files .btn.stop-upload:active {
     border: none !important;
     border-color: transparent;
 }
+
 .image-box {
     width: 50px;
     height: 50px;
@@ -145,9 +169,153 @@
     padding: 5px;
     overflow: hidden;
     object-fit: cover;
-  }
+}
 
-  .image-box img {
+.image-box img {
     max-width: 100%;
     height: auto;
-  }
+}
+
+.flex-no-wrap {
+    flex-wrap: nowrap;
+}
+
+.file-selection-area .file-card {
+    cursor: pointer;
+}
+
+.file-selection-area {
+    max-height: 350px;
+    overflow-y: auto;
+    scrollbar-width: 0px;
+}
+
+.file-selection-area .file-card .title-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.file-selection-area .file-card .size {
+    min-width: 100px;
+    margin-left: auto;
+    text-align: right;
+}
+
+.file-selection-area .file-card .file-card-body {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.file-selection-area .file-card .file-card-body .bi {
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+.select-file-modal .search-box-container {
+    padding-bottom: 10px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.search-box-container .bx {
+    position: absolute;
+    top: 9px;
+    font-size: 24px;
+    left: 8px;
+}
+
+.search-box-container input {
+    padding-left: 35px;
+}
+
+.books .preview-image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    min-height: 200px;
+    height: 100%;
+}
+
+.books .preview-image-box .selected_file_image {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: #EEF2F7;
+}
+
+.books .preview-image-box .selected_file_image img {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    top: 0;
+    left: 0;
+}
+
+.books .preview-image-box .text-content {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 10;
+    padding: 10px;
+    opacity: 0;
+}
+
+.books .preview-image-box .selected_file_image:hover .text-content {
+    transition: all 0.5s ease;
+    opacity: 1;
+}
+
+.books .preview-image-box .text-content:hover {
+    background-color: rgba(0, 0, 0, 0.267);
+}
+
+.books .preview-image-box .text-content .file_name {
+    max-height: 200px;
+    text-align: center;
+    word-break: break-all;
+    font-size: 14px;
+}
+
+.books .preview-image-box .text-content .size {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.books .preview-image-box .close-btn {
+    display: flex;
+    transition: all 0.5s ease;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 35px;
+    height: 35px;
+    color: #ed5565;
+    background-color: rgb(253, 209, 214);
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    border-radius: 0px 0px 0px 5px;
+    font-size: 20px;
+    border-left: 1px solid #ed5565;
+    border-bottom: 1px solid #ed5565;
+    cursor: pointer;
+}
+.books .preview-image-box .close-btn .cursor-pointer{
+    cursor: pointer;
+}

@@ -698,6 +698,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     new _DataTable().init();
     // new DropZone().init();
     new FileIcon().init();
+    new QuillEditor().init();
 });
 
 
@@ -1028,17 +1029,22 @@ class DropZone {
     }
 
     createSimpleSingleFileDropzone(dropzoneSelector) {
+
+        const previewTemplateElement = document.querySelector("#dropzone-preview-list");
+
         const dropzoneOptions = {
             url: "#",
             acceptedFiles: "image/*",
             maxFilesize: 2,
             addRemoveLinks: true,
             dictDefaultMessage: "Drop files here or click to upload (multiple files allowed).",
-            previewTemplate: document.querySelector("#dropzone-preview-list").outerHTML,
+            previewTemplate: previewTemplateElement ? previewTemplateElement.outerHTML : '',
         };
 
         let dropzone = document.querySelector(dropzoneSelector);
-        dropzone.classList.add("dropzone-prime-selector-area");
+        if (dropzone) {
+            dropzone.classList.add("dropzone-prime-selector-area");
+        }
 
         return this.singleFileDropzone(dropzone, dropzoneOptions);
 
@@ -1148,18 +1154,18 @@ class DropZone {
 * Module/App: FileIcon Customizer Js
 */
 
-class FileIcon{
+class FileIcon {
 
-    init(){
+    init() {
         this.addIconRenderer();
     }
 
-    addIconRenderer(){
+    addIconRenderer() {
         let renderables = document.querySelectorAll('.files table tr td i.file_icon');
 
         renderables.forEach(renderable => {
             const extension = renderable.getAttribute('data-extension');
-            if(extension != null){
+            if (extension != null) {
                 const icon = new FileService().getIconFromExtension(extension);
 
                 const i_tag = document.createElement('i');
@@ -1171,6 +1177,42 @@ class FileIcon{
             }
 
         });
+
+    }
+
+}
+
+class QuillEditor {
+
+    init() {
+        this.enableQuillEditor();
+        console.log('quilll enabled');
+    }
+
+    enableQuillEditor() {
+
+        let elements = document.querySelectorAll('[data-editor="quill-editor"]');
+        elements.forEach(element => {
+            element.style.resize = "vertical";
+            element.style.overflow = "auto";
+
+            new Quill(element, {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [false, 1, 2, 3, 4, 5, 6] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ script: 'super' }, { script: 'sub' }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        ['blockquote'],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ 'align': [] }],
+                        ['link', 'image']
+                    ]
+                }
+            });
+        });
+
 
     }
 

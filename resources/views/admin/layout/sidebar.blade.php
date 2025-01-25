@@ -105,11 +105,7 @@
                         </li>
                         <li class="sub-nav-item">
                             <i class='bx bx-minus'></i>
-                            <a class="sub-nav-link" href="auth-signin.html">Upload Book</a>
-                        </li>
-                        <li class="sub-nav-item">
-                            <i class='bx bx-minus'></i>
-                            <a class="sub-nav-link" href="auth-signup.html">Add Book</a>
+                            <a class="sub-nav-link" href="{{ route('admin.books.create') }}">Add Book</a>
                         </li>
 
                     </ul>

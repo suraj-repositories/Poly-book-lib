@@ -14,19 +14,9 @@
                             <div class="text-dark fs-3 fw-semibold d-flex align-items-center">
                                 <iconify-icon icon="solar:notebook-broken"></iconify-icon>
                                 &nbsp;Books
-
-                                @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
                             </div>
                             <div>
-                                <a href="#!" class="btn btn-success">
+                                <a href="{{route('admin.books.create')}}" class="btn btn-success">
                                     <i class="bx bx-plus me-1"></i>Add Book
                                 </a>
                             </div>

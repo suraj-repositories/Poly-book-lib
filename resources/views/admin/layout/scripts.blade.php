@@ -1,3 +1,7 @@
+
+  <script src="{{asset('assets/js/components/form-quilljs.js')}}"></script>
+
+
   <!-- Vendor Javascript (Require in all Page) -->
   <script src="{{asset('assets/js/vendor.js')}}"></script>
 

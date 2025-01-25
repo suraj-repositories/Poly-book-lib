@@ -69,8 +69,7 @@
                                                                 <i class="h1 bx bx-cloud-upload"></i>
                                                                 <h3>Drop files here or click to upload.</h3>
                                                                 <span class="text-muted fs-13">
-                                                                    (This is just a demo dropzone. Selected files are
-                                                                    <strong>not</strong> actually uploaded.)
+                                                                    (Select the image that represents the semester to upload.)
                                                                 </span>
                                                             </div>
                                                         </div>
