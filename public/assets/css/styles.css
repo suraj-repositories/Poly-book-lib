@@ -1,5 +1,5 @@
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .hidden {
@@ -250,7 +250,9 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    background: #EEF2F7;
+    background: #eef2f733;
+    border: 1px solid #eef2f7e0;
+    border-radius: 10px;
 }
 
 .books .preview-image-box .selected_file_image img {
@@ -259,6 +261,20 @@
     width: 200px;
     top: 0;
     left: 0;
+}
+.books .preview-image-box .selected_file_image .icon-container {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.books .preview-image-box .selected_file_image .icon-container .icon-bg{
+    font-size: 80px;
 }
 
 .books .preview-image-box .text-content {
@@ -279,10 +295,12 @@
 .books .preview-image-box .selected_file_image:hover .text-content {
     transition: all 0.5s ease;
     opacity: 1;
+    border-radius: 10px;
 }
 
 .books .preview-image-box .text-content:hover {
     background-color: rgba(0, 0, 0, 0.267);
+    color: white !important;
 }
 
 .books .preview-image-box .text-content .file_name {
@@ -295,14 +313,15 @@
 .books .preview-image-box .text-content .size {
     font-size: 15px;
     font-weight: 600;
+    color: white !important;
 }
 
 .books .preview-image-box .close-btn {
     display: flex;
     transition: all 0.5s ease;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -1px;
+    right: -1px;
     width: 35px;
     height: 35px;
     color: #ed5565;

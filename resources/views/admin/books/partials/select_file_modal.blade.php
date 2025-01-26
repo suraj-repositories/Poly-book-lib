@@ -9,17 +9,17 @@
 
                 <div class="search-box-container">
                     <i class='bx bx-search'></i>
-                    <input type="text" name="search" placeholder="search" class="form-control">
+                    <input type="text" name="search" id="searchFileInput" placeholder="search" class="form-control">
                 </div>
 
-                <div class="mb-2 file-selection-area">
+                <div class="mb-2 file-selection-area" id="fileSelectionArea">
                       @include('admin.books.partials.selectable_files')
                 </div>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Done</button>
+                <button type="button" class="btn btn-primary" id="fileSelectionDoneBtn">Done</button>
             </div>
         </div>
     </div>

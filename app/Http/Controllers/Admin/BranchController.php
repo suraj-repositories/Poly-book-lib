@@ -67,11 +67,7 @@ class BranchController extends Controller
 
     public function edit() {}
 
-    public function fetchBranches()
-    {
-        $branches = Branch::get();
-        return BranchResource::collection($branches);
-    }
+
 
     public function destroy(Branch $branch)
     {
@@ -133,4 +129,7 @@ class BranchController extends Controller
 
         return redirect()->back()->with('success', 'Branch Updated Successfully!');
     }
+
+
+
 }

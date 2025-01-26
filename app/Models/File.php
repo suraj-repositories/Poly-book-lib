@@ -30,4 +30,11 @@ class File extends Model
         return config('constants.question_mark_image_a4');
     }
 
+    public function extension(){
+        if(Storage::disk('public')->exists($this->file_path)){
+            return pathinfo($this->file_path, PATHINFO_EXTENSION) ?? null;
+        }
+        return null;
+    }
+
 }

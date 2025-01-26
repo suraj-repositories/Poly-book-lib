@@ -50,7 +50,7 @@
                                                     </span>
                                                     <div class="w-100">
                                                         <select class="form-control one-three-no-rounded" data-choices
-                                                            name="branch_id">
+                                                            name="branch_id" id="branch_selector">
                                                             <option value="" disabled selected>-- select branch --
                                                             </option>
                                                             @foreach ($branches as $branch)
@@ -73,13 +73,11 @@
                                                     </span>
                                                     <div class="w-100">
                                                         <select class="form-control one-three-no-rounded" data-choices
-                                                            name="semester_id">
+                                                            name="semester_id" id="semester_selector">
                                                             <option value="" disabled selected> -- select semester --
                                                             </option>
-                                                            @foreach ($semesters as $semester)
-                                                                <option value="{{$semester->id}}">Semester {{ $loop->iteration }}</option>
-                                                            @endforeach
                                                         </select>
+
                                                     </div>
                                                 </div>
 
@@ -179,33 +177,6 @@
                                             </div>
                                         </div>
 
-                                        {{-- <ul class="list-unstyled mb-0" id="dropzone-preview" style="display: none;">
-                                            <li class="mt-2" id="dropzone-preview-list">
-                                                <div class="border rounded">
-                                                    <div class="d-flex p-2">
-                                                        <div class="flex-shrink-0 me-3">
-                                                            <div class="avatar-sm bg-light rounded">
-                                                                <img data-dz-thumbnail class="img-fluid rounded d-block"
-                                                                    src="https://placehold.co/80x80" alt="Dropzone-Image" />
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-grow-1">
-                                                            <div class="pt-1">
-                                                                <h5 class="fs-14 mb-1" data-dz-name>&nbsp;
-                                                                </h5>
-                                                                <p class="fs-13 text-muted mb-0" data-dz-size></p>
-                                                                <strong class="error text-danger hide"
-                                                                    data-dz-errormessage></strong>
-                                                            </div>
-                                                        </div>
-                                                        <div class="flex-shrink-0 ms-3">
-                                                            <button data-dz-remove
-                                                                class="btn btn-sm btn-danger">Delete</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul> --}}
                                         <ul class="list-unstyled mb-0" id="dropzone-preview" style="display: none;">
                                             <li class="mt-2 w-100" id="dropzone-preview-list">
 
@@ -238,14 +209,32 @@
                                     <div class="mb-3 image-area">
                                         <label for="coverImage" class="form-label">Select Book</label>
 
-                                        <div class="dropzone dz-clickable" data-bs-toggle="modal"
+                                        <input type="hidden" name="file_id" value="" id="selectedFileId">
+                                        <div class="dropzone dz-clickable" data-bs-toggle="modal" id="selectFileModalOpener"
                                             data-bs-target="#selectFile">
-                                            <div class="dz-message needsclick">
+                                            <div class="dz-message needsclick" id="selectFilePickerText">
                                                 <i class="h1 bx bx-cloud-upload"></i>
                                                 <h3>Open media picker.</h3>
                                                 <span class="text-muted fs-13">
                                                     (Select the of book to upload.)
                                                 </span>
+                                            </div>
+
+                                            <div class="preview-image-box hide selectedFilePreview" id="selectedFilePreview">
+                                                <div class="selected_file_image">
+                                                    <div class="icon-container">
+                                                        <i class="bi icon-bg" id="extensionIcon"></i>
+                                                    </div>
+                                                    <div class="close-btn" data-dz-remove>
+                                                        <iconify-icon icon="solar:trash-bin-trash-bold-duotone" class="cursor-pointer"></iconify-icon>
+                                                    </div>
+                                                    <div class="text-content text-light ">
+                                                        <div class="file_name" data-dz-name>
+
+                                                        </div>
+                                                        <div class="size text-light" data-dz-size></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -276,6 +265,8 @@
                                                 </div>
                                             </li>
                                         </ul>
+
+
 
                                     </div>
                                 </div>

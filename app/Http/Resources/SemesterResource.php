@@ -2,11 +2,10 @@
 
 namespace App\Http\Resources;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BranchResource extends JsonResource
+class SemesterResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -24,9 +23,6 @@ class BranchResource extends JsonResource
          ];
     }
 
-
-
-    // Custom method to get the full image URL
     private function getFullImageUrl()
     {
         return url('storage/' . $this->image);
