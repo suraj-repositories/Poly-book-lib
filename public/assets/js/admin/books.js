@@ -7,16 +7,16 @@ document.addEventListener('DOMContentLoaded', () => {
     new DropZone().createSimpleSingleFileDropzone(".cover_file_input_dropzone");
     init();
 
-    document.querySelector('.selectedFilePreview .text-content').addEventListener('click', (event)=>{
+    document.querySelector('.selectedFilePreview .text-content').addEventListener('click', (event) => {
         event.stopPropagation();
         console.log('stop propergation');
     });
-    document.querySelector('.text-content').addEventListener('click', (event)=>{
+    document.querySelector('.text-content').addEventListener('click', (event) => {
         event.stopPropagation();
         console.log('stop propergation');
     });
 
-    document.querySelector('#selectFileModalOpener').addEventListener('click', function(){
+    document.querySelector('#selectFileModalOpener').addEventListener('click', function () {
         const modalElement = document.getElementById('selectFile');
         const modal = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
         modal.show();
@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function init() {
+    enableQuillEditor("#quill-editor");
+
     enableRadioTogglingOnFileSelector();
 
     enableDynamicBranchAndSemester("#branch_selector", '#semester_selector');
@@ -33,6 +35,21 @@ function init() {
 
     bookSelection();
 }
+
+function enableQuillEditor(selector) {
+
+    const quillEditorObj = new QuillEditor().getQuillEditorObject(selector);
+
+    const form = document.getElementById('addBookForm');
+    const description = document.getElementById('description');
+
+    form.addEventListener('submit', function (event) {
+        const htmlContent = quillEditorObj.root.innerHTML;
+        description.value = htmlContent;
+    });
+
+}
+
 function enableRadioTogglingOnFileSelector() {
     document.querySelectorAll(".file-selection-area .file-card").forEach(element => {
         element.addEventListener('click', () => {
@@ -115,22 +132,22 @@ function enableDynamicBranchAndSemester(branchSelector, semesterSelector) {
 
 }
 
-function bookSelection(){
+function bookSelection() {
 
     const doneBtn = document.querySelector('#fileSelectionDoneBtn');
     const pickerTextContent = document.querySelector("#selectFilePickerText");
     const selectedPreview = document.querySelector('#selectedFilePreview');
 
-    if(!doneBtn){
+    if (!doneBtn) {
         return;
     }
 
-    doneBtn.addEventListener('click', ()=>{
+    doneBtn.addEventListener('click', () => {
         const fileSelectionArea = document.querySelector('#fileSelectionArea');
 
         let radios = fileSelectionArea.querySelectorAll('input[type="radio"]');
         radios.forEach(element => {
-            if(element.checked){
+            if (element.checked) {
 
                 document.querySelector("#selectedFileId").value = element.value;
 
@@ -138,15 +155,15 @@ function bookSelection(){
                 selectedPreview.querySelector(".size").innerHTML = element.parentNode.querySelector('.title-area .size').innerHTML;
 
 
-                if(!pickerTextContent.classList.contains('hide')){
+                if (!pickerTextContent.classList.contains('hide')) {
                     pickerTextContent.classList.add('hide')
                 }
 
-                selectedPreview.querySelector(".close-btn").addEventListener('click', ()=>{
+                selectedPreview.querySelector(".close-btn").addEventListener('click', () => {
                     document.querySelector("#selectedFileId").value = "";
 
                     selectedPreview.classList.add('hide');
-                    if(pickerTextContent.classList.contains('hide')){
+                    if (pickerTextContent.classList.contains('hide')) {
                         pickerTextContent.classList.remove('hide')
                     }
                 });
@@ -167,7 +184,7 @@ function bookSelection(){
     });
 }
 
-function enableFileSearching(searchInputSelector, containerSelector){
+function enableFileSearching(searchInputSelector, containerSelector) {
     const searchInput = document.querySelector(searchInputSelector);
     const container = document.querySelector(containerSelector);
     let page = 2;

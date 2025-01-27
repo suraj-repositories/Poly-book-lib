@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('files', function (Blueprint $table) {
-            $table->id();
-            $table->string('file_path')->unique();
-            $table->string('file_name')->nullable();
-            $table->string('mime_type')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('books', function (Blueprint $table) {
+            //
+            $table->unsignedBigInteger('branch_id')->nullable()->after('id');
+            $table->foreign('branch_id')->references('id')->on('branches')->onDelete('set null');
+
         });
     }
 
@@ -26,6 +24,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('files');
+        Schema::table('books', function (Blueprint $table) {
+            //
+        });
     }
 };

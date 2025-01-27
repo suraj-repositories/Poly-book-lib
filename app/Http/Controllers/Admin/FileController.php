@@ -52,8 +52,6 @@ class FileController extends Controller
             'file_path' =>  $filePath,
             'file_name' => $fileName,
             'mime_type' => $mimeType,
-            'fileable_id' => null,
-            'fileable_type' => null
         ]);
 
         return redirect()->back()->with('success', 'File Uploaded Successfully!');
@@ -118,9 +116,7 @@ class FileController extends Controller
             File::create([
                 'file_path' =>  'files/' . $finalFileName,
                 'file_name' => substr($fileName, strpos($fileName, '_x_') + 3),
-                'mime_type' => $mimeType,
-                'fileable_id' => null,
-                'fileable_type' => null
+                'mime_type' => $mimeType
             ]);
 
             return response()->json(['message' => 'Upload complete']);

@@ -13,6 +13,10 @@
     padding-left: 2px;
 }
 
+.validation-error{
+    color: #ed5565;
+}
+
 .branches .dz-remove {
     display: none !important;
 }

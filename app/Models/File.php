@@ -19,10 +19,6 @@ class File extends Model
         'fileable_type',
     ];
 
-    public function fileable(){
-        return $this->morphTo();
-    }
-
     public function getFileUrl(){
         if(Storage::disk('public')->exists($this->file_path)){
             return url('storage/'.$this->file_path);
@@ -35,6 +31,11 @@ class File extends Model
             return pathinfo($this->file_path, PATHINFO_EXTENSION) ?? null;
         }
         return null;
+    }
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class);
     }
 
 }

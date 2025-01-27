@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('files', function (Blueprint $table) {
-            //
-            $table->foreign('fileable_id')->references('id')->on('books')->onDelete('cascade');
+        Schema::table('books', function (Blueprint $table) {
+
+            $table->unsignedBigInteger('semester_id')->nullable()->after('id');
+            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('set null');
+
+
         });
     }
 
@@ -22,9 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('books', function (Blueprint $table) {
             //
-            $table->dropForeign(['fileable_id']);
         });
     }
 };

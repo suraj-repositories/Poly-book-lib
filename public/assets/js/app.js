@@ -1186,7 +1186,6 @@ class QuillEditor {
 
     init() {
         this.enableQuillEditor();
-        console.log('quilll enabled');
     }
 
     enableQuillEditor() {
@@ -1196,7 +1195,7 @@ class QuillEditor {
             element.style.resize = "vertical";
             element.style.overflow = "auto";
 
-            new Quill(element, {
+            let quillObj = new Quill(element, {
                 theme: 'snow',
                 modules: {
                     toolbar: [
@@ -1211,9 +1210,45 @@ class QuillEditor {
                     ]
                 }
             });
+
+
+            // const form = element.closest('form');
+            // if(form){
+            //     form.addEventListener('submit', (event)=>{
+            //         event.preventDefault();
+
+            //         let textarea = form.querySelector();
+
+            //     });
+            // }
         });
+    }
 
+    getQuillEditorObject(selector){
 
+        const divElement = document.querySelector(selector);
+
+        if(divElement){
+            let quillObj = new Quill(divElement, {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [false, 1, 2, 3, 4, 5, 6] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ script: 'super' }, { script: 'sub' }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        ['blockquote'],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ 'align': [] }],
+                        ['link', 'image']
+                    ]
+                }
+            });
+
+            return quillObj;
+        }
+
+        return null;
     }
 
 }

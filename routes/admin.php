@@ -24,6 +24,7 @@ Route::get('/semesters/fetch', [SemesterController::class, 'fetchSemesters'])->n
 
 Route::get('/books', [BookController::class, 'index'])->name('admin.books');
 Route::get('/books/create', [BookController::class, 'create'])->name('admin.books.create');
+Route::post('/books/store', [BookController::class, 'store'])->name('admin.books.store');
 Route::get('/books/select-from-files', [BookController::class, 'selectFromFiles'])->name('admin.books.select.files');
 
 Route::get('/files', [FileController::class, 'index'])->name('admin.files');

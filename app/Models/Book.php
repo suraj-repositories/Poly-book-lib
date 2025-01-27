@@ -20,16 +20,17 @@ class Book extends Model
         'price',
     ];
 
-    public function file(){
-        return $this->morphOne(File::class, 'fileable');
-    }
-
     public function getCoverPageUrl(){
         if (empty($this->image) || !Storage::disk('public')->exists($this->image)) {
             return config('constants.default_cover_page_image');
         }
 
         return Storage::url($this->image);
+    }
+
+    public function file()
+    {
+        return $this->belongsTo(File::class);
     }
 
 }

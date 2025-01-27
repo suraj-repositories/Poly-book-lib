@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BookRequest;
+use App\Models\Book;
 use App\Models\Branch;
 use App\Models\File;
 use App\Models\Semester;
@@ -43,6 +45,31 @@ class BookController extends Controller
         return view('admin.books.add_book', compact('files', 'branches', 'semesters'));
     }
 
+    public function store(BookRequest $request){
+
+        if ($request->hasFile('image')) {
+            $image = $this->fileService->uploadFile($request->image, "books", "public");
+            $request['cover_image'] = $image;
+        }
+
+        $book = new Book();
+        $book->title = $request['title'];
+        $book->author = $request['author'];
+        $book->pages = $request['pages'];
+        $book->price = $request['price'];
+        $book->cover_image = $request['cover_image'];
+        $book->branch_id = $request['branch_id'];
+        $book->semester_id = $request['semester_id'];
+        $book->file_id = $request['file_id'];
+        $book->description = $request['description'];
+        $book->save();
+
+        if($book){
+            return redirect()->back()->with('success', 'Book added Successfully!');
+        }
+        return redirect()->back()->with('error', 'Error while adding book!');
+  }
+
     public function selectFromFiles(Request $request)
     {
         $page = $request->get('page', 1);
@@ -70,4 +97,6 @@ class BookController extends Controller
             'has_more' => $files->hasMorePages(),
         ]);
     }
+
+
 }

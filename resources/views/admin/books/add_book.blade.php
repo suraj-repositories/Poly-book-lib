@@ -29,8 +29,8 @@
                     <!-- end card body -->
                 </div>
 
-
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.books.store') }}" method="POST" enctype="multipart/form-data"
+                    id="addBookForm">
                     @csrf
 
                     <div class="row">
@@ -44,7 +44,7 @@
                                             <div class="mb-3">
                                                 <label for="branchName" class="form-label must">Select Branch</label>
 
-                                                <div class="input-group mb-3 flex-no-wrap">
+                                                <div class="input-group flex-no-wrap">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <iconify-icon icon="solar:book-broken"></iconify-icon>
                                                     </span>
@@ -54,11 +54,15 @@
                                                             <option value="" disabled selected>-- select branch --
                                                             </option>
                                                             @foreach ($branches as $branch)
-                                                                <option value="{{$branch->id}}">{{ $branch->name }}</option>
+                                                                <option value="{{ $branch->id }}">{{ $branch->name }}
+                                                                </option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
+                                                @error('branch_id')
+                                                    <small class="validation-error">{{ $message }}</small>
+                                                @enderror
 
                                             </div>
                                         </div>
@@ -67,7 +71,7 @@
                                             <div class="mb-3">
                                                 <label for="semesterName" class="form-label must">Select Semester</label>
 
-                                                <div class="input-group mb-3 flex-no-wrap">
+                                                <div class="input-group flex-no-wrap">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <iconify-icon icon="solar:book-broken"></iconify-icon>
                                                     </span>
@@ -80,21 +84,26 @@
 
                                                     </div>
                                                 </div>
-
+                                                @error('semester_id')
+                                                    <small class="validation-error">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="mb-3">
-                                                <label for="bookName" class="form-label must">Book Name</label>
+                                                <label for="bookName" class="form-label must">Book Title</label>
 
-                                                <div class="input-group mb-3">
+                                                <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <iconify-icon icon="solar:book-broken"></iconify-icon>
                                                     </span>
                                                     <input type="text" class="form-control"
-                                                        placeholder="Enter book name..." id="bookhName" name="name">
+                                                        placeholder="Enter book title..." id="bookhName" name="title">
                                                 </div>
+                                                @error('title')
+                                                    <small class="validation-error">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -102,52 +111,66 @@
                                             <div class="mb-3">
                                                 <label for="authorName" class="form-label">Book Author</label>
 
-                                                <div class="input-group mb-3">
+                                                <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <iconify-icon icon="solar:book-broken"></iconify-icon>
                                                     </span>
                                                     <input type="text" class="form-control"
                                                         placeholder="Enter author name..." id="bookAuthor" name="author">
                                                 </div>
+
+                                                @error('author')
+                                                    <small class="validation-error">{{ $message }}</small>
+                                                @enderror
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label for="authorName" class="form-label">Description</label>
-                                                <div id="snow-editor" data-editor="quill-editor" style="height: 150px;">
 
-                                                </div>
+                                                <div id="quill-editor" style="height: 150px;"></div>
 
-
+                                                <textarea class="hide" name="description" id="description" cols="30" rows="10"></textarea>
+                                                @error('description')
+                                                    <small class="validation-error">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="authorName" class="form-label">Number of Pages</label>
+                                                <label for="pages" class="form-label">Number of Pages</label>
 
-                                                <div class="input-group mb-3">
+                                                <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <iconify-icon icon="solar:file-text-broken"></iconify-icon>
                                                     </span>
                                                     <input type="text" class="form-control"
-                                                        placeholder="Enter number of pages..." id="bookAuthor"
-                                                        name="author">
+                                                        placeholder="Enter number of pages..." id="pages"
+                                                        name="pages">
                                                 </div>
+
+                                                @error('pages')
+                                                    <small class="validation-error">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="authorName" class="form-label">Price</label>
+                                                <label for="price" class="form-label">Price</label>
 
-                                                <div class="input-group mb-3">
+                                                <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <iconify-icon icon="solar:dollar-broken"></iconify-icon>
                                                     </span>
                                                     <input type="text" class="form-control"
-                                                        placeholder="Enter amount ..." id="bookAuthor" name="author">
+                                                        placeholder="Enter amount ..." id="price" name="price">
                                                 </div>
+                                                @error('price')
+                                                    <small class="validation-error">{{ $message }}</small>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -182,9 +205,11 @@
 
                                                 <div class="preview-image-box">
                                                     <div class="selected_file_image">
-                                                        <img data-dz-thumbnail src="https://placehold.co/80x110" class="selected_file_image" alt="selected image">
+                                                        <img data-dz-thumbnail src="https://placehold.co/80x110"
+                                                            class="selected_file_image" alt="selected image">
                                                         <div class="close-btn" data-dz-remove>
-                                                            <iconify-icon icon="solar:trash-bin-trash-bold-duotone" class="cursor-pointer"></iconify-icon>
+                                                            <iconify-icon icon="solar:trash-bin-trash-bold-duotone"
+                                                                class="cursor-pointer"></iconify-icon>
                                                         </div>
                                                         <div class="text-content text-light">
                                                             <div class="file_name" data-dz-name>
@@ -198,7 +223,9 @@
                                             </li>
                                         </ul>
 
-
+                                        @error('image')
+                                            <small class="validation-error">{{ $message }}</small>
+                                        @enderror
 
                                     </div>
                                 </div>
@@ -210,8 +237,9 @@
                                         <label for="coverImage" class="form-label">Select Book</label>
 
                                         <input type="hidden" name="file_id" value="" id="selectedFileId">
-                                        <div class="dropzone dz-clickable" data-bs-toggle="modal" id="selectFileModalOpener"
-                                            data-bs-target="#selectFile">
+
+                                        <div class="dropzone dz-clickable" data-bs-toggle="modal"
+                                            id="selectFileModalOpener" data-bs-target="#selectFile">
                                             <div class="dz-message needsclick" id="selectFilePickerText">
                                                 <i class="h1 bx bx-cloud-upload"></i>
                                                 <h3>Open media picker.</h3>
@@ -220,13 +248,15 @@
                                                 </span>
                                             </div>
 
-                                            <div class="preview-image-box hide selectedFilePreview" id="selectedFilePreview">
+                                            <div class="preview-image-box hide selectedFilePreview"
+                                                id="selectedFilePreview">
                                                 <div class="selected_file_image">
                                                     <div class="icon-container">
                                                         <i class="bi icon-bg" id="extensionIcon"></i>
                                                     </div>
                                                     <div class="close-btn" data-dz-remove>
-                                                        <iconify-icon icon="solar:trash-bin-trash-bold-duotone" class="cursor-pointer"></iconify-icon>
+                                                        <iconify-icon icon="solar:trash-bin-trash-bold-duotone"
+                                                            class="cursor-pointer"></iconify-icon>
                                                     </div>
                                                     <div class="text-content text-light ">
                                                         <div class="file_name" data-dz-name>
@@ -266,7 +296,9 @@
                                             </li>
                                         </ul>
 
-
+                                        @error('file_id')
+                                            <small class="validation-error">{{ $message }}</small>
+                                        @enderror
 
                                     </div>
                                 </div>
