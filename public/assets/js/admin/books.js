@@ -7,14 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     new DropZone().createSimpleSingleFileDropzone(".cover_file_input_dropzone");
     init();
 
-    document.querySelector('.selectedFilePreview .text-content').addEventListener('click', (event) => {
-        event.stopPropagation();
-        console.log('stop propergation');
-    });
-    document.querySelector('.text-content').addEventListener('click', (event) => {
-        event.stopPropagation();
-        console.log('stop propergation');
-    });
 
     document.querySelector('#selectFileModalOpener').addEventListener('click', function () {
         const modalElement = document.getElementById('selectFile');
@@ -44,8 +36,11 @@ function enableQuillEditor(selector) {
     const description = document.getElementById('description');
 
     form.addEventListener('submit', function (event) {
+        event.preventDefault();
         const htmlContent = quillEditorObj.root.innerHTML;
         description.value = htmlContent;
+
+        form.submit();
     });
 
 }
