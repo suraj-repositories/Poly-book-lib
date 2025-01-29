@@ -39,24 +39,17 @@
                                             </div>
                                         </th>
                                         <th scope="col">ID</th>
+                                        <th scope="col">Title</th>
                                         <th scope="col">Branch</th>
-                                        <th scope="col">Semesters</th>
-                                        <th scope="col">Books</th>
+                                        <th scope="col">Semester</th>
+                                        <th scope="col">Author</th>
                                         <th scope="col">Last Updated</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>2</td>
-                                        <td>3</td>
-                                        <td>4</td>
-                                        <td>5</td>
-                                        <td>6</td>
-                                        <td>7</td>
-                                    </tr>
-                                    {{-- @foreach ($branches as $branch)
+
+                                    @foreach ($books as $book)
                                         <tr>
                                             <td>
                                                 <div class="form-check">
@@ -67,35 +60,29 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <img src="{{ $branch->getImageUrl() }}" alt=""
+                                                    <img src="{{ $book->getCoverPageUrl() }}" alt=""
                                                         class="avatar-xs rounded-circle me-2">
                                                     <div>
-                                                        <h5 class="fs-14 m-0 fw-normal">{{ $branch->name }}</h5>
+                                                        <h5 class="fs-14 m-0 fw-normal">{{ $book->title }}</h5>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                @if ($branch->semestersCount() == 0)
-                                                    <small class="soft-danger">Not decided yet.</small>
-                                                @else
-                                                    {{ $branch->semestersCount() }}
-                                                @endif
+                                                {{$book->branch->name ?? "-"}}
                                             </td>
-                                            <td>1</td>
-                                            <td> {{ date('d M, Y', strtotime($branch->created_at)) }}
-                                                <small>{{ date('h:i A', strtotime($branch->created_at)) }}</small>
+                                            <td> {{ $book->semester->name ?? "-" }}
+                                                <br><small>{{ $book->semester->name ?? "-"}}</small>
+                                            </td>
+                                            <td>{{ $book->author }}</td>
+                                            <td> {{ date('d M, Y', strtotime($book->updated_at)) }}
+                                                <small>{{ date('h:i A', strtotime($book->updated_at)) }}</small>
                                             </td>
 
                                             <td>
-                                                <button type="button" class="btn btn-sm btn-soft-secondary me-1"
-                                                    onclick="openEditBranchModal(this)"
-                                                    data-branch-id="{{ $branch->id }}"
-                                                    data-branch-name="{{ $branch->name }}"
-                                                    data-branch-image="{{ $branch->getImageUrl() }}"
-                                                    data-branch-semesters="{{ $branch->semestersCount() }}">
+                                                <a href="" class="btn btn-sm btn-soft-secondary me-1">
                                                     <i class="bx bx-edit fs-16"></i>
-                                                </button>
-                                                <form action="{{ route('admin.branches.destroy', $branch->id) }}"
+                                                </a>
+                                                <form action="{{ route('admin.branches.destroy', $book->id) }}"
                                                     class="d-inline" method="post">
                                                     @csrf
                                                     @method('DELETE')
@@ -105,7 +92,7 @@
 
                                             </td>
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
 
 
                                 </tbody>

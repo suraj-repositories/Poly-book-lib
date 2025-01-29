@@ -77,6 +77,7 @@ class BranchController extends Controller
 
         $this->fileService->deleteIfExists($branch->image);
 
+
         $branch->delete();
         return redirect()->back()->with('success', 'Branch Deleted Successfully!');
     }

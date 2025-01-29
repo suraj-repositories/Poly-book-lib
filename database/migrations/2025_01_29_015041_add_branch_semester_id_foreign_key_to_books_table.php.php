@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::table('books', function (Blueprint $table) {
 
-            $table->unsignedBigInteger('semester_id')->nullable()->after('id');
-            $table->foreign('semester_id')->references('id')->on('semesters')->onDelete('set null');
-
-
+            $table->unsignedBigInteger('branch_semester_id')->after('id');
+            $table->foreign('branch_semester_id')
+                        ->references('id')
+                        ->on('branch_semester')
+                        ->onDelete('cascade');
         });
     }
 
@@ -25,8 +26,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        //
         Schema::table('books', function (Blueprint $table) {
-            //
+            $table->dropForeign(['branch_semester_id']);
+            $table->dropColumn('branch_semester_id');
         });
     }
 };

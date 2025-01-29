@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::table('books', function (Blueprint $table) {
             //
-            $table->foreignId('file_id')->nullable()->constrained('files')->onDelete('set null');
+
+            $table->foreignId('file_id')->nullable()->after('id')->constrained('files')->onDelete('set null');
         });
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use App\Models\Branch;
+use App\Models\BranchSemester;
 use App\Models\File;
 use App\Models\Semester;
 use App\Services\FileService;
@@ -24,7 +25,8 @@ class BookController extends Controller
 
     public function index()
     {
-        return view('admin.books.show_books');
+        $books = Book::get();
+        return view('admin.books.show_books', compact('books'));
     }
 
     public function create()
@@ -45,12 +47,18 @@ class BookController extends Controller
         return view('admin.books.add_book', compact('files', 'branches', 'semesters'));
     }
 
-    public function store(BookRequest $request){
+    public function store(BookRequest $request)
+    {
 
         if ($request->hasFile('image')) {
             $image = $this->fileService->uploadFile($request->image, "books", "public");
             $request['cover_image'] = $image;
         }
+
+        $branchSemesterId = BranchSemester::where('branch_id', $request['branch_id'])
+            ->where('semester_id', $request['semester_id'])
+            ->pluck('id')
+            ->first();
 
         $book = new Book();
         $book->title = $request['title'];
@@ -58,17 +66,16 @@ class BookController extends Controller
         $book->pages = $request['pages'];
         $book->price = $request['price'];
         $book->cover_image = $request['cover_image'];
-        $book->branch_id = $request['branch_id'];
-        $book->semester_id = $request['semester_id'];
+        $book->branch_semester_id = $branchSemesterId;
         $book->file_id = $request['file_id'];
         $book->description = $request['description'];
         $book->save();
 
-        if($book){
+        if ($book) {
             return redirect()->back()->with('success', 'Book added Successfully!');
         }
         return redirect()->back()->with('error', 'Error while adding book!');
-  }
+    }
 
     public function selectFromFiles(Request $request)
     {
@@ -97,6 +104,4 @@ class BookController extends Controller
             'has_more' => $files->hasMorePages(),
         ]);
     }
-
-
 }

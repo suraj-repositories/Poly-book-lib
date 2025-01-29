@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidBranchSemester;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BookRequest extends FormRequest
@@ -24,6 +25,7 @@ class BookRequest extends FormRequest
         return [
             'branch_id' => ['required', 'exists:branches,id'],
             'semester_id' => ['required', 'exists:semesters,id'],
+            new ValidBranchSemester(),
             'title' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string', 'max:5000'],
             'author' => ['nullable', 'string', 'max:255'],

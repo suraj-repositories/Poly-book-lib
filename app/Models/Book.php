@@ -18,6 +18,7 @@ class Book extends Model
         'pages',
         'description',
         'price',
+        'branch_semester_id',
     ];
 
     public function getCoverPageUrl(){
@@ -31,6 +32,11 @@ class Book extends Model
     public function file()
     {
         return $this->belongsTo(File::class);
+    }
+
+    public function branchSemester()
+    {
+        return $this->belongsTo(BranchSemester::class);
     }
 
 }

@@ -46,7 +46,7 @@
 
                                                 <div class="input-group flex-no-wrap">
                                                     <span class="input-group-text" id="basic-addon1">
-                                                        <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                                        <iconify-icon icon="solar:floor-lamp-broken"></iconify-icon>
                                                     </span>
                                                     <div class="w-100">
                                                         <select class="form-control one-three-no-rounded" data-choices
@@ -73,7 +73,7 @@
 
                                                 <div class="input-group flex-no-wrap">
                                                     <span class="input-group-text" id="basic-addon1">
-                                                        <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                                        <iconify-icon icon="solar:clipboard-broken"></iconify-icon>
                                                     </span>
                                                     <div class="w-100">
                                                         <select class="form-control one-three-no-rounded" data-choices
@@ -96,7 +96,7 @@
 
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon1">
-                                                        <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                                        <iconify-icon icon="solar:bookmark-broken"></iconify-icon>
                                                     </span>
                                                     <input type="text" class="form-control"
                                                         placeholder="Enter book title..." id="bookhName" name="title">
@@ -113,7 +113,7 @@
 
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon1">
-                                                        <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                                        <iconify-icon icon="solar:user-circle-broken"></iconify-icon>
                                                     </span>
                                                     <input type="text" class="form-control"
                                                         placeholder="Enter author name..." id="bookAuthor" name="author">
@@ -145,7 +145,7 @@
 
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon1">
-                                                        <iconify-icon icon="solar:file-text-broken"></iconify-icon>
+                                                        <iconify-icon icon="solar:notebook-bookmark-broken"></iconify-icon>
                                                     </span>
                                                     <input type="text" class="form-control"
                                                         placeholder="Enter number of pages..." id="pages"
@@ -234,7 +234,7 @@
                                 <div class="card-body">
 
                                     <div class="mb-3 image-area">
-                                        <label for="coverImage" class="form-label">Select Book</label>
+                                        <label for="coverImage" class="form-label must">Select Book</label>
 
                                         <input type="hidden" name="file_id" value="" id="selectedFileId">
 

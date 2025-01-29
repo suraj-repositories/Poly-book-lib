@@ -13,6 +13,18 @@ class Branch extends Model
 
     protected $fillable = ['name', 'image'];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($branch) {
+            $branch->branchSemesters->each(function ($branchSemester) {
+                $branchSemester->books()->delete();
+                $branchSemester->delete();
+            });
+        });
+    }
+
     public function semesters()
     {
         return $this->belongsToMany(Semester::class);
@@ -27,7 +39,13 @@ class Branch extends Model
         return Storage::url($this->image);
     }
 
-    public function semestersCount(){
+    public function semestersCount()
+    {
         return count($this->semesters);
+    }
+
+    public function branchSemesters()
+    {
+        return $this->hasMany(BranchSemester::class, 'branch_id');
     }
 }
