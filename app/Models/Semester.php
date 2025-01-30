@@ -11,7 +11,7 @@ class Semester extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'image'];
+    protected $fillable = ['title', 'sub_title', 'image'];
 
     public function branches()
     {

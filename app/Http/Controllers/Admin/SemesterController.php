@@ -27,7 +27,8 @@ class SemesterController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'nullable|string',
+            'title' => 'nullable|string',
+            'sub_title' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
@@ -36,7 +37,8 @@ class SemesterController extends Controller
         }
 
         Semester::create([
-            'name' => $validated['name'],
+            'title' => $validated['title'],
+            'sub_title' => $validated['sub_title'],
             'image' =>  $validated['image'] ?? null
         ]);
 
@@ -45,7 +47,8 @@ class SemesterController extends Controller
 
     public function update(Semester $semester, Request $request){
         $validated = $request->validate([
-            'name' => 'nullable|string',
+            'title' => 'nullable|string',
+            'sub_title' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
@@ -54,7 +57,8 @@ class SemesterController extends Controller
             $this->fileService->deleteIfExists($semester->image);
         }
 
-        $semester->name = $validated['name'];
+        $semester->title = $validated['title'];
+        $semester->sub_title = $validated['sub_title'];
         $semester->image = $validated['image'] ?? $semester->image;
         $semester->save();
 

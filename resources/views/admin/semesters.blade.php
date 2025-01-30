@@ -25,7 +25,7 @@
 
                                 <div class="modal fade create-branch-modal" id="createSemesterModal" tabindex="-1"
                                     aria-labelledby="createSemesterModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
                                         <div class="modal-content">
                                             <form action="{{ route('admin.semesters.store') }}" method="post"
                                                 enctype="multipart/form-data" class="needs-validation">
@@ -38,18 +38,42 @@
                                                 </div>
                                                 <div class="modal-body">
 
-                                                    <div class="mb-3">
-                                                        <label for="semesterName" class="form-label">Semester Name</label>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
 
-                                                        <div class="input-group mb-3">
-                                                            <span class="input-group-text" id="basic-addon1">
-                                                                <iconify-icon icon="solar:book-broken"></iconify-icon>
-                                                            </span>
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Enter semester name..." id="semesterName"
-                                                                name="name" required>
-                                                            <div class="invalid-feedback">
-                                                                Please select a valid state.
+                                                            <label for="semesterTitle" class="form-label">Semester
+                                                                Title</label>
+
+                                                            <div class="input-group mb-3">
+                                                                <span class="input-group-text" id="basic-addon1">
+                                                                    <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                                                </span>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Enter semester title..." id="semesterTitle"
+                                                                    name="title" required>
+                                                                <div class="invalid-feedback">
+                                                                    Please enter a valid semester title.
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+
+                                                            <label for="subTitleName" class="form-label">Semester
+                                                                Sub-Title</label>
+
+                                                            <div class="input-group mb-3">
+                                                                <span class="input-group-text" id="basic-addon1">
+                                                                    <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                                                </span>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Enter semester sub-title..."
+                                                                    id="subTitleName" name="sub_title" required>
+                                                                <div class="invalid-feedback">
+                                                                    Please enter a valid sub-title.
+                                                                </div>
+
                                                             </div>
 
                                                         </div>
@@ -69,7 +93,8 @@
                                                                 <i class="h1 bx bx-cloud-upload"></i>
                                                                 <h3>Drop files here or click to upload.</h3>
                                                                 <span class="text-muted fs-13">
-                                                                    (Select the image that represents the semester to upload.)
+                                                                    (Select the image that represents the semester to
+                                                                    upload.)
                                                                 </span>
                                                             </div>
                                                         </div>
@@ -160,31 +185,30 @@
 
                                 <a href="">
                                     <div class="title-area">
-                                        <div class="title">Semester {{ $loop->iteration }}</div>
-                                        <div class="sub-title">{{ $semester->name }}</div>
+                                        <div class="title">{{ $semester->title }}</div>
+                                        <div class="sub-title">{{ $semester->sub_title }}</div>
                                     </div>
                                 </a>
                             </div>
 
                             <div class="actions">
 
-                                <button
-                                    type="button"
-                                    class="btn btn-sm btn-soft-secondary me-1"
-                                     onclick="openEditSemesterModal(this)"
-                                    data-semester-id="{{ $semester->id }}"
-                                    data-semester-name="{{ $semester->name }}"
-                                    data-semester-image="{{ $semester->getImageUrl() }}"
-                                    >
+                                <button type="button" class="btn btn-sm btn-soft-secondary me-1"
+                                    onclick="openEditSemesterModal(this)" data-semester-id="{{ $semester->id }}"
+                                    data-semester-title="{{ $semester->title }}"
+                                    data-semester-sub-title="{{ $semester->sub_title }}"
+                                    data-semester-image="{{ $semester->getImageUrl() }}">
                                     <i class="bx bx-edit fs-16"></i></button>
 
-                                <form action="{{ route('admin.semesters.destroy', $semester->id) }}" method="post">
+                                {{--
+                                    <form action="{{ route('admin.semesters.destroy', $semester->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-soft-danger"><i
                                             class="bx bx-trash fs-16"></i></button>
 
-                                </form>
+                                    </form>
+                                 --}}
                             </div>
                         </div>
                     </div>
@@ -200,104 +224,113 @@
 
     <!-- update semester modal -->
     <div class="modal fade create-branch-modal" id="updateSemesterModal" tabindex="-1"
-    aria-labelledby="updateSemesterModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <form action="{{ route('admin.semesters.update', '') }}" method="post"
-                enctype="multipart/form-data" class="needs-validation">
-                @csrf
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="updateSemesterModalLabel">Create New
-                        Semester</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="mb-3">
-                        <label for="semesterName" class="form-label">Semester Name</label>
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1">
-                                <iconify-icon icon="solar:book-broken"></iconify-icon>
-                            </span>
-                            <input type="text" class="form-control"
-                                placeholder="Enter semester name..." id="semesterName"
-                                name="name" required>
-                            <div class="invalid-feedback">
-                                Please select a valid state.
-                            </div>
-
-                        </div>
+        aria-labelledby="updateSemesterModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <form action="{{ route('admin.semesters.update', '') }}" method="post" enctype="multipart/form-data"
+                    class="needs-validation">
+                    @csrf
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="updateSemesterModalLabel">Create New
+                            Semester</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-
-                    <div class="mb-3 image-area">
-                        <label for="semesterName" class="form-label">Semester Image</label>
-
-                        <!-- Hidden input to store file data -->
-                        <input type="file" name="image" id="hiddenFileInput"
-                            class="hidden">
+                    <div class="modal-body">
 
 
-                        <div
-                            class="dropzone dz-clickable edit_semester_file_input_dropzone">
-                            <div class="dz-message needsclick">
-                                <i class="h1 bx bx-cloud-upload"></i>
-                                <h3>Drop files here or click to upload.</h3>
-                                <span class="text-muted fs-13">
-                                    (This is just a demo dropzone. Selected files are
-                                    <strong>not</strong> actually uploaded.)
-                                </span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="semesterTitle" class="form-label">Semester Title</label>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Enter semester title..."
+                                        id="semesterTitle" name="title" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid semester title.
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="semesterSubTitle" class="form-label">Semester Sub-Title</label>
+
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <iconify-icon icon="solar:book-broken"></iconify-icon>
+                                    </span>
+                                    <input type="text" class="form-control" placeholder="Enter semester sub-title..."
+                                        id="semesterSubTitle" name="sub_title" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid sub-title.
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
 
-                        <ul class="list-unstyled mb-0" id="dropzone-preview"
-                            style="display: none;">
-                            <li class="mt-2" id="dropzone-preview-list">
-                                <div class="border rounded">
-                                    <div class="d-flex p-2">
-                                        <div class="flex-shrink-0 me-3">
-                                            <div class="avatar-sm bg-light rounded">
-                                                <img data-dz-thumbnail
-                                                    class="img-fluid rounded d-block"
-                                                    src="#" alt="Dropzone-Image" />
+
+                        <div class="mb-3 image-area">
+                            <label for="semesterName" class="form-label">Semester Image</label>
+
+                            <!-- Hidden input to store file data -->
+                            <input type="file" name="image" id="hiddenFileInput" class="hidden">
+
+
+                            <div class="dropzone dz-clickable edit_semester_file_input_dropzone">
+                                <div class="dz-message needsclick">
+                                    <i class="h1 bx bx-cloud-upload"></i>
+                                    <h3>Drop files here or click to upload.</h3>
+                                    <span class="text-muted fs-13">
+                                        (This is just a demo dropzone. Selected files are
+                                        <strong>not</strong> actually uploaded.)
+                                    </span>
+                                </div>
+                            </div>
+
+                            <ul class="list-unstyled mb-0" id="dropzone-preview" style="display: none;">
+                                <li class="mt-2" id="dropzone-preview-list">
+                                    <div class="border rounded">
+                                        <div class="d-flex p-2">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar-sm bg-light rounded">
+                                                    <img data-dz-thumbnail class="img-fluid rounded d-block"
+                                                        src="#" alt="Dropzone-Image" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <div class="pt-1">
-                                                <h5 class="fs-14 mb-1" data-dz-name>&nbsp;
-                                                </h5>
-                                                <p class="fs-13 text-muted mb-0"
-                                                    data-dz-size></p>
-                                                <strong class="error text-danger hide"
-                                                    data-dz-errormessage></strong>
+                                            <div class="flex-grow-1">
+                                                <div class="pt-1">
+                                                    <h5 class="fs-14 mb-1" data-dz-name>&nbsp;
+                                                    </h5>
+                                                    <p class="fs-13 text-muted mb-0" data-dz-size></p>
+                                                    <strong class="error text-danger hide" data-dz-errormessage></strong>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="flex-shrink-0 ms-3">
-                                            <button data-dz-remove
-                                                class="btn btn-sm btn-danger">Delete</button>
+                                            <div class="flex-shrink-0 ms-3">
+                                                <button data-dz-remove class="btn btn-sm btn-danger">Delete</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+
+                        </div>
+
+
+
 
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update Semester</button>
+                    </div>
 
-
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update Semester</button>
-                </div>
-
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
 
 

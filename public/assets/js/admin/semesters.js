@@ -8,14 +8,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function openEditSemesterModal(element) {
     const id = element.getAttribute('data-semester-id');
-    const name = element.getAttribute('data-semester-name');
+    const title = element.getAttribute('data-semester-title');
+    const subTitle = element.getAttribute('data-semester-sub-title');
     const imageUrl = element.getAttribute('data-semester-image');
 
     const updateModal = document.querySelector("#updateSemesterModal");
     const form = updateModal.querySelector('form');
     form.action = form.action.replace(/\/\d*$/, "") + "/" + id;
 
-    updateModal.querySelector('#semesterName').value = name;
+    updateModal.querySelector('#semesterTitle').value = title;
+    updateModal.querySelector('#semesterSubTitle').value = subTitle;
 
 
     myDropzone.removeAllFiles(true);
