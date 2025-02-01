@@ -6,6 +6,7 @@ use App\Models\Setting;
 use App\Services\FileService;
 use App\Services\Impl\FileServiceImpl;
 use App\Services\SettingsService;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,5 +32,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with('settings', app('settings'));
         });
         //
+
+        if (app()->environment('local')) { Artisan::call('route:clear'); }
     }
 }

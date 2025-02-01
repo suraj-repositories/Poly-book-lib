@@ -34,12 +34,12 @@
                             <table class="table table-striped table-borderless table-centered" data-table="true">
                                 <thead class="table-light">
                                     <tr>
-                                        <th scope="col">
+                                        {{-- <th scope="col">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
                                                     id="flexCheckDefault5">
                                             </div>
-                                        </th>
+                                        </th> --}}
                                         <th scope="col">ID</th>
                                         {{-- <th scope="col">Cover</th> --}}
                                         <th scope="col">File Name</th>
@@ -52,12 +52,12 @@
                                 <tbody>
                                     @foreach ($files as $file)
                                         <tr>
-                                            <td>
+                                            {{-- <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
                                                         id="check-selectpr">
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                             <td>{{ $loop->iteration }}</td>
                                             {{-- <td>
                                                 <div class="image-box">

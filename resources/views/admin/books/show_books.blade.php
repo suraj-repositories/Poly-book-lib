@@ -1,8 +1,8 @@
 @extends('admin.layout.layout')
-@section('title', Route::is('admin.branches') ? 'Book List' : '')
+@section('title', Route::is('admin.books') ? 'Book List' : '')
 @section('content')
 
-    <div class="container-fluid branches">
+    <div class="container-fluid books">
 
         @include('layout.alert')
 
@@ -32,11 +32,11 @@
                             <table class="table table-striped table-borderless table-centered" data-table="true">
                                 <thead class="table-light">
                                     <tr>
-                                        <th scope="col">
+                                        {{-- <th scope="col">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
                                                     id="flexCheckDefault5">
-                                            </div>
+                                            </div> --}}
                                         </th>
                                         <th scope="col">ID</th>
                                         <th scope="col">Title</th>
@@ -51,12 +51,12 @@
 
                                     @foreach ($books as $book)
                                         <tr>
-                                            <td>
+                                            {{-- <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
                                                         id="check-selectpr">
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
@@ -68,21 +68,21 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                {{$book->branch->name ?? "-"}}
+                                                {{$book->branchSemester->branch->name ?? "-"}}
                                             </td>
-                                            <td> {{ $book->semester->name ?? "-" }}
-                                                <br><small>{{ $book->semester->name ?? "-"}}</small>
+                                            <td> {{ $book->branchSemester->semester->title ?? "-" }}
+                                                <br><small>{{ $book->branchSemester->semester->sub_title ?? "-"}}</small>
                                             </td>
-                                            <td>{{ $book->author }}</td>
+                                            <td>{{ $book->author ?? "..." }}</td>
                                             <td> {{ date('d M, Y', strtotime($book->updated_at)) }}
                                                 <small>{{ date('h:i A', strtotime($book->updated_at)) }}</small>
                                             </td>
 
                                             <td>
-                                                <a href="" class="btn btn-sm btn-soft-secondary me-1">
+                                                <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-sm btn-soft-secondary me-1">
                                                     <i class="bx bx-edit fs-16"></i>
                                                 </a>
-                                                <form action="{{ route('admin.branches.destroy', $book->id) }}"
+                                                <form action="{{ route('admin.books.destroy', $book->id) }}"
                                                     class="d-inline" method="post">
                                                     @csrf
                                                     @method('DELETE')

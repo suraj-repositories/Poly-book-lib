@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BranchSemester extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $table = 'branch_semester';
 
@@ -27,6 +27,13 @@ class BranchSemester extends Model
         });
     }
 
+    public function branch(){
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
+
+    public function semester(){
+        return $this->belongsTo(Semester::class, 'semester_id');
+    }
 
 
 

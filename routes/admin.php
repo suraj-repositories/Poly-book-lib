@@ -26,6 +26,9 @@ Route::get('/books', [BookController::class, 'index'])->name('admin.books');
 Route::get('/books/create', [BookController::class, 'create'])->name('admin.books.create');
 Route::post('/books/store', [BookController::class, 'store'])->name('admin.books.store');
 Route::get('/books/select-from-files', [BookController::class, 'selectFromFiles'])->name('admin.books.select.files');
+Route::delete('/books/{book}', [BookController::class, 'destroy'])->name('admin.books.destroy');
+Route::get('/books/{book}', [BookController::class, 'edit'])->name('admin.books.edit');
+Route::post('/books/{book}', [BookController::class, 'update'])->name('admin.books.update');
 
 Route::get('/files', [FileController::class, 'index'])->name('admin.files');
 Route::get('/files/create', [FileController::class, 'create'])->name('admin.files.create');

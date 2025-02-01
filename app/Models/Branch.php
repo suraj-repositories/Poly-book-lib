@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Branch extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = ['name', 'image'];
 
@@ -22,6 +22,12 @@ class Branch extends Model
                 $branchSemester->books()->delete();
                 $branchSemester->delete();
             });
+        });
+
+        static::updated(function ($branch) {
+            if ($branch->isDirty('branchSemesters')) {
+                $branch->branchSemesters()->detach();
+            }
         });
     }
 

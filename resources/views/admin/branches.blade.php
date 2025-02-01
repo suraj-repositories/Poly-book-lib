@@ -6,6 +6,10 @@
 
         @include('layout.alert')
 
+        @if($errors->any())
+    {{ implode('', $errors->all('<div>:message</div>')) }}
+@endif
+
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -166,12 +170,12 @@
                             <table class="table table-striped table-borderless table-centered" data-table="true">
                                 <thead class="table-light">
                                     <tr>
-                                        <th scope="col">
+                                        {{-- <th scope="col">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
                                                     id="flexCheckDefault5">
                                             </div>
-                                        </th>
+                                        </th> --}}
                                         <th scope="col">ID</th>
                                         <th scope="col">Branch</th>
                                         <th scope="col">Semesters</th>
@@ -183,12 +187,12 @@
                                 <tbody>
                                     @foreach ($branches as $branch)
                                         <tr>
-                                            <td>
+                                            {{-- <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
                                                         id="check-selectpr">
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">

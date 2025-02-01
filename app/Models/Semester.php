@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Semester extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     protected $fillable = ['title', 'sub_title', 'image'];
 

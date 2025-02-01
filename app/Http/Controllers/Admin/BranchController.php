@@ -9,6 +9,7 @@ use App\Models\Semester;
 use App\Services\FileService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
 
 class BranchController extends Controller
 {
@@ -86,7 +87,12 @@ class BranchController extends Controller
     {
 
         $validated = $request->validate([
-            'name' => 'required|string|max:255|unique:branches,name',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('branches', 'name')->ignore($branch->id),
+            ],
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'semester_id' => 'nullable|exists:semesters,id',
         ]);
@@ -130,7 +136,4 @@ class BranchController extends Controller
 
         return redirect()->back()->with('success', 'Branch Updated Successfully!');
     }
-
-
-
 }

@@ -16,7 +16,8 @@ class SemesterResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'title' => $this->title,
+            'sub_title' => $this->sub_title,
             'image' => $this->getFullImageUrl($this->image),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at
