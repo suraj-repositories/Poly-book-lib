@@ -54,4 +54,10 @@ class Branch extends Model
     {
         return $this->hasMany(BranchSemester::class, 'branch_id');
     }
+
+    public function books()
+    {
+        return $this->hasManyThrough(Book::class, BranchSemester::class, 'branch_id', 'branch_semester_id', 'id', 'id');
+    }
+
 }

@@ -43,7 +43,7 @@
         </div>
 
         <div class="col-lg-7">
-          <form action="https://themewagon.github.io/eNno/forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+          <form action="#" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
             <div class="row gy-4">
 
               <div class="col-md-6">

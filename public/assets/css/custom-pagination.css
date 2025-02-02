@@ -1,0 +1,92 @@
+
+.pagination-outer {
+    text-align: center;
+}
+
+.pagination {
+    font-family: 'Poppins', sans-serif !important;
+    display: inline-flex !important;
+    position: relative;
+}
+
+.pagination .page-item {
+    margin: 0 5px;
+    text-align: center;
+}
+
+.pagination .page-link {
+    color: #2c3e50 !important;
+    background: #fff !important;
+    font-size: 22px !important;
+    font-weight: 500 !important;
+    line-height: 33px !important;
+    height: 38px !important;
+    width: 38px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 2px dashed #2c3e50 !important;
+    border-radius: 10px !important;
+    position: relative !important;
+    z-index: 1 !important;
+    transition: all 0.3s ease 0s !important;
+}
+
+.pagination .page-link:hover,
+.pagination .page-link:focus,
+.pagination .page-item.active .page-link:hover,
+.pagination .page-item.active .page-link {
+    color: #27ae60 !important;
+    background: #fff !important;
+    border-color: transparent !important;
+
+}
+
+.pagination .page-link:before {
+    content: '';
+    background-color: #27ae60;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+    transform: scale(0);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    transition: all 0.3s ease 0s;
+}
+
+.pagination .page-link:hover:before,
+.pagination .page-link:focus:before,
+.pagination .page-item.active .page-link:hover:before,
+.pagination .page-item.active .page-link:before {
+    opacity: 0.25;
+    transform: scale(1.1);
+}
+.pagination .page-item.disabled .page-link{
+    background-color: rgba(228, 228, 228, 0.712) !important;
+    color: grey !important;
+    border-color: grey !important;
+
+}
+.pagination .page-link:focus:before{
+    box-shadow: 0 0 0 0.25rem #27ae5f67 !important;
+
+}
+.pagination .page-link:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure proper mobile responsiveness */
+@media only screen and (max-width: 480px) {
+    .pagination {
+        font-size: 0 !important;
+        display: inline-block !important;
+    }
+
+    .pagination .page-item {
+        display: inline-block !important;
+        vertical-align: top !important;
+        margin: 10px 0 !important;
+    }
+}

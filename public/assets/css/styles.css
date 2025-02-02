@@ -344,17 +344,29 @@
 .books .preview-image-box .close-btn .cursor-pointer {
     cursor: pointer;
 }
-.front-web .header .sitename img{
+
+.front-web .header .sitename img {
     position: relative;
     bottom: 2px;
 }
-@media(max-width: 600px){
 
-    .front-web .header .appname{
+.front-web .branch-image {
+    min-width: 310px;
+    min-height: 310px;
+    object-fit: cover;
+}
+
+.front-web .show-all-card {
+    background: #F2F2F2;
+}
+
+@media(max-width: 600px) {
+
+    .front-web .header .appname {
         font-size: 22px;
     }
 
-    .hide-sm-600{
+    .hide-sm-600 {
         display: none;
     }
 

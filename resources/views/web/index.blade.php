@@ -65,6 +65,11 @@
 
         </section><!-- /Featured Services Section -->
 
+        <section id="team" class="team section">
+            @include('web.branches.branch_heading')
+            <x-branch-card-list max-cards="7" shuffle="true"/>
+        </section>
+
         <!-- About Section -->
         @include('web.partials.about_content')
         <!-- /About Section -->
@@ -404,207 +409,37 @@
         </section><!-- /Portfolio Section -->
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="testimonials section light-background">
+        @include('web.partials.testimonials')
 
-            <!-- Section Title -->
-            <div class="container section-title" data-aos="fade-up">
-                <span>Testimonials</span>
-                <h2>Testimonials</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-            </div><!-- End Section Title -->
+       <!-- /Testimonials Section -->
 
-            <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <!-- Call To Action Section -->
+        <section id="call-to-action" class="call-to-action section accent-background">
 
-                <div class="swiper init-swiper" data-speed="600" data-delay="5000"
-                    data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
-                    <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 20
-                }
-              }
-            }
-          </script>
-                    <div class="swiper-wrapper">
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item" "="">
-                            <p>
-                              <i class=" bi bi-quote quote-icon-left"></i>
-                                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
-                                <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                                <h3>Saul Goodman</h3>
-                                <h4>Ceo &amp; Founder</h4>
-                              </div>
-                            </div><!-- End testimonial item -->
-
-                            <div class="swiper-slide">
-                              <div class="testimonial-item">
-                                <p>
-                                  <i class="bi bi-quote quote-icon-left"></i>
-                                  <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
-                                  <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                                <h3>Sara Wilsson</h3>
-                                <h4>Designer</h4>
-                              </div>
-                            </div><!-- End testimonial item -->
-
-                            <div class="swiper-slide">
-                              <div class="testimonial-item">
-                                <p>
-                                  <i class="bi bi-quote quote-icon-left"></i>
-                                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                                  <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-                              </div>
-                            </div><!-- End testimonial item -->
-
-                            <div class="swiper-slide">
-                              <div class="testimonial-item">
-                                <p>
-                                  <i class="bi bi-quote quote-icon-left"></i>
-                                  <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                                  <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                                <h3>Matt Brandon</h3>
-                                <h4>Freelancer</h4>
-                              </div>
-                            </div><!-- End testimonial item -->
-
-                            <div class="swiper-slide">
-                              <div class="testimonial-item">
-                                <p>
-                                  <i class="bi bi-quote quote-icon-left"></i>
-                                  <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
-                                  <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                                <h3>John Larson</h3>
-                                <h4>Entrepreneur</h4>
-                              </div>
-                            </div><!-- End testimonial item -->
-
-                          </div>
-                          <div class="swiper-pagination"></div>
+            <div class="container">
+                <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="col-xl-10">
+                        <div class="text-center">
+                            <h3>Call To Action</h3>
+                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                mollit anim id est laborum.</p>
+                            <a class="cta-btn" href="#">Call To Action</a>
                         </div>
+                    </div>
+                </div>
+            </div>
 
-                      </div>
+        </section><!-- /Call To Action Section -->
 
-                    </section><!-- /Testimonials Section -->
+        <!-- Team Section -->
 
-                    <!-- Call To Action Section -->
-                    <section id="call-to-action" class="call-to-action section accent-background">
+        @include('web.partials.team')
+        <!-- /Team Section -->
 
-                      <div class="container">
-                        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
-                          <div class="col-xl-10">
-                            <div class="text-center">
-                              <h3>Call To Action</h3>
-                              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                              <a class="cta-btn" href="#">Call To Action</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+        <!-- Contact Section -->
+        @include('web.partials.contact_content')
+        <!-- /Contact Section -->
 
-                    </section><!-- /Call To Action Section -->
-
-                    <!-- Team Section -->
-                    <section id="team" class="team section">
-
-                      <!-- Section Title -->
-                      <div class="container section-title" data-aos="fade-up">
-                        <span>Section Title</span>
-                        <h2>Team</h2>
-                        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-                      </div><!-- End Section Title -->
-
-                      <div class="container">
-
-                        <div class="row gy-5">
-
-                          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                            <div class="member">
-                              <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-                              <div class="member-info">
-                                <h4>Walter White</h4>
-                                <span>Chief Executive Officer</span>
-                                <div class="social">
-                                  <a href="#"><i class="bi bi-twitter-x"></i></a>
-                                  <a href="#"><i class="bi bi-facebook"></i></a>
-                                  <a href="#"><i class="bi bi-instagram"></i></a>
-                                  <a href="#"><i class="bi bi-linkedin"></i></a>
-                                </div>
-                              </div>
-                            </div>
-                          </div><!-- End Team Member -->
-
-                          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                            <div class="member">
-                              <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
-                              <div class="member-info">
-                                <h4>Sarah Jhonson</h4>
-                                <span>Product Manager</span>
-                                <div class="social">
-                                  <a href="#"><i class="bi bi-twitter-x"></i></a>
-                                  <a href="#"><i class="bi bi-facebook"></i></a>
-                                  <a href="#"><i class="bi bi-instagram"></i></a>
-                                  <a href="#"><i class="bi bi-linkedin"></i></a>
-                                </div>
-                              </div>
-                            </div>
-                          </div><!-- End Team Member -->
-
-                          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-                            <div class="member">
-                              <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
-                              <div class="member-info">
-                                <h4>William Anderson</h4>
-                                <span>CTO</span>
-                                <div class="social">
-                                  <a href="#"><i class="bi bi-twitter-x"></i></a>
-                                  <a href="#"><i class="bi bi-facebook"></i></a>
-                                  <a href="#"><i class="bi bi-instagram"></i></a>
-                                  <a href="#"><i class="bi bi-linkedin"></i></a>
-                                </div>
-                              </div>
-                            </div>
-                          </div><!-- End Team Member -->
-
-                        </div>
-
-                      </div>
-
-                    </section><!-- /Team Section -->
-
-                    <!-- Contact Section -->
-                   @include('web.partials.contact_content')
-                    <!-- /Contact Section -->
-
-                  </main>
+    </main>
 @endsection

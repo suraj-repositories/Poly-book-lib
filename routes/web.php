@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Web\BranchController;
 use App\Http\Controllers\Web\HomeController;
 use Faker\Guesser\Name;
 use GuzzleHttp\Middleware;
@@ -22,6 +23,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', function () {
     return redirect("/");
 });
+
+Route::get('/branches', [BranchController::class, 'index'])->name('branches');
 
 
 

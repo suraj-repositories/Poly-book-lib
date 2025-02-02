@@ -6,6 +6,7 @@ use App\Models\Setting;
 use App\Services\FileService;
 use App\Services\Impl\FileServiceImpl;
 use App\Services\SettingsService;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 
@@ -28,6 +29,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Paginator::useBootstrapFive();
+
         view()->composer('*', function ($view) {
             $view->with('settings', app('settings'));
         });

@@ -30,6 +30,8 @@
     <!-- Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/custom-pagination.css') }}" rel="stylesheet">
+
 
 </head>
 
@@ -57,7 +59,7 @@
     <script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-
+    <script src="{{asset('assets/js/vendor.js')}}"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
 
