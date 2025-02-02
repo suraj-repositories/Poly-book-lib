@@ -3,7 +3,10 @@
 
         <a href="{{route('home')}}" class="logo d-flex align-items-center me-auto">
 
-            <h1 class="sitename">{{ Settings::get('site_name', config('app.name'))  }}</h1>
+            <h1 class="sitename d-inline">
+                <img src="{{ Settings::get('logo', config('app.logo')) }}" height="30" class="me-1"
+                alt="logo sm">
+                <span class="appname">{{ Settings::get('site_name', config('app.name'))  }}</span></h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -54,7 +57,7 @@
         </nav>
 
         @guest
-        <a class="btn-getstarted me-1 bg-secondary" href="{{ route('register') }}">SignUp</a>
+        <a class="btn-getstarted me-1 bg-secondary hide-sm-600" href="{{ route('register') }}">SignUp</a>
         <a class="btn-getstarted ms-1" href="{{ route('login') }}">SingIn</a>
         @endguest
 

@@ -20,7 +20,7 @@ return [
         ],
         [
             'key' => 'primary_contact',
-            'value' => env('APP_PRIMARY_CONTACT', '1234567890'),
+            'value' => env('APP_PRIMARY_CONTACT', '+91 1234567890'),
         ],
         [
             'key' => 'secondary_contact',

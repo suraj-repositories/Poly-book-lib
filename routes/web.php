@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Web\HomeController;
 use Faker\Guesser\Name;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;

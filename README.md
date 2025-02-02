@@ -17,3 +17,5 @@ sudo apt-get install php-imagick
 extension=imagick.so
 sudo apt install libmagickwand-dev
 ```
+
+[Icons Link](https://icons8.com/icons/set/poly)

@@ -344,15 +344,18 @@
 .books .preview-image-box .close-btn .cursor-pointer {
     cursor: pointer;
 }
+.front-web .header .sitename img{
+    position: relative;
+    bottom: 2px;
+}
+@media(max-width: 600px){
 
-/* .table-responsive table {
-    table-layout: fixed;
-} */
+    .front-web .header .appname{
+        font-size: 22px;
+    }
 
-/* .table-responsive td {
-    max-width: fit-content;
-    min-width: max-content;
-    width: fit-content;
-    overflow: hidden;
-    text-overflow: ellipsis;
-} */
+    .hide-sm-600{
+        display: none;
+    }
+
+}
