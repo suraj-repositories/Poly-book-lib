@@ -4,11 +4,14 @@
         @forelse ($branches as $branch)
             <div class="col" data-aos="fade-up" data-aos-delay="100">
                 <div class="member">
-                    <div class="pic d-flex justify-content-center"><img src="{{ $branch->getImageUrl() }}"
-                            class="img-fluid branch-image" alt="">
-                    </div>
+                    <a href="{{ route('branches.show', $branch->id) }}">
+                        <div class="pic d-flex justify-content-center">
+                            <img src="{{ $branch->getImageUrl() }}"
+                                class="img-fluid branch-image" alt="">
+                        </div>
+                    </a>
                     <div class="member-info">
-                        <h4>{{ $branch->name }}</h4>
+                        <a href="{{ route('branches.show', $branch->id) }}"><h4>{{ $branch->name }}</h4></a>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="social position-static">
                                 <a href="#" class="d-flex align-items-center fs-4">

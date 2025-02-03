@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Web\BranchController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\SemesterController;
 use Faker\Guesser\Name;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,9 @@ Route::get('/home', function () {
 });
 
 Route::get('/branches', [BranchController::class, 'index'])->name('branches');
+Route::get('/branches/{branch}', [BranchController::class, 'show'])->name('branches.show');
 
+Route::get('/semesters/{semester?}', [SemesterController::class, 'index'])->name('semesters');
 
 
 

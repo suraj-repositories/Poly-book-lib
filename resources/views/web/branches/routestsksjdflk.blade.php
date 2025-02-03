@@ -1,4 +1,6 @@
 @extends('layout.layout')
+
+
 @section('title', Route::is('branches') ? 'Branches' : '')
 
 @section('content')
@@ -16,9 +18,6 @@
             </div>
         </div>
 
-        <section id="team" class="team section">
-            @include('web.branches.branch_heading')
-            <x-branch-card-list is-pagination="true" />
-        </section>
+
     </main>
 @endsection
