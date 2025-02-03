@@ -12,13 +12,13 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{{ route('home') }}" class="active">Home</a></li>
-                <li><a href="#services">Books</a></li>
-                <li class="dropdown"><a href="#"><span>Department</span> <i
+                <li><a href="{{ route('books') }}">Books</a></li>
+                <li class="dropdown"><a href="#"><span>Branches&nbsp;</span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
 
                         @forelse ($branches as $branch)
-                            <li class="dropdown"><a href="#"><span>{{ $branch->name }}</span> <i
+                            <li class="dropdown"><a href="{{ route('branches.show', $branch->id) }}"><span>{{ $branch->name }}</span> <i
                                         class="bi bi-chevron-down toggle-dropdown"></i></a>
                                 <ul>
                                     @forelse ($branch->semesters as $semester)
@@ -29,24 +29,26 @@
 
                                 </ul>
                             </li>
+
                         @empty
                             <li><a href="#">No Branches yet...</a></li>
                         @endforelse
 
 
-                    </ul>
-                </li>
-                <li class="dropdown"><a href="#"><span clas>Semesters</span> <i
-                            class="bi bi-chevron-down ms-1 toggle-dropdown"></i></a>
-                    <ul>
-                        @forelse ($semesters as $semester)
-                            <li><a href="#">{{ $semester->title }}</a></li>
+                        @if ($branches->lastPage() > 1)
+                            <li>
+                                <a href="{{ route('branches') }}">
+                                    <span>Show All
+                                        <i class="bi bi-chevron-double-right"></i>
+                                    </span>
+                                </a>
 
-                        @empty
-                            <li><a href="#">No Semesters yet...</a></li>
-                        @endforelse
+                            </li>
+                        @endif
+
                     </ul>
                 </li>
+
                 <li><a href="#about">About</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

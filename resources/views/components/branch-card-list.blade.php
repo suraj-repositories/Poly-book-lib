@@ -23,7 +23,7 @@
 
                             <a href="#" class="d-flex align-items-center fs-4">
                                 <iconify-icon icon="solar:notebook-bold-duotone" class="icon "></iconify-icon>
-                                <span class="fs-6 ms-1"> {{ count($branch->books) }} </span>
+                                <span class="fs-6 ms-1"> {{ count($branch->books ?? []) }} </span>
                             </a>
                         </div>
                     </div>

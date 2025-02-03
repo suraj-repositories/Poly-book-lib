@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Web\BookController;
 use App\Http\Controllers\Web\BranchController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\SemesterController;
@@ -27,6 +28,11 @@ Route::get('/home', function () {
 
 Route::get('/branches', [BranchController::class, 'index'])->name('branches');
 Route::get('/branches/{branch}', [BranchController::class, 'show'])->name('branches.show');
+Route::get('/branches/{branch}/books', [BranchController::class, 'books'])->name('branches.books');
+
+
+Route::get('/books', [BookController::class, 'index'])->name('books');
+
 
 Route::get('/semesters/{semester?}', [SemesterController::class, 'index'])->name('semesters');
 

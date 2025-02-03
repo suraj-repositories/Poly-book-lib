@@ -4,25 +4,21 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
-use App\Models\Semester;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
 {
-    //
     public function index(){
-        $branches = Branch::paginate(12);
+        $branches = Branch::paginate(10);
         return view('web.branches.branches', compact('branches'));
     }
 
-    public function show($param){
-
-        return view('web.branches.branch2');
+    public function show(Branch $branch){
+        return view('web.branches.branch', compact('branch'));
     }
 
-    public function wwe(){
-
-        return view('web.branches.branch');
+    public function books(Branch $branch){
+        $books = $branch->books()->paginate(9);
+        return view('web.branches.branch', compact('branch', 'books'));
     }
-
 }

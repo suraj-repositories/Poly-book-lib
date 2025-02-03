@@ -37,8 +37,8 @@ class ViewServiceProvider extends ServiceProvider
         }
 
         View::composer($views, function ($view) {
-            $branches = Branch::take(10)->get();
-            $semesters = Semester::take(10)->get();
+            $branches = Branch::paginate(10);
+            $semesters = Semester::paginate(10);
             $view->with([
                 'branches' => $branches,
                 'semesters' => $semesters,
