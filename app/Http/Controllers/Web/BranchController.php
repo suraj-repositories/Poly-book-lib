@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
+use App\Models\BranchSemester;
+use App\Models\Semester;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
@@ -21,4 +23,12 @@ class BranchController extends Controller
         $books = $branch->books()->paginate(9);
         return view('web.branches.branch', compact('branch', 'books'));
     }
+
+    public function semesterBooks(Branch $branch, Semester $semester){
+
+        $branchSemester = BranchSemester::where('branch_id', $branch->id)->where('semester_id', $semester->id)->first();
+        $books = $branchSemester->books()->paginate(12);
+        return view('web.semesters.semester_books', compact('branch', 'semester', 'books'));
+    }
+
 }

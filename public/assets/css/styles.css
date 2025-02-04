@@ -406,8 +406,8 @@
 }
 
 .front-web .left-border-links a {
-    border-left: 4px solid rgba(6, 95, 6, 0.658);
-    border-radius: 0 10px 0 10px;
+    border-left: 4px solid rgba(148, 148, 148, 0.658);
+    border-radius: 0 ;
 }
 .front-web .card-shadow{
     box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);

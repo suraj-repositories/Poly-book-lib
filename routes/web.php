@@ -31,6 +31,10 @@ Route::get('/home', function () {
 Route::get('/branches', [BranchController::class, 'index'])->name('branches');
 Route::get('/branches/{branch}', [BranchController::class, 'show'])->name('branches.show');
 Route::get('/branches/{branch}/books', [BranchController::class, 'books'])->name('branches.books');
+Route::get('/branches/{branch}/semesters/{semester}/books',
+    [BranchController::class, 'semesterBooks']
+)->name('branches.semesters.books');
+
 
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
@@ -38,8 +42,4 @@ Route::get('/books', [BookController::class, 'index'])->name('books');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-
-Route::get('/semesters/{semester?}', [SemesterController::class, 'index'])->name('semesters');
-
-
 

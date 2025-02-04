@@ -22,7 +22,7 @@
                                         class="bi bi-chevron-down toggle-dropdown"></i></a>
                                 <ul>
                                     @forelse ($branch->semesters as $semester)
-                                        <li><a href="#">{{ $semester->title }}</a></li>
+                                        <li><a href="{{ route('branches.semesters.books', ['branch'=>$branch->id, 'semester'=> $semester->id]) }}">{{ $semester->title }}</a></li>
                                     @empty
                                         <li><a href="#">No Semesters yet...</a></li>
                                     @endforelse
