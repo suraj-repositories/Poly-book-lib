@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\BookController;
 use App\Http\Controllers\Web\BranchController;
+use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\SemesterController;
 use Faker\Guesser\Name;
@@ -33,6 +35,9 @@ Route::get('/branches/{branch}/books', [BranchController::class, 'books'])->name
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
 
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 Route::get('/semesters/{semester?}', [SemesterController::class, 'index'])->name('semesters');
 

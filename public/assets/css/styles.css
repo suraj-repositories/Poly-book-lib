@@ -354,6 +354,7 @@
     min-width: 310px;
     min-height: 310px;
     object-fit: cover;
+    max-height: 310px;
 }
 
 .front-web .show-all-card {
