@@ -18,10 +18,6 @@
                                 <h2 class="fw-bold"> {{ $book->title }}</h2>
                                 <div class="d-flex align-items-center text-warning">
                                     <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                    <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                    <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                    <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                    <iconify-icon icon="solar:star-bold"></iconify-icon>
                                     <div class="ms-1 text-secondary">(30 views)</div>
                                 </div>
 
@@ -43,9 +39,86 @@
                                     <iconify-icon icon="solar:download-square-bold-duotone"
                                         class="me-1 icon"></iconify-icon>
                                     Download</button>
-                                <button class="action-btn gold">
+                                <button class="action-btn gold" data-bs-toggle="modal" data-bs-target="#shareModal">
                                     <iconify-icon icon="solar:share-line-duotone" class="me-1 icon"></iconify-icon>
                                     Share</button>
+
+                                <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered rounded-0">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-dark" style="background : #12BC6A">
+                                                <h1 class="modal-title fs-5 text-light" id="shareModalLabel">Share Book</h1>
+                                                <button type="button" class="btn-close text-light btn-close-white"
+                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+
+
+
+                                                <div class="shareArticle">
+                                                    <div class="shareSocial">
+                                                        <ul class="socialList">
+
+                                                            <li>
+                                                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
+                                                                    target="_blank">
+                                                                    <i class="bi bi-facebook"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a
+                                                                    href="mailto:?subject=Check this out&body={{ urlencode(url()->current()) }}">
+                                                                    <i class="bi bi-envelope"></i>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="https://t.me/share/url?url={{ urlencode(url()->current()) }}"
+                                                                    target="_blank">
+                                                                    <i class="bi bi-telegram"></i>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}"
+                                                                    target="_blank">
+                                                                    <i class="bi bi-twitter-x"></i>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="https://wa.me/?text={{ urlencode(url()->current()) }}"
+                                                                    target="_blank">
+                                                                    <i class="bi bi-whatsapp"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="shareLink">
+                                                        <div class="permalink">
+                                                            <input class="textLink" id="text" type="text"
+                                                                name="shortlink" value="{{ url()->current() }}"
+                                                                id="copy-link" readonly="">
+                                                            <span class="copyLink" id="copy"
+                                                                tooltip="Copy to clipboard">
+                                                                <i class="bi bi-copy"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
 
 
@@ -152,4 +225,23 @@
 
         </section>
     </main>
+
+    <script>
+        const input = document.getElementById("text");
+        const copyButton = document.getElementById("copy");
+
+        const copyText = (e) => {
+            // window.getSelection().selectAllChildren(textElement);
+            input.select(); //select input value
+            document.execCommand("copy");
+            e.currentTarget.setAttribute("tooltip", "Copied!");
+        };
+
+        const resetTooltip = (e) => {
+            e.currentTarget.setAttribute("tooltip", "Copy to clipboard");
+        };
+
+        copyButton.addEventListener("click", (e) => copyText(e));
+        copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
+    </script>
 @endsection
