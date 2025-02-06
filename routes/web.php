@@ -35,6 +35,10 @@ Route::get('/branches/{branch}/semesters/{semester}/books',
     [BranchController::class, 'semesterBooks']
 )->name('branches.semesters.books');
 
+Route::get('/branches/{branch}/semesters/{semester}/books/{book}',
+    [BookController::class, 'show']
+)->name('branches.semesters.books.show');
+
 
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
