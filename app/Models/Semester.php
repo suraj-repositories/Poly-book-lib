@@ -27,4 +27,16 @@ class Semester extends Model
 
         return Storage::url($this->image);
     }
+
+    public function books()
+    {
+        return $this->hasManyThrough(
+            Semester::class,
+            BranchSemester::class,
+            'branch_id',
+            'id',
+            'id',
+            'semester_id'
+        );
+    }
 }

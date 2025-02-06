@@ -4,7 +4,8 @@
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li class="current">Semester</li>
+                <li><a href="{{ route('branches.show', ['branch'=> $branch]) }}">Semesters</a></li>
+                <li class="current">{{ $branch->name }}</li>
             </ol>
         </nav>
     </div>

@@ -1,13 +1,13 @@
 @forelse ($books as $book)
     <div class="col" data-aos="fade-up" data-aos-delay="100">
         <div class="member">
-            <a href="{{ route('branches.show', $book->id) }}">
+            <a href="{{ route('books.show', $book->id) }}">
                 <div class="pic d-flex justify-content-center">
                     <img src="{{ $book->getCoverPageUrl() }}" class="img-fluid branch-image" alt="">
                 </div>
             </a>
             <div class="member-info">
-                <a href="{{ route('branches.show', $book) }}">
+                <a href="{{ route('books.show', $book) }}">
                     <h4>{{ $book->title }}</h4>
                 </a>
                 <div class="d-flex justify-content-between align-items-center">

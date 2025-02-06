@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
-@section('title', Route::is('branches.show') ? 'Branch' : '')
+@section('title', Route::is('books.show') ? 'Book Download' : '')
 
 @section('content')
     <main class="main book">
@@ -15,7 +15,7 @@
                         <div id="team" class="team section mt-0 pt-0">
 
                             <div class="container book section-title text-start p-0 mb-2" data-aos="fade-up">
-                                <h2 class="fw-bold"> Industrial Management and intreneur Development</h2>
+                                <h2 class="fw-bold"> {{ $book->title }}</h2>
                                 <div class="d-flex align-items-center text-warning">
                                     <iconify-icon icon="solar:star-bold"></iconify-icon>
                                     <iconify-icon icon="solar:star-bold"></iconify-icon>
@@ -26,42 +26,53 @@
                                 </div>
 
                             </div>
-                            <div class="price">
-                                {{-- <iconify-icon icon="bi:currency-rupee"></iconify-icon>
-                                <span>0</span><sup class="mini">*</sup> --}}
-                                Free
+                            <div class="price mb-3">
+                                @if ($book->price && $book->price > 0)
+                                    <iconify-icon icon="bi:currency-rupee" class="me-0"></iconify-icon>
+                                    <span>{{ $book->price }}</span>
+                                @else
+                                    Free
+                                @endif
                             </div>
 
-                            <div class="book-actions mb-3">
-                                <a href="#" class="action-btn gold">
-                                    <iconify-icon icon="solar:eye-bold-duotone"
-                                        class="me-1 icon"></iconify-icon>
-                                 Preview</a>
+                            <div class="book-actions mb-3 flex-wrap">
+                                <a href="{{ $book->file?->getFileUrl() }}" target="_blank" class="action-btn secondary">
+                                    <iconify-icon icon="solar:eye-bold-duotone" class="me-1 icon"></iconify-icon>
+                                    Preview</a>
                                 <button class="action-btn green">
                                     <iconify-icon icon="solar:download-square-bold-duotone"
                                         class="me-1 icon"></iconify-icon>
                                     Download</button>
+                                <button class="action-btn gold">
+                                    <iconify-icon icon="solar:share-line-duotone" class="me-1 icon"></iconify-icon>
+                                    Share</button>
                             </div>
 
 
-                            <div class="my-3 p-2 border-start border-3" style="border-color: #10BC69;">
-                                <p class="mb-1"><strong>Author:</strong> Tushar Srivastav</p>
-                                <p class="mb-1"><strong>Pages:</strong> 999</p>
-                                <p class="mb-0"><strong>File Size:</strong> 50MB</p>
+                            {{-- <div class="my-3 p-2 ps-3 border-start border-3">
+                                @if (!empty($book->author))
+                                    <p class="mb-1"><strong>Author : </strong> {{ $book->author }}</p>
+                                @endif
+                                @if (!empty($book->pages))
+                                    <p class="mb-1"><strong>Pages : </strong> {{ $book->pages }}</p>
+                                @endif
+                                @if (!empty($book->file))
+                                    <p class="mb-0"><strong>File Size : </strong> {{ $book->file?->size() }}</p>
+                                @endif
+                            </div> --}}
+
+                            <div class="my-3 p-2 ps-0 d-flex gap-2 flex-wrap">
+                                @if (!empty($book->author))
+                                    <p class="mb-0 author-badge"><strong>Author : </strong> {{ $book->author }}</p>
+                                @endif
+                                @if (!empty($book->pages))
+                                    <p class="mb-0 pages-badge"><strong>Pages : </strong> {{ $book->pages }}</p>
+                                @endif
+                                @if (!empty($book->file))
+                                    <p class="mb-0 filesize-badge"><strong>File Size : </strong> {{ $book->file?->size() }}
+                                    </p>
+                                @endif
                             </div>
-
-
-
-
-                            {{-- <ul>
-                                <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat.</span></li>
-                                <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate
-                                        velit.</span></li>
-                                <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                                        consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda
-                                        mastiro dolore eu fugiat nulla pariatur.</span></li>
-                            </ul> --}}
 
 
                             <div>
@@ -78,107 +89,38 @@
                                 <div class="tab-content mb-5">
                                     <div class="tab-pane active" id="nav-about" role="tabpanel"
                                         aria-labelledby="nav-about-tab">
-                                        <p>The generated Lorem Ipsum is therefore always free from repetition injected
-                                            humour, or non-characteristic words etc.
-                                            Susp endisse ultricies nisi vel quam suscipit </p>
-                                        <p>Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish
-                                            filefish Antarctic
-                                            icefish goldeye aholehole trumpetfish pilot fish airbreathing catfish, electric
-                                            ray sweeper.</p>
-                                        <div class="px-2">
-                                            <div class="row g-4">
-                                                <div class="col-6">
-                                                    <div
-                                                        class="row bg-light align-items-center text-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Weight</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">1 kg</p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row text-center align-items-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Country of Origin</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Agro Farm</p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row bg-light text-center align-items-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Quality</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Organic</p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row text-center align-items-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Сheck</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Healthy</p>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        class="row bg-light text-center align-items-center justify-content-center py-2">
-                                                        <div class="col-6">
-                                                            <p class="mb-0">Min Weight</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <p class="mb-0">250 Kg</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+                                        {!! $book->description !!}
+
                                     </div>
                                     <div class="tab-pane" id="nav-mission" role="tabpanel"
                                         aria-labelledby="nav-mission-tab">
-                                        <div class="d-flex">
-                                            <img src="http://127.0.0.1:8000/a.png" class="img-fluid rounded-circle p-3"
-                                                style="width: 100px; height: 100px;" alt="">
+                                        <div class="d-flex comment mb-3">
+                                            <div class="comment-user-image">
+                                                <img src="https://placehold.co/400x600" class="comment-user"
+                                                    alt="">
+                                            </div>
                                             <div class="">
-                                                <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                                <div class="d-flex justify-content-between">
-                                                    <h5>Jason Smith</h5>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div class="heading">
+                                                        <h5 class="mb-1">Jason Smith</h5>
+                                                        <p class="mb-2 date">April 12, 2024</p>
+                                                    </div>
                                                     <div class="d-flex mb-3">
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star"></i>
+                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
+                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
+                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
+                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
+                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
                                                     </div>
                                                 </div>
+
                                                 <p>The generated Lorem Ipsum is therefore always free from repetition
                                                     injected humour, or non-characteristic
                                                     words etc. Susp endisse ultricies nisi vel quam suscipit </p>
                                             </div>
                                         </div>
-                                        <div class="d-flex">
-                                            <img src="http://127.0.0.1:8000/a.png" class="img-fluid rounded-circle p-3"
-                                                style="width: 100px; height: 100px;" alt="">
-                                            <div class="">
-                                                <p class="mb-2" style="font-size: 14px;">April 12, 2024</p>
-                                                <div class="d-flex justify-content-between">
-                                                    <h5>Sam Peters</h5>
-                                                    <div class="d-flex mb-3">
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star text-secondary"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <p class="text-dark">The generated Lorem Ipsum is therefore always free
-                                                    from repetition injected humour, or non-characteristic
-                                                    words etc. Susp endisse ultricies nisi vel quam suscipit </p>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <div class="tab-pane" id="nav-vision" role="tabpanel">
                                         <p class="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et

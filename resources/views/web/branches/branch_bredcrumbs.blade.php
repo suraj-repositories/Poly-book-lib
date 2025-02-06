@@ -5,7 +5,7 @@
             <ol>
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{ route('branches') }}">Branches</a></li>
-                <li class="current">Plastic Mould Technology</li>
+                <li class="current">{{ $branch->name }}</li>
             </ol>
         </nav>
     </div>

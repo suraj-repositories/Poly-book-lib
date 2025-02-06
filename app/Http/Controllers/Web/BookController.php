@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\Branch;
+use App\Models\BranchSemester;
 use App\Models\Semester;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,8 @@ class BookController extends Controller
         return view('web.books.books', compact('books'));
     }
 
-    public function show(Branch $branch, Semester $semester, Book $book)
+    public function show(Book $book)
     {
-        return view('web.books.book', compact('branch', 'semester', 'book'));
+        return view('web.books.book', compact('book'));
     }
 }

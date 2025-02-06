@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Book;
 use App\Models\Branch;
 use App\Models\BranchSemester;
 use App\Models\Semester;
@@ -30,5 +31,23 @@ class BranchController extends Controller
         $books = $branchSemester->books()->paginate(12);
         return view('web.semesters.semester_books', compact('branch', 'semester', 'books'));
     }
+
+    public function showBook(Branch $branch = null, Semester $semester = null, Book $book)
+    {
+        if ($branch || $semester) {
+            if ($branch && $semester) {
+                $branchSemester = BranchSemester::where('branch_id', $branch->id)->where('semester_id', $semester->id)->first();
+                if (!$branchSemester) {
+                    abort(404, "Branch Or Semester Not Found!");
+                }
+            } else {
+                abort(404, 'Invalid semester or branch given!');
+            }
+        }
+
+
+        return view('web.books.book', compact('book'));
+    }
+
 
 }

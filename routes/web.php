@@ -36,12 +36,13 @@ Route::get('/branches/{branch}/semesters/{semester}/books',
 )->name('branches.semesters.books');
 
 Route::get('/branches/{branch}/semesters/{semester}/books/{book}',
-    [BookController::class, 'show']
+    [BranchController::class, 'showBook']
 )->name('branches.semesters.books.show');
 
 
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
+Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
