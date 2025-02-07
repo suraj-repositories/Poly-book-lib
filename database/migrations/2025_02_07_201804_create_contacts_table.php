@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 256); 
+            $table->string('name', 256);
             $table->string('email', 256);
             $table->string('subject', 256);
             $table->text('message');
