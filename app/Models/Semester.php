@@ -39,4 +39,15 @@ class Semester extends Model
             'semester_id'
         );
     }
+    public function downloads()
+    {
+        return $this->hasManyThrough(
+            BookDownload::class,
+            Book::class,
+            'branch_semester_id',
+            'book_id',
+            'id',
+            'id'
+        );
+    }
 }

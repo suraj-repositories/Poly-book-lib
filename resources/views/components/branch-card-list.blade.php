@@ -17,7 +17,7 @@
                                 <a href="#" class="d-flex align-items-center fs-4">
                                     <iconify-icon icon="solar:download-bold-duotone" class="icon "></iconify-icon>
 
-                                    <span class="fs-6 ms-1">11,156</span>
+                                    <span class="fs-6 ms-1">{{ count($branch->downloads ?? []) }}</span>
                                 </a>
                             </span>
 

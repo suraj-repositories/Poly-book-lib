@@ -32,30 +32,40 @@
                             </div>
 
                             <div class="book-actions mb-3 flex-wrap">
-                                <a href="{{ $book->file?->getFileUrl() }}" target="_blank" class="action-btn secondary">
-                                    <iconify-icon icon="solar:eye-bold-duotone" class="me-1 icon"></iconify-icon>
-                                    Preview</a>
-                                <button class="action-btn green">
-                                    <iconify-icon icon="solar:download-square-bold-duotone"
-                                        class="me-1 icon"></iconify-icon>
-                                    Download</button>
-                                <button class="action-btn gold" data-bs-toggle="modal" data-bs-target="#shareModal">
-                                    <iconify-icon icon="solar:share-line-duotone" class="me-1 icon"></iconify-icon>
-                                    Share</button>
+                                @if (optional($book->file)->getFileUrl())
+                                    <a href="{{ $book->file->getFileUrl() }}" target="_blank" class="action-btn secondary">
+                                        <iconify-icon icon="solar:eye-bold-duotone" class="me-1 icon"></iconify-icon>
+                                        Preview
+                                    </a>
+                                    <form action="{{ route('books.download', $book->id) }}" method="POST">
+                                        @csrf
+                                        <button class="action-btn green">
+                                            <iconify-icon icon="solar:download-square-bold-duotone"
+                                                class="me-1 icon"></iconify-icon>
+                                            Download</button>
+                                    </form>
+                                    <button class="action-btn gold" data-bs-toggle="modal" data-bs-target="#shareModal">
+                                        <iconify-icon icon="solar:share-line-duotone" class="me-1 icon"></iconify-icon>
+                                        Share</button>
+                                @else
+                                    <button class="action-btn not-available bg-light text-warning" disabled>
+                                        <iconify-icon icon="twemoji:warning" class="me-2 icon"></iconify-icon>
+                                        Book Not Available
+                                    </button>
+                                @endif
+
+
 
                                 <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered rounded-0">
                                         <div class="modal-content">
-                                            <div class="modal-header bg-dark" style="background : #12BC6A">
+                                            <div class="modal-header bg-dark">
                                                 <h1 class="modal-title fs-5 text-light" id="shareModalLabel">Share Book</h1>
                                                 <button type="button" class="btn-close text-light btn-close-white"
                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-
-
-
                                                 <div class="shareArticle">
                                                     <div class="shareSocial">
                                                         <ul class="socialList">
@@ -109,9 +119,6 @@
                                                     </div>
                                                 </div>
 
-
-
-
                                             </div>
 
                                         </div>
@@ -155,8 +162,8 @@
                                             data-bs-toggle="tab" data-bs-target="#nav-about" aria-controls="nav-about"
                                             aria-selected="true">Description</button>
                                         <button class="nav-link " type="button" role="tab" id="nav-mission-tab"
-                                            data-bs-toggle="tab" data-bs-target="#nav-mission" aria-controls="nav-mission"
-                                            aria-selected="false">Reviews</button>
+                                            data-bs-toggle="tab" data-bs-target="#nav-mission"
+                                            aria-controls="nav-mission" aria-selected="false">Reviews</button>
                                     </div>
                                 </nav>
                                 <div class="tab-content mb-5">

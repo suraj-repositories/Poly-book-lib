@@ -20,6 +20,22 @@ class FileServiceImpl implements FileService
         return $file->storeAs($folder, $uniqueFileName, $disk);
     }
 
+    public function fileExists($filePath){
+        if ($filePath && Storage::disk('public')->exists($filePath)) {
+            return true;
+        }
+        return false;
+    }
+
+    function deleteIfExists($filePath)
+    {
+        if ($filePath && Storage::disk('public')->exists($filePath)) {
+            Storage::disk('public')->delete($filePath);
+            return 1;
+        }
+        return 0;
+    }
+
     public function getFileName(\Illuminate\Http\UploadedFile $file): string
     {
         return $file->getClientOriginalName();
@@ -80,16 +96,6 @@ class FileServiceImpl implements FileService
         }
 
         return round($size, 2) . " " . $units[$unitIndex];
-    }
-
-
-    function deleteIfExists($filePath)
-    {
-        if ($filePath && Storage::disk('public')->exists($filePath)) {
-            Storage::disk('public')->delete($filePath);
-            return 1;
-        }
-        return 0;
     }
 
     function deleteDirectoryIfExists($dir)

@@ -43,8 +43,9 @@ Route::get('/branches/{branch}/semesters/{semester}/books/{book}',
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
 Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
+Route::post('/books/{book}/downloads', [BookController::class, 'downloadBook'])->name('books.download');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
-
+Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');

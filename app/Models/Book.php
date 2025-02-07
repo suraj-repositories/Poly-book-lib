@@ -22,7 +22,8 @@ class Book extends Model
         'branch_semester_id',
     ];
 
-    public function getCoverPageUrl(){
+    public function getCoverPageUrl()
+    {
         if (empty($this->cover_image) || !Storage::disk('public')->exists($this->cover_image)) {
             return config('constants.default_cover_page_image');
         }
@@ -30,7 +31,8 @@ class Book extends Model
         return Storage::url($this->cover_image);
     }
 
-    public function getCoverImageSize(){
+    public function getCoverImageSize()
+    {
         $fileService = new FileServiceImpl();
         return $fileService->getSizeByPath($this->cover_image) ?? null;
     }
@@ -44,5 +46,6 @@ class Book extends Model
     {
         return $this->belongsTo(BranchSemester::class);
     }
+
 
 }

@@ -6,6 +6,8 @@ interface FileService
 {
     function uploadFile(\Illuminate\Http\UploadedFile $file, string $folder = "uploads", string $disk = "public"): string;
 
+    function fileExists($filePath);
+
     function deleteIfExists($filePath);
 
     function getFileName(\Illuminate\Http\UploadedFile $file): string;
