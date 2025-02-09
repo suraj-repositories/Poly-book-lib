@@ -805,4 +805,10 @@
   }
 
 
-
+table[data-table="laravel"] th div{
+    display: flex;
+    justify-content: space-between;
+}
+.cursor-default{
+    cursor: default;
+}

@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Storage;
 
 class FileServiceImpl implements FileService
 {
-
-
-
     public function uploadFile(\Illuminate\Http\UploadedFile $file, string $folder = "uploads", string $disk = "public"): string
     {
         if ($file->getSize() > 0) {
@@ -97,6 +94,20 @@ class FileServiceImpl implements FileService
 
         return round($size, 2) . " " . $units[$unitIndex];
     }
+
+    public function getFromattedFileSize($size){
+
+        $units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        $unitIndex = 0;
+
+        while ($size >= 1024 && $unitIndex < count($units) - 1) {
+            $size /= 1024;
+            $unitIndex++;
+        }
+
+        return round($size, 2) . " " . $units[$unitIndex];
+    }
+
 
     function deleteDirectoryIfExists($dir)
     {

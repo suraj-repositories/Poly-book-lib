@@ -130,7 +130,7 @@ class BookController extends Controller
 
         foreach ($files as $file) {
             $filePath = $file->file_path;
-            $size = Storage::disk('public')->exists($filePath) ? $this->fileService->getSizeByPath($filePath) : '-';
+            $size = $file->file_size ? $this->fileService->getFromattedFileSize($file->file_size ?? 0) : '-';
             $file->size = $size;
             $file->icon = $this->fileService->getIconFromExtension($this->fileService->getExtensionByPath($filePath));
         }

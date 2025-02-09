@@ -47,11 +47,12 @@ class FileController extends Controller
         $fileName = $file->getClientOriginalName();
         $mimeType = $file->getClientMimeType();
         $filePath = $this->fileService->uploadFile($request->file('file'), "files", 'public');
-
+        $fileSize = $file->getSize();
         File::create([
             'file_path' =>  $filePath,
             'file_name' => $fileName,
             'mime_type' => $mimeType,
+            'file_size' => $fileSize
         ]);
 
         return redirect()->back()->with('success', 'File Uploaded Successfully!');
@@ -116,7 +117,8 @@ class FileController extends Controller
             File::create([
                 'file_path' =>  'files/' . $finalFileName,
                 'file_name' => substr($fileName, strpos($fileName, '_x_') + 3),
-                'mime_type' => $mimeType
+                'mime_type' => $mimeType,
+                'file_size' => Storage::disk('public')->size('files/' . $finalFileName) ?? null
             ]);
 
             return response()->json(['message' => 'Upload complete']);

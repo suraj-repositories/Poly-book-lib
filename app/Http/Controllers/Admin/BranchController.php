@@ -27,7 +27,7 @@ class BranchController extends Controller
         $branches = Branch::all();
         $semesters = Semester::take(100)->get();
 
-        return view('admin.branches', compact('branches', 'semesters'));
+        return view('admin.branch.branches', compact('branches', 'semesters'));
     }
 
 

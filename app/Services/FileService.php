@@ -28,6 +28,8 @@ interface FileService
 
     function getSizeByPath($filePath, $disk = "public"): string;
 
+    function getFromattedFileSize($size);
+
     function deleteDirectoryIfExists($dir);
 
     function getFirstPage($pdfFilePath);

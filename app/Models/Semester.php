@@ -31,13 +31,33 @@ class Semester extends Model
     public function books()
     {
         return $this->hasManyThrough(
-            Semester::class,
+            Book::class,
             BranchSemester::class,
-            'branch_id',
+            'semester_id',
+            'branch_semester_id',
             'id',
-            'id',
-            'semester_id'
+            'id'
         );
+        // return $this->hasManyThrough(
+        //     Semester::class,
+        //     BranchSemester::class,
+        //     'branch_id',
+        //     'id',
+        //     'id',
+        //     'semester_id'
+        // );
+    }
+
+    public function onBranchGetbooks($branchId)
+    {
+        $branchSemesters = BranchSemester::where('branch_id', $branchId)
+            ->where('semester_id', $this->id)
+            ->get();
+
+        $books = $branchSemesters->flatMap(function ($branchSemester) {
+            return Book::where('branch_semester_id', $branchSemester->id)->get();
+        });
+        return $books->values();
     }
     public function downloads()
     {
@@ -50,4 +70,14 @@ class Semester extends Model
             'id'
         );
     }
+    public function onBranchGetDownloads($branchId)
+    {
+        return BookDownload::whereHas('book', function ($query) use ($branchId) {
+            $query->whereHas('branchSemester', function ($subQuery) use ($branchId) {
+                $subQuery->where('branch_id', $branchId)->where('semester_id', $this->id);
+            });
+        })->get();
+    }
+
+
 }

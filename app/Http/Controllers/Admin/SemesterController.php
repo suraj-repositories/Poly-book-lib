@@ -21,7 +21,7 @@ class SemesterController extends Controller
     {
 
         $semesters = Semester::all();
-        return view('admin.semesters', compact('semesters'));
+        return view('admin.semester.semesters', compact('semesters'));
     }
 
     public function store(Request $request)

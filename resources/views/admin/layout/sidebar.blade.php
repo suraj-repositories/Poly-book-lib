@@ -87,8 +87,6 @@
                 </a>
             </li>
 
-
-
             <li class="nav-item">
                 <a class="nav-link menu-arrow" href="#sidebarBooks" data-bs-toggle="collapse"
                     role="button" aria-expanded="false" aria-controls="sidebarBooks">
@@ -135,6 +133,35 @@
                 </div>
             </li>
 
+            <li class="menu-title">Public</li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.downloads.index') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:download-minimalistic-broken"></iconify-icon>
+
+                    </span>
+                    <span class="nav-text"> Downloads </span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.subscribers.index') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:user-heart-rounded-broken"></iconify-icon>
+
+                    </span>
+                    <span class="nav-text"> Subscribers </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.contacts.index') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:call-chat-rounded-broken"></iconify-icon>
+
+                    </span>
+                    <span class="nav-text">Contacts</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <form action="{{route('logout')}}" method="POST" >
                     @csrf

@@ -4,7 +4,10 @@ use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SemesterController;
 use App\Http\Controllers\Admin\BookController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\DownloadController;
 use App\Http\Controllers\Admin\FileController;
+use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Api\Admin\BookController as AdminBookController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,3 +41,9 @@ Route::get('/files/upload/status', [FileController::class, 'uploadStatus'])->nam
 Route::post('/files/upload', [FileController::class, 'uploadChunk'])->name('admin.files.upload.chunk');
 Route::post('/files/upload/cancel', [FileController::class, 'cancelUpload'])->name('admin.files.upload.cancel');
 Route::get('/document/preview/{type}', [FileController::class, 'documentPreview'])->name('admin.files.document.preview');
+
+Route::get('/subscribers', [SubscriberController::class, 'index'])->name('admin.subscribers.index');
+
+Route::get('/contacts', [ContactController::class, 'index'])->name('admin.contacts.index');
+
+Route::get('/downloads', [DownloadController::class, 'index'])->name('admin.downloads.index');

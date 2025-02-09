@@ -17,6 +17,7 @@ class File extends Model
         'file_path',
         'file_name',
         'mime_type',
+        'file_size',
         'fileable_id',
         'fileable_type',
     ];

@@ -19,7 +19,7 @@
                             @include('web.semesters.semester_card')
                         </div>
 
-                        @include('web.branches.download_catelog')
+                        <x-download-catalog :branch=$branch  :semester=$semester />
 
                         @include('web.partials.help_contact')
 

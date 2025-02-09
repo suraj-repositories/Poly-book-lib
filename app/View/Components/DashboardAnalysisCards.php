@@ -1,26 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\View\Components;
 
-use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\BookDownload;
 use App\Models\Branch;
 use App\Models\Contact;
 use Carbon\Carbon;
-use Database\Seeders\BookSeeder;
-use Illuminate\Http\Request;
+use Closure;
+use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 
-class DashboardController extends Controller
+class DashboardAnalysisCards extends Component
 {
-    //
+    /**
+     * Create a new component instance.
+     */
+    public function __construct() {}
 
-    public function index(){
-
+    /**
+     * Get the view / contents that represent the component.
+     */
+    public function render(): View|Closure|string
+    {
         $startDate = Carbon::now()->subDays(30)->startOfDay();
         $endDate = Carbon::now()->endOfDay();
 
-        // analysis cards
         $bookCount = Book::count();
         $bookCountLastMonth = Book::whereBetween('created_at', [$startDate, $endDate])->count();
 
@@ -33,6 +38,18 @@ class DashboardController extends Controller
         $contactCount = Contact::count();
         $contactCountLastMonth = Contact::whereBetween('created_at', [$startDate, $endDate])->count();
 
-        return view('admin.dashboard.dashboard');
+        return view(
+            'components.dashboard-analysis-cards',
+            compact(
+                'bookCount',
+                'bookCountLastMonth',
+                'branchCount',
+                'branchCountLastMonth',
+                'downloadCount',
+                'downloadCountLastMonth',
+                'contactCount',
+                'contactCountLastMonth',
+            )
+        );
     }
 }

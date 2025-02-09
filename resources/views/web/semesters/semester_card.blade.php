@@ -19,7 +19,7 @@
 
         <div class="actions">
             <iconify-icon icon="solar:notebook-broken"></iconify-icon>
-            <span class="fw-bold mx-1">{{ count($semester->books) }}</span>
+            <span class="fw-bold mx-1">{{ count($semester->onBranchGetbooks($branch->id)) }}</span>
         </div>
     </div>
 </div>

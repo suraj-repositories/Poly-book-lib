@@ -15,7 +15,7 @@
 
                         @include('web.branches.branch_show_card')
 
-                        @include('web.branches.download_catelog')
+                        <x-download-catalog :branch=$branch/>
 
                         @include('web.partials.help_contact')
 
