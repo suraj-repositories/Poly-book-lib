@@ -812,3 +812,34 @@ table[data-table="laravel"] th div{
 .cursor-default{
     cursor: default;
 }
+.profile .profile-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+}
+.profile .profile-img img{
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    border: 1px solid #cccccc57;
+    border-radius: 50%;
+}
+.profile .profile-img .edit-image{
+    border-radius: 50%;
+    border: 1px solid #cccccc63;
+    padding: 3px;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    bottom: 45px;
+    left: 60px;
+    background-color: white;
+    color: #0a3761;
+    cursor: pointer;
+}

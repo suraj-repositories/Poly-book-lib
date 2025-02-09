@@ -53,7 +53,7 @@
                     <li><i class="bi bi-chevron-right"></i> <a href="{{ route('books') }}">Books</a></li>
                     @auth
                     <li><i class="bi bi-chevron-right"></i> <a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Profile</a></li>
+                    <li><i class="bi bi-chevron-right"></i> <a href="{{ route('profile.index', Auth::id()) }}">Profile</a></li>
                     @endauth
 
                     @guest

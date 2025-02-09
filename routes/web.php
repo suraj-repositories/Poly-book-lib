@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\BookController;
 use App\Http\Controllers\Web\BranchController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\SemesterController;
 use App\Http\Controllers\Web\SubscriberController;
 use Faker\Guesser\Name;
@@ -52,3 +53,6 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
 Route::post('/subscriber/store', [SubscriberController::class, 'store'])->name('subscriber.store');
+
+
+Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile.index');
