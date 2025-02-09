@@ -624,10 +624,12 @@
 }
 
 .front-web img.comment-user {
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
+    border: 1px solid #80808038;
+    padding: 3px;
 }
 
 .front-web .comment-user-image {
@@ -843,3 +845,58 @@ table[data-table="laravel"] th div{
     color: #0a3761;
     cursor: pointer;
 }
+.front-web .profile .book-img{
+    max-width: 50px;
+    max-height: 100px;
+    border-radius: 5px;
+    padding: 3px;
+    border: 1px solid #cccccc63;
+}
+.front-web .profile .user-book{
+    border-bottom: 2px solid rgba(134, 134, 134, 0.055);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+
+}
+.front-web .profile .book-review{
+    max-width: 50px;
+    max-height: 100px;
+    border: 1px solid #cccccc63;
+    padding: 3px;
+    object-fit: cover;
+}
+
+.color-primary,
+.color-primary:focus,
+.color-primary:active,
+.color-primary:hover{
+    background-color: #10BC69 !important;
+    color: white !important;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.front-web .header .nav-profile-image{
+    width: 45px;
+    height: 45px;
+    border: 1px solid #cccccc63;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+
+@media (max-width: 1199px) {
+    .hide-on-sm {
+        display: none;
+    }
+}
+@media (min-width: 1201px) {
+    .hide-on-large {
+        display: none !important;
+    }
+}
+
+

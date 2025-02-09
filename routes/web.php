@@ -7,6 +7,7 @@ use App\Http\Controllers\Web\BranchController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\ProfileController;
+use App\Http\Controllers\Web\ReviewController;
 use App\Http\Controllers\Web\SemesterController;
 use App\Http\Controllers\Web\SubscriberController;
 use Faker\Guesser\Name;
@@ -54,5 +55,13 @@ Route::post('/contact/store', [ContactController::class, 'store'])->name('contac
 
 Route::post('/subscriber/store', [SubscriberController::class, 'store'])->name('subscriber.store');
 
+Route::middleware('auth')->group(function(){
+    Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile/{user}/update-image', [ProfileController::class, 'updateProfileImage'])->name('profile.image_update');
 
-Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile.index');
+
+    Route::post('/books/{book}/review', [ReviewController::class, 'store'])->name('books.review.store');
+    Route::delete('/books/{book}/review/{review}', [ReviewController::class, 'destroy'])->name('books.review.delete');
+
+});
+

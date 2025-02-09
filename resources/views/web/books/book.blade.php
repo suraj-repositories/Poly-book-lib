@@ -9,6 +9,9 @@
 
         <section id="service-details" class="service-details section">
             <div class="container">
+
+                @include('layout.alert')
+
                 <div class="row gy-5 justify-content-center">
 
                     <div class="col-lg-8 ps-lg-4 order-lg-2 book-data" data-aos="fade-up" data-aos-delay="200">
@@ -16,9 +19,16 @@
 
                             <div class="container book section-title text-start p-0 mb-2" data-aos="fade-up">
                                 <h2 class="fw-bold"> {{ $book->title }}</h2>
-                                <div class="d-flex align-items-center text-warning">
-                                    <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                    <div class="ms-1 text-secondary">(30 views)</div>
+                                <div class="d-flex align-items-center">
+
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        <iconify-icon icon="solar:star-bold" class=" {{ $i <= $bookRating ? 'text-warning' : '' }}"></iconify-icon>
+                                    @endfor
+
+                                    @if ($bookReviewCount > 0)
+                                        <div class="ms-1 text-secondary"> ({{ $bookReviewCount }} reviews)</div>
+                                    @endif
+
                                 </div>
 
                             </div>
@@ -175,52 +185,16 @@
                                     </div>
                                     <div class="tab-pane" id="nav-mission" role="tabpanel"
                                         aria-labelledby="nav-mission-tab">
-                                        <div class="d-flex comment mb-3">
-                                            <div class="comment-user-image">
-                                                <img src="https://placehold.co/400x600" class="comment-user"
-                                                    alt="">
-                                            </div>
-                                            <div class="">
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <div class="heading">
-                                                        <h5 class="mb-1">Jason Smith</h5>
-                                                        <p class="mb-2 date">April 12, 2024</p>
-                                                    </div>
-                                                    <div class="d-flex mb-3">
-                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                                        <iconify-icon icon="solar:star-bold"></iconify-icon>
-                                                    </div>
-                                                </div>
 
-                                                <p>The generated Lorem Ipsum is therefore always free from repetition
-                                                    injected humour, or non-characteristic
-                                                    words etc. Susp endisse ultricies nisi vel quam suscipit </p>
-                                            </div>
-                                        </div>
+                                        @include('web.books.review_form')
+
+                                        @include('web.books.book_reviews')
 
                                     </div>
-                                    <div class="tab-pane" id="nav-vision" role="tabpanel">
-                                        <p class="text-dark">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et
-                                            tempor sit. Aliqu diam
-                                            amet diam et eos labore. 3</p>
-                                        <p class="mb-0">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos
-                                            labore.
-                                            Clita erat ipsum et lorem et sit</p>
-                                    </div>
+
                                 </div>
                             </div>
-
-
                         </div>
-
-
-
-
-
-                        {{-- @include('web.partials.branner_never_stop_learning') --}}
                     </div>
 
                     <div class="col-lg-4 order-lg-1" data-aos="fade-up" data-aos-delay="100">
@@ -232,23 +206,5 @@
 
         </section>
     </main>
-
-    <script>
-        const input = document.getElementById("text");
-        const copyButton = document.getElementById("copy");
-
-        const copyText = (e) => {
-            // window.getSelection().selectAllChildren(textElement);
-            input.select(); //select input value
-            document.execCommand("copy");
-            e.currentTarget.setAttribute("tooltip", "Copied!");
-        };
-
-        const resetTooltip = (e) => {
-            e.currentTarget.setAttribute("tooltip", "Copy to clipboard");
-        };
-
-        copyButton.addEventListener("click", (e) => copyText(e));
-        copyButton.addEventListener("mouseover", (e) => resetTooltip(e));
-    </script>
+    <script src="{{ asset('assets/js/pages/book.js') }}"></script>
 @endsection

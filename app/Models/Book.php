@@ -56,4 +56,14 @@ class Book extends Model
     {
         return $query->withCount('downloads')->orderBy('downloads_count', 'desc');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->reviews()->avg('rating');
+    }
 }

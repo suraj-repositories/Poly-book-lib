@@ -13,16 +13,17 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="social position-static">
                         <a href="#" class="d-flex align-items-center fs-4">
-                            <iconify-icon icon="solar:download-minimalistic-line-duotone" class="icon text-theme"></iconify-icon>
+                            <iconify-icon icon="solar:download-minimalistic-line-duotone"
+                                class="icon text-theme"></iconify-icon>
 
-                            <span class="fs-6 ms-1">{{ count($book->downloads ?? [] ) }}</span>
+                            <span class="fs-6 ms-1">{{ count($book->downloads ?? []) }}</span>
                         </a>
                     </span>
 
                     <a href="#" class="d-flex align-items-center text-secondary fs-4">
                         <iconify-icon icon="solar:star-bold-duotone" class="text-warning"></iconify-icon>
 
-                        <span class="fs-6 ms-1"> 4.5 </span>
+                        <span class="fs-6 ms-1"> {{ round($book->averageRating(), 1) }} </span>
                     </a>
                 </div>
             </div>

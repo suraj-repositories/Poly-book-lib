@@ -52,7 +52,12 @@
                 <li><a href="{{ route('about') }}">About</a></li>
                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
             </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            <div class="d-flex align-items-center">
+                <a href="{{ route('profile.index', Auth::id()) }}" class="ms-3 hide-on-large">
+                    <img src="{{ Auth::user()->getImageURL() }}" class="nav-profile-image profile-image-preview" alt="Profile Image">
+                </a>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </div>
         </nav>
 
         @guest
@@ -68,6 +73,10 @@
             @endif
 
         @endauth
+
+        <a href="{{ route('profile.index', Auth::id()) }}" class="ms-3 hide-on-sm">
+            <img src="{{ Auth::user()->getImageURL() }}" class="nav-profile-image  profile-image-preview" alt="Profile Image">
+        </a>
 
     </div>
 </header>

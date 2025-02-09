@@ -4,13 +4,15 @@
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-6">
-                    <h4>Subscribe {{ Settings::get('site_name', config('app.name'))  }}</h4>
-                    <p>Subscribe to {{ Settings::get('site_name', config('app.name'))  }} and receive the latest updates and services!</p>
+                    <h4>Subscribe {{ Settings::get('site_name', config('app.name')) }}</h4>
+                    <p>Subscribe to {{ Settings::get('site_name', config('app.name')) }} and receive the latest updates
+                        and services!</p>
                     <form action="{{ route('subscriber.store') }}" method="post" class="php-email-form">
                         @csrf
                         <div class="newsletter-form">
                             <input type="email" name="email">
-                            <input type="submit" value="Subscribe"></div>
+                            <input type="submit" value="Subscribe">
+                        </div>
                         <div class="loading">Loading</div>
                         <div class="error-message"></div>
                         <div class="sent-message">Your subscription request has been sent. Thank you!</div>
@@ -52,13 +54,17 @@
                     <li><i class="bi bi-chevron-right"></i> <a href="{{ route('branches') }}">Branches</a></li>
                     <li><i class="bi bi-chevron-right"></i> <a href="{{ route('books') }}">Books</a></li>
                     @auth
-                    <li><i class="bi bi-chevron-right"></i> <a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="{{ route('profile.index', Auth::id()) }}">Profile</a></li>
+                        @if (Auth::user()->hasRole('ADMIN'))
+                            <li><i class="bi bi-chevron-right"></i> <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            </li>
+                        @endif
+                        <li><i class="bi bi-chevron-right"></i> <a
+                                href="{{ route('profile.index', Auth::id()) }}">Profile</a></li>
                     @endauth
 
                     @guest
-                    <li><i class="bi bi-chevron-right"></i> <a href="{{ route('login') }}">Login</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="{{ route('register') }}">Register</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('login') }}">Login</a></li>
+                        <li><i class="bi bi-chevron-right"></i> <a href="{{ route('register') }}">Register</a></li>
                     @endguest
                 </ul>
             </div>

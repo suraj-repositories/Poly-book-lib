@@ -58,4 +58,11 @@ class User extends Authenticatable
         return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={$this->name}";
     }
 
+    public function downloads(){
+        return $this->hasMany(BookDownload::class, 'user_id', 'id');
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
+    }
 }
