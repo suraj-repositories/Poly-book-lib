@@ -95,7 +95,7 @@ class FileServiceImpl implements FileService
         return round($size, 2) . " " . $units[$unitIndex];
     }
 
-    public function getFromattedFileSize($size){
+    public function getFromattedFileSize($size, $roundPosition = 2, $sepertor = " "){
 
         $units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
         $unitIndex = 0;
@@ -105,7 +105,7 @@ class FileServiceImpl implements FileService
             $unitIndex++;
         }
 
-        return round($size, 2) . " " . $units[$unitIndex];
+        return round($size, $roundPosition) . $sepertor . $units[$unitIndex];
     }
 
 

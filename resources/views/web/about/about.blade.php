@@ -8,7 +8,8 @@
 
         @include('web.about.about_content')
 
-        @include('web.partials.stats')
+        <x-web.stats />
+
 
     </main>
 @endsection

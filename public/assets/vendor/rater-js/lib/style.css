@@ -34,4 +34,6 @@
     right: 0;
     left: auto;
 }
-
+.apexcharts-canvas{
+    max-height: 295px !important;
+}

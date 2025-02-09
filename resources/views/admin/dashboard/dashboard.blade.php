@@ -1,4 +1,5 @@
 @extends('admin.layout.layout')
+@section('title', Route::is('admin.dashboard') ? 'Dashboard' : '')
 
 @section('content')
 <div class="container-fluid">
@@ -16,23 +17,9 @@
                    <div class="card-body p-0">
                         <div class="row g-0">
                              <div class="col-lg-3">
-                                  <div class="p-3">
-                                       <h5 class="card-title">Conversions</h5>
-                                       <div id="conversions" class="apex-charts mb-2 mt-n2"></div>
-                                       <div class="row text-center">
-                                            <div class="col-6">
-                                                 <p class="text-muted mb-2">This Week</p>
-                                                 <h3 class="text-dark mb-3">23.5k</h3>
-                                            </div> <!-- end col -->
-                                            <div class="col-6">
-                                                 <p class="text-muted mb-2">Last Week</p>
-                                                 <h3 class="text-dark mb-3">41.05k</h3>
-                                            </div> <!-- end col -->
-                                       </div> <!-- end row -->
-                                       <div class="text-center">
-                                            <button type="button" class="btn btn-light shadow-none w-100">View Details</button>
-                                       </div> <!-- end row -->
-                                  </div>
+
+                                <x-memory-monitor />
+
                              </div> <!-- end left chart card -->
                              <div class="col-lg-6 border-start border-end">
                                   <div class="p-3">
@@ -220,58 +207,7 @@
          </div> <!-- end col-->
 
          <div class="col-lg-6">
-              <div class="card card-height-100">
-                   <div class="card-header d-flex align-items-center justify-content-between gap-2">
-                        <h4 class="card-title flex-grow-1">Top Pages</h4>
-                        <div>
-                             <a href="#" class="btn btn-sm btn-soft-primary">View All</a>
-                        </div>
-                   </div>
-                   <div class="table-responsive">
-                        <table class="table table-hover table-nowrap table-centered m-0">
-                             <thead class="bg-light bg-opacity-50">
-                                  <tr>
-                                       <th class="text-muted py-1">Page Path</th>
-                                       <th class="text-muted py-1">Page Views</th>
-                                       <th class="text-muted py-1">Avg Time on Page</th>
-                                       <th class="text-muted py-1">Exit Rate</th>
-                                  </tr>
-                             </thead>
-                             <tbody>
-                                  <tr>
-                                       <td><a href="#" class="text-muted">rasket/dashboard.html</a></td>
-                                       <td> 4265</td>
-                                       <td>09m:45s</td>
-                                       <td><span class="badge badge-soft-danger">20.4%</span></td>
-                                  </tr>
-                                  <tr>
-                                       <td><a href="#" class="text-muted">rasket/chat.html</a></td>
-                                       <td>2584 </td>
-                                       <td>05m:02s</td>
-                                       <td><span class="badge badge-soft-warning">12.25%</span></td>
-                                  </tr>
-                                  <tr>
-                                       <td><a href="#" class="text-muted">rasket/auth-login.html</a></td>
-                                       <td> 3369</td>
-                                       <td>04m:25s</td>
-                                       <td><span class="badge badge-soft-success">5.2%</span></td>
-                                  </tr>
-                                  <tr>
-                                       <td><a href="#" class="text-muted">rasket/email.html</a></td>
-                                       <td>985 </td>
-                                       <td>02m:03s</td>
-                                       <td><span class="badge badge-soft-danger">64.2%</span></td>
-                                  </tr>
-                                  <tr>
-                                       <td><a href="#" class="text-muted">rasket/social.html</a></td>
-                                       <td>653 </td>
-                                       <td>15m:56s</td>
-                                       <td><span class="badge badge-soft-success">2.4%</span></td>
-                                  </tr>
-                             </tbody>
-                        </table>
-                   </div>
-              </div>
+              @include('admin.dashboard.popular_books')
          </div>
     </div> <!-- end row-->
 

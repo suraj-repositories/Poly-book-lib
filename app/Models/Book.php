@@ -47,5 +47,13 @@ class Book extends Model
         return $this->belongsTo(BranchSemester::class);
     }
 
+    public function downloads()
+    {
+        return $this->hasMany(BookDownload::class, 'book_id', 'id');
+    }
 
+    public function scopeOrderByDownloads($query)
+    {
+        return $query->withCount('downloads')->orderBy('downloads_count', 'desc');
+    }
 }

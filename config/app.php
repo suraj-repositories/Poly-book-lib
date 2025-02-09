@@ -16,12 +16,16 @@ return [
     |
     */
 
+    'app_start_date' => env('APP_START_DATE', '2025-01-01 10:10:00'),
     'name' => env('APP_NAME', 'PolyBookLib'),
     'address' => env('APP_ADDRESS', '123 Main Street, Cityville"'),
     'priary_contact' => env('APP_PRIMARY_CONTACT', '+91 9876543210'),
-    'secondary_contact' => env('APP_SECONDARY_CONTACT', '9876543210'),
+    'secondary_contact' => env('APP_SECONDARY_CONTACT', '+91 9876543210'),
     'email' => env('APP_EMAIL', 'info@polybooklib.com'),
     'logo' => env('APP_LOGO', '/favicon.ico'),
+
+    'storage_size' => env('MAX_STORAGE_SIZE', '2147483648'),
+    'tutorial_video_link' => env('TUTORIAL_VIDEO_LINK', 'https://youtu.be/jan5CFWs9ic'),
 
     /*
     |--------------------------------------------------------------------------

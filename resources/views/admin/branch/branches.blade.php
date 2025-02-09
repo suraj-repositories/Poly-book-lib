@@ -210,7 +210,7 @@
                                                     {{ $branch->semestersCount() }}
                                                 @endif
                                             </td>
-                                            <td>1</td>
+                                            <td> {{ count($branch->books ?? []) }} </td>
                                             <td> {{ date('d M, Y', strtotime($branch->created_at)) }}
                                                 <small>{{ date('h:i A', strtotime($branch->created_at)) }}</small>
                                             </td>

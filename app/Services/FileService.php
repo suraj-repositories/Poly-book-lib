@@ -28,7 +28,7 @@ interface FileService
 
     function getSizeByPath($filePath, $disk = "public"): string;
 
-    function getFromattedFileSize($size);
+    function getFromattedFileSize($size, $roundPosition = 2, $sepertor = " ");
 
     function deleteDirectoryIfExists($dir);
 

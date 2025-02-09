@@ -12,7 +12,7 @@ class DownloadController extends Controller
     //
 
     public function index(){
-        $downloads = BookDownload::paginate(10);
+        $downloads = BookDownload::orderBy('id', 'desc')->paginate(10);
         $startDate = Carbon::now()->subDays(30)->startOfDay();
         $endDate = Carbon::now()->endOfDay();
         $last30days = BookDownload::whereBetween('created_at', [$startDate, $endDate])->count();

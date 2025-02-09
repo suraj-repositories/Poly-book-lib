@@ -15,7 +15,7 @@
                         <p>Discover books and notes — download instantly, anytime!</p>
                         <div class="d-flex">
                             <a href="#about" class="btn-get-started">Get Started</a>
-                            <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
+                            <a href="{{ Settings::get('tutorial_video_link', config('app.tutorial_video_link')) }}"
                                 class="glightbox btn-watch-video d-flex align-items-center border-2 border-dark">
                                 <i class="bi bi-play-circle"></i><span>Watch Video</span></a>
                         </div>
@@ -75,7 +75,7 @@
         <!-- /About Section -->
 
         <!-- Stats Section -->
-       @include('web.partials.stats')
+       <x-web.stats />
         <!-- /Stats Section -->
 
         <!-- Services Section -->

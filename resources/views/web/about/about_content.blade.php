@@ -3,32 +3,25 @@
 
     <div class="container">
 
+
         <div class="row gy-4">
             <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
-                <img src="assets/img/about.png" class="img-fluid" alt="">
-                <a href="https://youtu.be/jan5CFWs9ic?si=QMdeU8iRj65GnxxZ" class="glightbox pulsating-play-btn"></a>
+                <img src="{{ asset('assets/img/about.png') }}" class="img-fluid" alt="about">
+                <a href="{{ Settings::get('tutorial_video_link', config('app.tutorial_video_link')) }}" class="glightbox pulsating-play-btn"></a>
             </div>
             <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
-                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-                <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore
-                    magna aliqua.
+                <h3> {{ Settings::get('site_name', config('app.name')) }}  – Your go-to platform for easy book downloads.</h3>
+                <p class="fst-italic mt-4">
+                    Welcome to {{ Settings::get('site_name', config('app.name')) }} , your ultimate destination for book downloads. Our platform offers a vast collection of books across various genres, including educational, fiction, non-fiction, and research materials.
                 </p>
                 <ul>
-                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat.</span></li>
-                    <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate
-                            velit.</span></li>
-                    <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda
-                            mastiro dolore eu fugiat nulla pariatur.</span></li>
+                    <li><i class="bi bi-check2-all"></i> <span>We aim to make knowledge and literature easily accessible to everyone.</span></li>
+                    <li><i class="bi bi-check2-all"></i> <span>Designed for simplicity, our website ensures a smooth browsing and downloading process.</span></li>
+                    <li><i class="bi bi-check2-all"></i> <span>Our platform provides a seamless experience for downloading books quickly and conveniently.</span></li>
+                    <li><i class="bi bi-check2-all"></i> <span>Join us today and discover a world of books at your fingertips!</span></li>
                 </ul>
                 <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                    in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                    proident
+                    We focus on providing a seamless and user-friendly experience, making it easy for readers to browse and download books effortlessly. Our mission is to promote accessibility to knowledge and literature for everyone, ensuring that books are just a click away.
                 </p>
             </div>
         </div>

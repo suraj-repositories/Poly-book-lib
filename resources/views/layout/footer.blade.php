@@ -4,8 +4,8 @@
         <div class="container">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-6">
-                    <h4>Subscribe {{ config('app.name') }}</h4>
-                    <p>Subscribe to {{ config('app.name') }} and receive the latest updates and services!</p>
+                    <h4>Subscribe {{ Settings::get('site_name', config('app.name'))  }}</h4>
+                    <p>Subscribe to {{ Settings::get('site_name', config('app.name'))  }} and receive the latest updates and services!</p>
                     <form action="{{ route('subscriber.store') }}" method="post" class="php-email-form">
                         @csrf
                         <div class="newsletter-form">

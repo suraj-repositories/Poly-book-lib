@@ -26,5 +26,14 @@ return [
             'key' => 'secondary_contact',
             'value' => env('APP_SECONDARY_CONTACT', '9876543210'),
         ],
+        [
+            'key' => 'app_start_date',
+            'value' => env('APP_START_DATE', '2025-01-01 10:10:00'),
+        ],
+        [
+            'key' => 'tutorial_video_link',
+            'value' => env('TUTORIAL_VIDEO_LINK', 'https://youtu.be/jan5CFWs9ic'),
+        ],
+
     ],
 ];
