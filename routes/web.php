@@ -59,7 +59,6 @@ Route::middleware('auth')->group(function(){
     Route::get('/profile/{user}', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/{user}/update-image', [ProfileController::class, 'updateProfileImage'])->name('profile.image_update');
 
-
     Route::post('/books/{book}/review', [ReviewController::class, 'store'])->name('books.review.store');
     Route::delete('/books/{book}/review/{review}', [ReviewController::class, 'destroy'])->name('books.review.delete');
 
