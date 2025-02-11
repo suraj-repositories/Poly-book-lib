@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'default_profile_image' => 'assets/images/default/default_user.webp',
     'default_settings' => [
         [
             'key' => 'site_name',
