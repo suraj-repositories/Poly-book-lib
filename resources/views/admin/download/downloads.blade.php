@@ -54,7 +54,7 @@
                                 </div>
                             </div> --}}
 
-                            <table class="table table-striped table-borderless table-centered" data-table="laravel">
+                            <table class="table table-striped table-borderless table-centered" data-table="true">
                                 <thead class="table-light">
                                     <tr>
                                         {{-- <th scope="col">
@@ -124,7 +124,7 @@
                             </table>
                         </div>
 
-                        {{ $downloads->links() }}
+                        {{-- {{ $downloads->links() }} --}}
                     </div>
                 </div>
             </div>

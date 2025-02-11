@@ -1,8 +1,8 @@
 @extends('admin.layout.layout')
-@section('title', Route::is('admin.contacts.index') ? 'Contacts' : '')
+@section('title', Route::is('admin.reviews.index') ? 'Reviews' : '')
 @section('content')
 
-    <div class="container-fluid contacts">
+    <div class="container-fluid reviews">
 
         @include('layout.alert')
 
@@ -12,8 +12,8 @@
                     <div class="card-body">
                         <div class="d-flex flex-wrap justify-content-between gap-3">
                             <div class="text-dark fs-3 fw-semibold ">
-                                <iconify-icon icon="solar:call-chat-rounded-broken" class="me-1 pt-1"></iconify-icon>
-                                Contacts
+                                <iconify-icon icon="solar:download-minimalistic-broken" class="me-1 pt-1"></iconify-icon>
+                                Reviews
                             </div>
                             <div>
                                 <button class="btn btn-outline-success cursor-default" style="cursor: default;">
@@ -73,20 +73,21 @@
                                         </th>
                                         <th>
                                             <div class="d-flex justify-content-between">
-                                                Name
+                                                User
                                                 {{-- <iconify-icon icon="ph:arrows-down-up-thin" class="me-1 pt-1 cursor-pointer"
                                                     onclick="orderBy('email')">
                                                 </iconify-icon> --}}
                                             </div>
                                         </th>
-                                        <th>Email</th>
-                                        <th>Subject</th>
-                                        <th>Message</th>
+                                        <th>Book</th>
+                                        <th>Rating</th>
+                                        <th>Review</th>
                                         <th>Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($contacts as $contact)
+                                    @foreach ($reviews as $review)
                                         <tr>
                                             {{-- <td>
                                                 <div class="form-check">
@@ -95,14 +96,46 @@
                                                 </div>
                                             </td> --}}
                                             <td>{{ $loop->iteration }}</td>
-                                            <td> {{ $contact->name }} </td>
-                                            <td> {{ $contact->email }} </td>
-                                            <td> {{ $contact->subject }} </td>
-                                            <td> {{ $contact->message }} </td>
-                                            <td> {{ date('d M, Y', strtotime($contact->created_at)) }}
-                                                <small>{{ date('h:i A', strtotime($contact->created_at)) }}</small>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{ $review->user->getImageURL() ?? '#' }}" alt=""
+                                                        class="avatar-xs rounded-circle me-2">
+                                                    <div>
+                                                        <h5 class="fs-14 m-0 fw-normal">{{ $review->user->name ?? '-' }}
+                                                        </h5>
+                                                    </div>
+                                                </div>
                                             </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{ $review->book->getCoverPageUrl() ?? '#' }}" alt=""
+                                                        class="avatar-xs rounded-circle me-2">
+                                                    <div>
+                                                        <h5 class="fs-14 m-0 fw-normal">{{ $review->book->title ?? '-' }}
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    <iconify-icon icon="solar:star-bold"
+                                                        class="{{ $i <= ($review->rating ?? 0) ? 'text-warning' : '' }}"></iconify-icon>
+                                                @endfor
+                                            </td>
+                                            <td> {{ $review->review }} </td>
 
+                                            <td> {{ date('d M, Y', strtotime($review->updated_at)) }}
+                                                <small>{{ date('h:i A', strtotime($review->updated_at)) }}</small>
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('admin.reviews.delete', $review->id) }}"
+                                                    class="d-inline" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-soft-danger"><i
+                                                            class="bx bx-trash fs-16"></i></button>
+                                                </form>
+                                            </td>
 
                                         </tr>
                                     @endforeach
@@ -112,7 +145,7 @@
                             </table>
                         </div>
 
-                        {{-- {{ $contacts->links() }} --}}
+                        {{-- {{ $reviews->links() }} --}}
                     </div>
                 </div>
             </div>

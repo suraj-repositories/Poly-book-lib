@@ -12,7 +12,7 @@ class ContactController extends Controller
     //
 
     public function index(){
-        $contacts = Contact::orderBy('id', 'desc')->paginate(10);
+        $contacts = Contact::orderBy('id', 'desc')->get();
         $startDate = Carbon::now()->subDays(30)->startOfDay();
         $endDate = Carbon::now()->endOfDay();
         $last30days = Contact::whereBetween('created_at', [$startDate, $endDate])->count();

@@ -120,6 +120,15 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.reviews.index') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:star-bold-duotone"></iconify-icon>
+
+                    </span>
+                    <span class="nav-text">Reviews</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <form action="{{route('logout')}}" method="POST" >
                     @csrf
                     <button class="nav-link w-100" >

@@ -12,7 +12,7 @@ class SubscriberController extends Controller
     //
     public function index()
     {
-        $subscribers = Subscriber::orderBy('id', 'desc')->paginate(10);
+        $subscribers = Subscriber::orderBy('id', 'desc')->get();
         $startDate = Carbon::now()->subDays(30)->startOfDay();
         $endDate = Carbon::now()->endOfDay();
         $last30days = Subscriber::whereBetween('created_at', [$startDate, $endDate])->count();
