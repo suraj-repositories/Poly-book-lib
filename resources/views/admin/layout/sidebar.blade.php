@@ -92,6 +92,15 @@
 
             <li class="menu-title">Public</li>
             <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.users.index') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:users-group-rounded-broken"></iconify-icon>
+
+                    </span>
+                    <span class="nav-text"> Users </span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.downloads.index') }}">
                     <span class="nav-icon">
                         <iconify-icon icon="solar:download-minimalistic-broken"></iconify-icon>
@@ -122,7 +131,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.reviews.index') }}">
                     <span class="nav-icon">
-                        <iconify-icon icon="solar:star-bold-duotone"></iconify-icon>
+                        <iconify-icon icon="solar:star-broken"></iconify-icon>
 
                     </span>
                     <span class="nav-text">Reviews</span>

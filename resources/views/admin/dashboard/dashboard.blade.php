@@ -50,7 +50,11 @@
                                     @forelse ($topUsers as $user)
                                         <div class="d-flex justify-content-between align-items-center p-2">
                                             <span class="align-middle fw-medium">{{$user->name}}</span>
-                                            <span class="fw-semibold text-muted">{{ $user->downloads_count }}</span>
+                                            <span class="fw-semibold text-muted">
+                                                {{ $user->downloads_count }}
+                                                <iconify-icon icon="solar:download-minimalistic-broken"></iconify-icon>
+
+                                            </span>
                                     </div>
 
                                     @empty
@@ -60,7 +64,7 @@
 
                                   </div>
                                   <div class="text-center p-3 position-absolute bottom-0 w-100">
-                                       <button type="button" class="btn btn-light shadow-none w-100">View All</button>
+                                       <a href="{{ route('admin.users.index') }}" class="btn btn-light shadow-none w-100">View All</a>
                                   </div> <!-- end row -->
                              </div>
                         </div> <!-- end chart card -->

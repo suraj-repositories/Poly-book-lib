@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\DownloadController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SubscriberController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Api\Admin\BookController as AdminBookController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,3 +52,6 @@ Route::get('/downloads', [DownloadController::class, 'index'])->name('admin.down
 
 Route::get('/reviews', [ReviewController::class, 'index'])->name('admin.reviews.index');
 Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('admin.reviews.delete');
+
+Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.delete');
