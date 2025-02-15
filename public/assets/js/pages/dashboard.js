@@ -75,120 +75,191 @@ function enableMemoryTracker(selector) {
     document.querySelector(".apexcharts-canvas").style.height = "295px";
 }
 
+function enablePerformanceTracker(selector){
 
-options = {
-    series: [{
-        name: "Page Views",
-        type: "bar",
-        data: [34, 65, 46, 68, 49, 61, 42, 44, 78, 52, 63, 67]
-    }, {
-        name: "Clicks",
-        type: "area",
-        data: [8, 12, 7, 17, 21, 11, 5, 9, 7, 29, 12, 35]
-    }],
-    chart: {
-        height: 313,
-        type: "line",
-        toolbar: {
-            show: !1
-        }
-    },
-    stroke: {
-        dashArray: [0, 0],
-        width: [0, 2],
-        curve: "smooth"
-    },
-    fill: {
-        opacity: [1, 1],
-        type: ["solid", "gradient"],
-        gradient: {
-            type: "vertical",
-            inverseColors: !1,
-            opacityFrom: .5,
-            opacityTo: 0,
-            stops: [0, 90]
-        }
-    },
-    markers: {
-        size: [0, 0],
-        strokeWidth: 2,
-        hover: {
-            size: 4
-        }
-    },
-    xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        axisTicks: {
-            show: !1
+    const performanceChart = document.querySelector(selector);
+
+    const downloadsJsonData = performanceChart.getAttribute('data-downloads-monthly');
+    const downloadsRecord = JSON.parse(downloadsJsonData);
+
+    const usersJsonData = performanceChart.getAttribute('data-users-monthly');
+    const usersRecord = JSON.parse(usersJsonData);
+
+    let options = {
+        series: [{
+            name: "Downloads",
+            type: "bar",
+            data: Object.values(downloadsRecord)
+        }, {
+            name: "Users",
+            type: "area",
+            data: Object.values(usersRecord)
+        }],
+        chart: {
+            height: 313,
+            type: "line",
+            toolbar: {
+                show: !1
+            }
         },
-        axisBorder: {
-            show: !1
-        }
-    },
-    yaxis: {
-        min: 0,
-        axisBorder: {
-            show: !1
-        }
-    },
-    grid: {
-        show: !0,
-        strokeDashArray: 3,
+        stroke: {
+            dashArray: [0, 0],
+            width: [0, 2],
+            curve: "smooth"
+        },
+        fill: {
+            opacity: [1, 1],
+            type: ["solid", "gradient"],
+            gradient: {
+                type: "vertical",
+                inverseColors: !1,
+                opacityFrom: .5,
+                opacityTo: 0,
+                stops: [0, 90]
+            }
+        },
+        markers: {
+            size: [0, 0],
+            strokeWidth: 2,
+            hover: {
+                size: 4
+            }
+        },
         xaxis: {
-            lines: {
+            categories: Object.keys(downloadsRecord),
+            axisTicks: {
+                show: !1
+            },
+            axisBorder: {
                 show: !1
             }
         },
         yaxis: {
-            lines: {
-                show: !0
+            min: 0,
+            axisBorder: {
+                show: !1
             }
         },
-        padding: {
-            top: 0,
-            right: -2,
-            bottom: 0,
-            left: 10
-        }
-    },
-    legend: {
-        show: !0,
-        horizontalAlign: "center",
-        offsetX: 0,
-        offsetY: 5,
-        markers: {
-            width: 9,
-            height: 9,
-            radius: 6
+        grid: {
+            show: !0,
+            strokeDashArray: 3,
+            xaxis: {
+                lines: {
+                    show: !1
+                }
+            },
+            yaxis: {
+                lines: {
+                    show: !0
+                }
+            },
+            padding: {
+                top: 0,
+                right: -2,
+                bottom: 0,
+                left: 10
+            }
         },
-        itemMargin: {
-            horizontal: 10,
-            vertical: 0
-        }
-    },
-    plotOptions: {
-        bar: {
-            columnWidth: "30%",
-            barHeight: "70%",
-            borderRadius: 3
-        }
-    },
-    colors: ["#1bb394", "#1e84c4"],
-    tooltip: {
-        shared: !0,
-        y: [{
-            formatter: function (e) {
-                return void 0 !== e ? e.toFixed(1) + "k" : e
+        legend: {
+            show: !0,
+            horizontalAlign: "center",
+            offsetX: 0,
+            offsetY: 5,
+            markers: {
+                width: 9,
+                height: 9,
+                radius: 6
+            },
+            itemMargin: {
+                horizontal: 10,
+                vertical: 0
             }
-        }, {
-            formatter: function (e) {
-                return void 0 !== e ? e.toFixed(1) + "k" : e
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: "30%",
+                barHeight: "70%",
+                borderRadius: 3
             }
-        }]
-    }
-};
+        },
+        colors: ["#1bb394", "#1e84c4"],
+        tooltip: {
+            shared: !0,
+            y: [{
+                formatter: function (e) {
+                    return void 0 !== e ? e + "" : e
+                }
+            }, {
+                formatter: function (e) {
+                    return void 0 !== e ? e + "" : e
+                }
+            }]
+        }
+    };
 
-(chart = new ApexCharts(document.querySelector("#dash-performance-chart"), options)).render();
+    let chart = new ApexCharts(performanceChart, options);
+    chart.render();
+
+    function updateChartData(newDownloadsRecord, newUsersRecord) {
+        chart.updateOptions({
+            xaxis: {
+                categories: Object.keys(newDownloadsRecord)
+            }
+        });
+
+        chart.updateSeries([
+            {
+                name: "Downloads",
+                type: "bar",
+                data: Object.values(newDownloadsRecord)
+            },
+            {
+                name: "Users",
+                type: "area",
+                data: Object.values(newUsersRecord)
+            }
+        ]);
+    }
+
+    document.querySelector('#one-year').addEventListener('click', ()=>{
+        activateBtn('#one-year');
+        updateChartData(downloadsRecord, usersRecord);
+    });
+    document.querySelector('#six-month').addEventListener('click', ()=>{
+        activateBtn('#six-month');
+        const sixMonthData = performanceChart.getAttribute('data-users-halfmonthly');
+        const sixMonthRecord = JSON.parse(sixMonthData);
+
+        const sixMonthDownload = performanceChart.getAttribute('data-downloads-halfmonthly');
+        const sixMonthDownloadRecord = JSON.parse(sixMonthDownload);
+
+        updateChartData(sixMonthDownloadRecord, sixMonthRecord);
+    });
+    document.querySelector('#one-month').addEventListener('click', ()=>{
+        activateBtn('#one-month');
+
+        const oneMonthData = performanceChart.getAttribute('data-users-daily');
+        const oneMonthUserRecord = JSON.parse(oneMonthData);
+
+        const oneMonthDownload = performanceChart.getAttribute('data-downloads-daily');
+        const oneMonthDownloadRecord = JSON.parse(oneMonthDownload);
+
+        updateChartData(oneMonthDownloadRecord, oneMonthUserRecord);
+    });
+
+
+    function activateBtn(selector){
+        const clickedBtn = document.querySelector(selector);
+        clickedBtn.closest('.period-buttons').querySelectorAll('button').forEach(btn=>{
+            btn.classList.remove('active');
+        });
+        clickedBtn.classList.add('active');
+    }
+
+}
+
+
+
 class VectorMap {
     initWorldMapMarker() {
         new jsVectorMap({
@@ -241,4 +312,6 @@ class VectorMap {
 document.addEventListener("DOMContentLoaded", function (e) {
     (new VectorMap).init();
     enableMemoryTracker("#memory-tracker");
+
+    enablePerformanceTracker("#dash-performance-chart");
 });

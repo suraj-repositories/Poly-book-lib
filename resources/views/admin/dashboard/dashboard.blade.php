@@ -25,11 +25,11 @@
                                   <div class="p-3">
                                        <div class="d-flex justify-content-between align-items-center">
                                             <h4 class="card-title">Performance</h4>
-                                            <div>
-                                                 <button type="button" class="btn btn-sm btn-outline-light">ALL</button>
-                                                 <button type="button" class="btn btn-sm btn-outline-light">1M</button>
-                                                 <button type="button" class="btn btn-sm btn-outline-light">6M</button>
-                                                 <button type="button" class="btn btn-sm btn-outline-light active">1Y</button>
+                                            <div class="period-buttons">
+                                                 {{-- <button type="button" id="all-time" class="btn btn-sm btn-outline-light">ALL</button> --}}
+                                                 <button type="button" id="one-month" class="btn btn-sm btn-outline-light">1M</button>
+                                                 <button type="button" id="six-month" class="btn btn-sm btn-outline-light">6M</button>
+                                                 <button type="button" id="one-year" class="btn btn-sm btn-outline-light active">1Y</button>
                                             </div>
                                        </div> <!-- end card-title-->
 
@@ -38,63 +38,28 @@
                                        </div>
 
                                        <div dir="ltr">
-                                            <div id="dash-performance-chart" class="apex-charts"></div>
+                                           <x-performance-chart />
                                        </div>
                                   </div>
                              </div> <!-- end right chart card -->
 
-                             <div class="col-lg-3">
-                                  <h5 class="card-title p-3">Session By Browser</h5>
+                             <div class="col-lg-3 top-users">
+                                  <h5 class="card-title p-3">Top Users</h5>
                                   <div class="px-3" data-simplebar style="max-height: 310px;">
-                                       <div class="d-flex justify-content-between align-items-center p-2">
-                                            <span class="align-middle fw-medium">Chrome</span>
-                                            <span class="fw-semibold text-muted">62.5%</span>
-                                            <span class="fw-semibold text-muted">5.06k</span>
-                                       </div>
 
-                                       <div class="d-flex justify-content-between align-items-center p-2">
-                                            <span class="align-middle fw-medium">Firefox</span>
-                                            <span class="fw-semibold text-muted">12.3%</span>
-                                            <span class="fw-semibold text-muted">1.5k</span>
-                                       </div>
+                                    @forelse ($topUsers as $user)
+                                        <div class="d-flex justify-content-between align-items-center p-2">
+                                            <span class="align-middle fw-medium">{{$user->name}}</span>
+                                            <span class="fw-semibold text-muted">{{ $user->downloads_count }}</span>
+                                    </div>
 
-                                       <div class="d-flex justify-content-between align-items-center p-2">
-                                            <span class="align-middle fw-medium">Safari</span>
-                                            <span class="fw-semibold text-muted">9.86%</span>
-                                            <span class="fw-semibold text-muted">1.03k</span>
-                                       </div>
+                                    @empty
+                                        @include('layout.no_data')
+                                    @endforelse
 
-                                       <div class="d-flex justify-content-between align-items-center p-2">
-                                            <span class="align-middle fw-medium">Brave</span>
-                                            <span class="fw-semibold text-muted">3.15%</span>
-                                            <span class="fw-semibold text-muted">0.3k</span>
-                                       </div>
 
-                                       <div class="d-flex justify-content-between align-items-center p-2">
-                                            <span class="align-middle fw-medium">Opera</span>
-                                            <span class="fw-semibold text-muted">3.01%</span>
-                                            <span class="fw-semibold text-muted">1.58k</span>
-                                       </div>
-
-                                       <div class="d-flex justify-content-between align-items-center p-2">
-                                            <span class="align-middle fw-medium">Falkon</span>
-                                            <span class="fw-semibold text-muted">2.8%</span>
-                                            <span class="fw-semibold text-muted">0.01k</span>
-                                       </div>
-
-                                       <div class="d-flex justify-content-between align-items-center p-2">
-                                            <span class="align-middle fw-medium">Web</span>
-                                            <span class="fw-semibold text-muted">1.05%</span>
-                                            <span class="fw-semibold text-muted">2.51k</span>
-                                       </div>
-
-                                       <div class="d-flex justify-content-between align-items-center p-2">
-                                            <span class="align-middle fw-medium">Other</span>
-                                            <span class="fw-semibold text-muted">6.38%</span>
-                                            <span class="fw-semibold text-muted">3.6k</span>
-                                       </div>
                                   </div>
-                                  <div class="text-center p-3">
+                                  <div class="text-center p-3 position-absolute bottom-0 w-100">
                                        <button type="button" class="btn btn-light shadow-none w-100">View All</button>
                                   </div> <!-- end row -->
                              </div>
