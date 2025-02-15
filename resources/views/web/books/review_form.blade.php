@@ -1,4 +1,4 @@
-@auth
+
 <div class="container mt-4 pb-3 mb-3 border-bottom">
 
     <form action="{{ route('books.review.store', $book) }}" method="POST">
@@ -22,4 +22,4 @@
     </form>
 
 </div>
-@endauth
+

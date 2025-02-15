@@ -38,8 +38,9 @@
                         @if ($branches->lastPage() > 1)
                             <li>
                                 <a href="{{ route('branches') }}">
-                                    <span>Show All
-                                        <i class="bi bi-chevron-double-right"></i>
+                                    <span class="d-flex align-items-center justify-content-center">
+                                        Show All
+                                        <i class="bi bi-chevron-double-right ms-2"></i>
                                     </span>
                                 </a>
 

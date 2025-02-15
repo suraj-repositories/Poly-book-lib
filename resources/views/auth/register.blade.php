@@ -1,4 +1,6 @@
 @extends('auth.layout.layout')
+@section('title', Route::is('register') ? "Register" : "")
+
 
 @section('content')
     <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5">

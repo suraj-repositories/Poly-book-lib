@@ -4,8 +4,16 @@
         <nav class="breadcrumbs">
             <ol>
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ route('books') }}">Books</a></li>
-                <li class="current">Show Off</li>
+                <li>
+                    @if (Route::is('books.show'))
+                        <a href="{{ route('books') }}">Books</a>
+                    @else
+                        Books
+                    @endif
+                </li>
+                @if (Route::is('books.show'))
+                    <li class="current">{{ $book->title ?? '-' }}</li>
+                @endif
             </ol>
         </nav>
     </div>
