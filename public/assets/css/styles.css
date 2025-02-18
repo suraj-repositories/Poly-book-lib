@@ -903,3 +903,30 @@ table[data-table="laravel"] th div{
 .top-users{
     padding-bottom: 80px;
 }
+.social-media input::placeholder{
+    color: #6d7b8696;
+}
+.social-media .social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, #444444, transparent 50%);
+    font-size: 16px;
+    color: color-mix(in srgb, #444444, transparent 20%);
+    margin:  5px 5px;
+    transition: 0.3s;
+    font-size: 22px;
+}
+.social-media .social-links a .bi-twitter-x{
+    font-size: 18px;
+}
+
+.front-web.mobile-nav-active .on-mobile-nav{
+    display: block;
+}
+.front-web .on-mobile-nav{
+    display: none;
+}

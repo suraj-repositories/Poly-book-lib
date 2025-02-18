@@ -33,8 +33,8 @@
                     <!-- end card body -->
                 </div>
 
-                <form action="{{ isset($book) ? route('admin.books.update', $book->id) : route('admin.books.store') }}" method="POST" enctype="multipart/form-data"
-                    id="addBookForm">
+                <form action="{{ isset($book) ? route('admin.books.update', $book->id) : route('admin.books.store') }}"
+                    method="POST" enctype="multipart/form-data" id="addBookForm">
                     @csrf
 
                     <div class="row">
@@ -53,21 +53,20 @@
                                                         <iconify-icon icon="solar:floor-lamp-broken"></iconify-icon>
                                                     </span>
                                                     <div class="w-100">
-                                                        <select class="form-control one-three-no-rounded" data-choices
-                                                            name="branch_id" id="branch_selector">
-
+                                                        <select class="form-control one-three-no-rounded" data-choices name="branch_id" id="branch_selector">
                                                             @empty($book)
-                                                                <option value="" disabled selected>-- select branch --
-                                                                </option>
+                                                                <option value="" selected disabled>-- select branch --</option>
                                                             @endempty
 
                                                             @foreach ($branches as $branch)
-                                                            <option value="{{ $branch->id }}"
-                                                                {{ isset($book) && $book->branchSemester->branch->id == $branch->id ? 'selected' : '' }}>
-                                                                {{ $branch->name }}
-                                                            </option>
-                                                                @endforeach
+                                                                <option value="{{ $branch->id }}" data-custom-properties="{{ $branch->name }}"
+                                                                    {{ isset($book) && $book->branchSemester->branch->id == $branch->id ? 'selected' : '' }}>
+                                                                    {{ $branch->name }}
+                                                                </option>
+                                                            @endforeach
                                                         </select>
+
+
                                                     </div>
                                                 </div>
                                                 @error('branch_id')
@@ -88,8 +87,7 @@
                                                     <div class="w-100">
                                                         <select class="form-control one-three-no-rounded" data-choices
                                                             name="semester_id" id="semester_selector"
-                                                            data-value="{{ isset($book) ? $book->branchSemester->semester->id : ""}}"
-                                                            >
+                                                            data-value="{{ isset($book) ? $book->branchSemester->semester->id : '' }}">
                                                             <option value="" disabled selected> -- select semester --
                                                             </option>
                                                         </select>
@@ -111,7 +109,8 @@
                                                         <iconify-icon icon="solar:bookmark-broken"></iconify-icon>
                                                     </span>
                                                     <input type="text" class="form-control"
-                                                        placeholder="Enter book title..." id="bookhName" name="title" value="{{isset($book) ? $book->title : old('title')}}">
+                                                        placeholder="Enter book title..." id="bookhName" name="title"
+                                                        value="{{ isset($book) ? $book->title : old('title') }}">
                                                 </div>
                                                 @error('title')
                                                     <small class="validation-error">{{ $message }}</small>
@@ -128,7 +127,8 @@
                                                         <iconify-icon icon="solar:user-circle-broken"></iconify-icon>
                                                     </span>
                                                     <input type="text" class="form-control"
-                                                        placeholder="Enter author name..." id="bookAuthor" name="author" value="{{isset($book) ? $book->author : old('author')}}">
+                                                        placeholder="Enter author name..." id="bookAuthor" name="author"
+                                                        value="{{ isset($book) ? $book->author : old('author') }}">
                                                 </div>
 
                                                 @error('author')
@@ -147,7 +147,7 @@
                                                 </div>
 
                                                 <textarea class="hide" name="description" id="description" cols="30" rows="10">
-                                                    {{isset($book) ? $book->description : old('description')}}
+                                                    {{ isset($book) ? $book->description : old('description') }}
                                                 </textarea>
                                                 @error('description')
                                                     <small class="validation-error">{{ $message }}</small>
@@ -165,7 +165,8 @@
                                                     </span>
                                                     <input type="text" class="form-control"
                                                         placeholder="Enter number of pages..." id="pages"
-                                                        name="pages" value="{{isset($book) ? $book->pages : old('pages')}}">
+                                                        name="pages"
+                                                        value="{{ isset($book) ? $book->pages : old('pages') }}">
                                                 </div>
 
                                                 @error('pages')
@@ -183,7 +184,7 @@
                                                     </span>
                                                     <input type="text" class="form-control"
                                                         placeholder="Enter amount ..." id="price" name="price"
-                                                        value="{{isset($book) ? $book->price : old('price')}}">
+                                                        value="{{ isset($book) ? $book->price : old('price') }}">
                                                 </div>
                                                 @error('price')
                                                     <small class="validation-error">{{ $message }}</small>
@@ -206,8 +207,7 @@
 
                                         <input type="file" name="image" id="hiddenFileInput" class="hidden"
                                             data-cover-image="{{ isset($book, $book->cover_image) ? $book->getCoverPageUrl() : '' }}"
-                                            data-cover-image-size="{{ isset($book) ? $book->getCoverImageSize() : "0MB" }}"
-                                            >
+                                            data-cover-image-size="{{ isset($book) ? $book->getCoverImageSize() : '0MB' }}">
 
 
                                         <div class="dropzone dz-clickable cover_file_input_dropzone">
@@ -225,7 +225,8 @@
 
                                                 <div class="preview-image-box">
                                                     <div class="selected_file_image">
-                                                        <img data-dz-thumbnail src="https://placehold.co/100x100?text=loading..."
+                                                        <img data-dz-thumbnail
+                                                            src="https://placehold.co/100x100?text=loading..."
                                                             class="selected_file_image" alt="selected image">
                                                         <div class="close-btn" data-dz-remove>
                                                             <iconify-icon icon="solar:trash-bin-trash-bold-duotone"
@@ -256,15 +257,14 @@
                                     <div class="mb-3 image-area">
                                         <label for="coverImage" class="form-label must">Select Book</label>
 
-                                        <input type="hidden" name="file_id" value="{{ isset($book) ? $book->file_id : old('file_id') }}" id="selectedFileId"
-                                            data-updating-book="{{ isset($book) ? $book->id : "" }}"
-                                            data-updating-book-filename="{{ isset($book, $book->file) ? $book->file->file_name : "" }}"
-                                            data-updating-book-size="{{ isset($book, $book->file) ? $book->file->size() : "" }}"
-                                            data-updating-book-icon="{{ isset($book, $book->file) ? $book->file->extensionIcon() : "" }}"
-                                        >
+                                        <input type="hidden" name="file_id"
+                                            value="{{ isset($book) ? $book->file_id : old('file_id') }}"
+                                            id="selectedFileId" data-updating-book="{{ isset($book) ? $book->id : '' }}"
+                                            data-updating-book-filename="{{ isset($book, $book->file) ? $book->file->file_name : '' }}"
+                                            data-updating-book-size="{{ isset($book, $book->file) ? $book->file->size() : '' }}"
+                                            data-updating-book-icon="{{ isset($book, $book->file) ? $book->file->extensionIcon() : '' }}">
 
-                                        <div class="dropzone dz-clickable"
-                                            id="selectFileModalOpener" >
+                                        <div class="dropzone dz-clickable" id="selectFileModalOpener">
 
                                             <div class="dz-message needsclick" id="selectFilePickerText">
                                                 <i class="h1 bx bx-cloud-upload"></i>

@@ -47,6 +47,7 @@ function enableQuillEditor(selector) {
         const htmlContent = quillEditorObj.root.innerHTML;
         description.value = htmlContent;
 
+
         form.submit();
     });
 
@@ -73,6 +74,15 @@ function enableDynamicBranchAndSemester(branchSelector, semesterSelector) {
         return;
     }
 
+    // Initialize Choices.js for branch selector with search enabled on custom properties
+    let branchChoices = new Choices(branchSelect, {
+        removeItemButton: true,
+        searchEnabled: true, // Enable search functionality
+        shouldSort: false, // Keep original order
+        itemSelectText: '', // Remove default select text
+        searchFields: ['label', 'customProperties'],
+    });
+
     let semesterChoices = new Choices(semesterSelect, {
         removeItemButton: true,
         searchEnabled: true,
@@ -80,10 +90,11 @@ function enableDynamicBranchAndSemester(branchSelector, semesterSelector) {
 
     function loadSemester() {
         const branchId = branchSelect.value;
+        const branchName = branchSelect.options[branchSelect.selectedIndex]?.getAttribute('data-custom-properties');
         const semesterId = semesterSelect.getAttribute('data-value') || semesterSelect.value;
 
         const url = new URL(route('api.fetch.semesters'));
-        url.searchParams.append('branch_id', branchId);
+        url.searchParams.append('branch_name', branchName);
 
         const resetSemesterChoices = (label) => {
             semesterChoices.clearChoices();
@@ -134,6 +145,7 @@ function enableDynamicBranchAndSemester(branchSelector, semesterSelector) {
         loadSemester();
     }
 }
+
 
 
 function bookSelection() {

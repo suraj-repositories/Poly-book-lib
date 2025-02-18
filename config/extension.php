@@ -57,5 +57,6 @@ return [
         "yml" => "bi-filetype-yml",
         "zip" => "bi-file-earmark-zip",
         "rar" => "bi-file-zip-fill"
-    ]
+    ],
+
 ];

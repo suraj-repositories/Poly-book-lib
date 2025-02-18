@@ -10,4 +10,15 @@ return [
     'default_upload_file_dropzone_image' => '/assets/images/default/file-check-100.png',
     'default_upload_file_dropzone_image' => '/assets/images/default/file-check-100.png',
 
+    'social_media_icons'=>[
+
+        'facebook' => 'bx bxl-facebook-circle',
+        'instagram' => 'bx bxl-instagram-alt',
+        'youtube' => 'bx bxl-youtube',
+        'linkedin' => 'bx bxl-linkedin-square',
+        'twitter' => 'bi bi-twitter-x',
+        'github' => 'bx bxl-github',
+        'telegram' => 'bx bxl-telegram',
+        'reddit' => 'bx bxl-reddit',
+    ]
 ];

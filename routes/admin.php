@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DownloadController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SocialMediaSettingController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Api\Admin\BookController as AdminBookController;
@@ -55,3 +57,6 @@ Route::delete('/reviews/{review}', [ReviewController::class, 'destroy'])->name('
 
 Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.delete');
+
+Route::get('/settings/social-media', [SocialMediaSettingController::class, 'index'])->name('admin.social_media.index');
+Route::post('/settings/social-media', [SocialMediaSettingController::class, 'store'])->name('admin.social_media.save');

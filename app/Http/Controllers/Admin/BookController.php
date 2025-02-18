@@ -55,6 +55,7 @@ class BookController extends Controller
             $request['cover_image'] = $image;
         }
 
+
         $branchSemesterId = BranchSemester::where('branch_id', $request['branch_id'])
             ->where('semester_id', $request['semester_id'])
             ->pluck('id')

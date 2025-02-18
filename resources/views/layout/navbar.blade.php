@@ -18,11 +18,14 @@
                     <ul>
 
                         @forelse ($branches as $branch)
-                            <li class="dropdown"><a href="{{ route('branches.show', $branch->id) }}"><span>{{ $branch->name }}</span> <i
+                            <li class="dropdown"><a
+                                    href="{{ route('branches.show', $branch->id) }}"><span>{{ $branch->name }}</span> <i
                                         class="bi bi-chevron-down toggle-dropdown"></i></a>
                                 <ul>
                                     @forelse ($branch->semesters as $semester)
-                                        <li><a href="{{ route('branches.semesters.books', ['branch'=>$branch->id, 'semester'=> $semester->id]) }}">{{ $semester->title }}</a></li>
+                                        <li><a
+                                                href="{{ route('branches.semesters.books', ['branch' => $branch->id, 'semester' => $semester->id]) }}">{{ $semester->title }}</a>
+                                        </li>
                                     @empty
                                         <li><a href="#">No Semesters yet...</a></li>
                                     @endforelse
@@ -55,9 +58,14 @@
             </ul>
             <div class="d-flex align-items-center">
                 @auth
-                <a href="{{ route('profile.index', Auth::id()) }}" class="ms-3 hide-on-large">
-                    <img src="{{ Auth::user()->getImageURL() }}" class="nav-profile-image profile-image-preview" alt="Profile Image">
-                </a>
+                    @if (Auth::user()->hasRole('ADMIN'))
+                        <a class="btn-getstarted hide-on-large on-mobile-nav"
+                            href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    @endif
+                    <a href="{{ route('profile.index', Auth::id()) }}" class="ms-3 hide-on-large">
+                        <img src="{{ Auth::user()->getImageURL() }}" class="nav-profile-image profile-image-preview"
+                            alt="Profile Image">
+                    </a>
                 @endauth
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </div>
@@ -71,12 +79,12 @@
         @auth
 
             @if (Auth::user()->hasRole('ADMIN'))
-                <a class="btn-getstarted" href="{{ route('admin.dashboard') }}">Dashboard</a>
-            @elseif (Auth::user()->hasRole('USER'))
+                <a class="btn-getstarted hide-on-sm" href="{{ route('admin.dashboard') }}">Dashboard</a>
             @endif
 
             <a href="{{ route('profile.index', Auth::id()) }}" class="ms-3 hide-on-sm">
-                <img src="{{ Auth::user()->getImageURL() }}" class="nav-profile-image  profile-image-preview" alt="Profile Image">
+                <img src="{{ Auth::user()->getImageURL() }}" class="nav-profile-image  profile-image-preview"
+                    alt="Profile Image">
             </a>
         @endauth
 

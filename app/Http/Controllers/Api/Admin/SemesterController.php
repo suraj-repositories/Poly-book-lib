@@ -15,16 +15,21 @@ class SemesterController extends Controller
     {
         $semesterId = $request->query('semester_id');
         $branchId = $request->query('branch_id');
+        $branchName = $request->query('branch_name');
 
         $semesters = null;
 
-        if ($semesterId) {
+        if (!empty($semesterId)) {
             $semesters = Semester::with('branches')->where('id', $semesterId)->get();
-        } elseif ($branchId) {
+        } elseif (!empty($branchName)) {
+            $semesters = Semester::whereHas('branches', function ($query) use ($branchName) {
+                $query->where('branches.name', $branchName);
+            })->with('branches')->get();
+        }elseif (!empty($branchId)) {
             $semesters = Semester::whereHas('branches', function ($query) use ($branchId) {
                 $query->where('branches.id', $branchId);
             })->with('branches')->get();
-        } else {
+        }  else {
             $semesters = Semester::with('branches')->get();
         }
 
