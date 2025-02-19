@@ -51,6 +51,7 @@
                                                 <div class="input-group flex-no-wrap">
                                                     <span class="input-group-text" id="basic-addon1">
                                                         <iconify-icon icon="solar:floor-lamp-broken"></iconify-icon>
+                                                        <input type="hidden" name="branch_id"  id="branch_id_input">
                                                     </span>
                                                     <div class="w-100">
                                                         <select class="form-control one-three-no-rounded" data-choices name="branch_id" id="branch_selector">

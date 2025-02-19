@@ -47,6 +47,12 @@ function enableQuillEditor(selector) {
         const htmlContent = quillEditorObj.root.innerHTML;
         description.value = htmlContent;
 
+        // const selectBranch = form.querySelector("#branch_selector");
+        // const inputBranchId = form.querySelector("#branch_id_input");
+        // let selectedOption =  selectBranch.options[selectBranch.selectedIndex];
+        // inputBranchId.value  = selectedOption.getAttribute("data-branch-id");
+
+        // console.log('attr', selectedOption.getAttribute("data-branch-id"));
 
         form.submit();
     });
@@ -74,14 +80,23 @@ function enableDynamicBranchAndSemester(branchSelector, semesterSelector) {
         return;
     }
 
-    // Initialize Choices.js for branch selector with search enabled on custom properties
+    // Ensure that all existing options are converted to Choices.js format
+    const initialOptions = Array.from(branchSelect.options).map(option => ({
+        value: option.value,
+        label: option.textContent, // Display name
+        customProperties: option.getAttribute('data-custom-properties') || '', // Allow search by name
+        selected: option.selected, // Keep selected state
+    }));
+
     let branchChoices = new Choices(branchSelect, {
         removeItemButton: true,
-        searchEnabled: true, // Enable search functionality
-        shouldSort: false, // Keep original order
-        itemSelectText: '', // Remove default select text
-        searchFields: ['label', 'customProperties'],
+        searchEnabled: true,
+        shouldSort: false,
+        itemSelectText: '',
+        searchFields: ['label', 'customProperties'], // Enables searching by name
     });
+
+    branchChoices.setChoices(initialOptions, 'value', 'label', true);
 
     let semesterChoices = new Choices(semesterSelect, {
         removeItemButton: true,
@@ -94,6 +109,7 @@ function enableDynamicBranchAndSemester(branchSelector, semesterSelector) {
         const semesterId = semesterSelect.getAttribute('data-value') || semesterSelect.value;
 
         const url = new URL(route('api.fetch.semesters'));
+        url.searchParams.append('branch_id', branchId);
         url.searchParams.append('branch_name', branchName);
 
         const resetSemesterChoices = (label) => {
