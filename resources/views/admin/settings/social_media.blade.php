@@ -1,5 +1,5 @@
 @extends('admin.layout.layout')
-@section('title', Route::is('admin.social_media.index') ? 'Settings' : '')
+@section('title', Route::is('admin.social_media.index') ? 'Social Media Settings' : '')
 @section('content')
 
     <div class="container-fluid social-media">

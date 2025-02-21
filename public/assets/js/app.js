@@ -699,6 +699,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     // new DropZone().init();
     new FileIcon().init();
     new QuillEditor().init();
+    new Youtube().init();
 });
 
 
@@ -1114,7 +1115,7 @@ class DropZone {
                 const files = this.dropzoneObj.getAcceptedFiles();
 
                 if (files.length > 0) {
-                    const hiddenFileInput = form.querySelector("#hiddenFileInput");
+                    const hiddenFileInput = dropzoneElement.parentElement.querySelector("#hiddenFileInput");
                     let dataTransfer = new DataTransfer();
                     files.forEach((file, index) => {
                         if (index == fileCount) {
@@ -1251,4 +1252,21 @@ class QuillEditor {
         return null;
     }
 
+}
+
+class Youtube{
+    init(){
+        this.enableYoutubeVideoUsingShareLink();
+    }
+
+    enableYoutubeVideoUsingShareLink(){
+        function getEmbedUrl(shareUrl) {
+            let videoId = shareUrl.split('/').pop();
+            return `https://www.youtube.com/embed/${videoId}`;
+        }
+        document.querySelectorAll('[data-youtube-video="share"]').forEach(element => {
+            element.src = getEmbedUrl(element.getAttribute('src'));
+
+        });
+    }
 }

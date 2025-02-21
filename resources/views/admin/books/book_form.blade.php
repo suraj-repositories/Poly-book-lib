@@ -336,7 +336,7 @@
 
 
                     <div class="d-flex mb-3 gap-2 align-items-center justify-content-center">
-                        <button class="btn btn-secondary px-4">Reset</button>
+                        <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary px-4">Cancel</a>
                         <button class="btn btn-primary px-4" type="submit">Save</button>
                     </div>
 

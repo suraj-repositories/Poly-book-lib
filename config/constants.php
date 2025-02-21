@@ -9,6 +9,9 @@ return [
     'default_cover_page_image' => '/assets/images/default/book-cover-page-100.svg',
     'default_upload_file_dropzone_image' => '/assets/images/default/file-check-100.png',
     'default_upload_file_dropzone_image' => '/assets/images/default/file-check-100.png',
+    'default_video_url' => 'https://youtu.be/jan5CFWs9ic',
+    'default_hero_image' => '/assets/img/hero-img.png',
+    'default_about_image' => '/assets/img/about.png',
 
     'social_media_icons'=>[
 

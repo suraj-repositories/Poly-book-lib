@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DownloadController;
 use App\Http\Controllers\Admin\FileController;
+use App\Http\Controllers\Admin\HeroSectionSettingController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialMediaSettingController;
@@ -60,3 +61,6 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.
 
 Route::get('/settings/social-media', [SocialMediaSettingController::class, 'index'])->name('admin.social_media.index');
 Route::post('/settings/social-media', [SocialMediaSettingController::class, 'store'])->name('admin.social_media.save');
+
+Route::get('/settings/hero-section', [HeroSectionSettingController::class, 'index'])->name('admin.hero_section.index');
+Route::post('/settings/hero-section', [HeroSectionSettingController::class, 'store'])->name('admin.hero_section.save');

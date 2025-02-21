@@ -155,7 +155,7 @@
                         </li>
                         <li class="sub-nav-item">
                             <i class='bx bx-minus'></i>
-                            <a class="sub-nav-link" href="{{ route('admin.files.create') }}">Hero Section</a>
+                            <a class="sub-nav-link" href="{{ route('admin.hero_section.index') }}">Hero Section</a>
                         </li>
                         <li class="sub-nav-item">
                             <i class='bx bx-minus'></i>
