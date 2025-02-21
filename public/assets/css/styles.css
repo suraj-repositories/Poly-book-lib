@@ -944,3 +944,13 @@ input::placeholder{
     border-radius: 5px;
 }
 
+@media (max-width: 450px) {
+    .hero-section iframe.frame-style{
+        height: 190px;
+    }
+}
+@media (max-width: 710px) {
+    .hero-section iframe.frame-style{
+        height: 290px;
+    }
+}
