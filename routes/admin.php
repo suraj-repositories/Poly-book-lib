@@ -66,3 +66,4 @@ Route::post('/settings/hero-section', [HeroSectionSettingController::class, 'sto
 
 Route::get('/settings/app-settings', [AppSettingController::class, 'index'])->name('admin.app_settings.index');
 Route::post('/settings/app-settings', [AppSettingController::class, 'store'])->name('admin.app_settings.save');
+Route::post('/settings/on-off-setting', [AppSettingController::class, 'saveOrUpdateSetting'])->name('admin.on_off_setting.save');

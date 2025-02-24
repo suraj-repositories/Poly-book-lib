@@ -138,7 +138,6 @@
                                             </div>
                                         </div>
 
-
                                     </div>
 
                                     <div class="d-flex mt-2">
@@ -152,39 +151,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 ">
-                        <div class="card">
-
-                            <div class="card-body">
-
-                                <h4>Settings</h4>
-
-
-                                <div class="form-check form-checkbox-warning py-2 my-2 dash-bottom-border dash-top-border">
-                                    <input type="checkbox" class="form-check-input" id="registrationMail" checked>
-                                    <label class="form-check-label" for="registrationMail">Send Email on User
-                                        Registration</label>
-                                </div>
-                                <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
-                                    <input type="checkbox" class="form-check-input" id="mailtainence" checked>
-                                    <label class="form-check-label" for="mailtainence">Site Maintenance Mode</label>
-                                </div>
-                                <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
-                                    <input type="checkbox" class="form-check-input" id="social_login" checked>
-                                    <label class="form-check-label" for="social_login"> Enable Social Login (Google,
-                                        Facebook, etc.)</label>
-                                </div>
-                                <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
-                                    <input type="checkbox" class="form-check-input" id="guest_downloads" checked>
-                                    <label class="form-check-label" for="guest_downloads">Allow Guest Downloads</label>
-                                </div>
-                                <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
-                                    <input type="checkbox" class="form-check-input" id="social_media_sharing" checked>
-                                    <label class="form-check-label" for="social_media_sharing"> Enable Social Media Sharing
-                                        Buttons</label>
-                                </div>
-
-                            </div>
-                        </div>
+                        @include('admin.settings.partials.on_off_settings')
                     </div>
                 </div>
 
