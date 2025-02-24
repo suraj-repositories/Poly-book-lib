@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AppSettingController;
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SemesterController;
@@ -9,11 +10,9 @@ use App\Http\Controllers\Admin\DownloadController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\HeroSectionSettingController;
 use App\Http\Controllers\Admin\ReviewController;
-use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialMediaSettingController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Api\Admin\BookController as AdminBookController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -64,3 +63,6 @@ Route::post('/settings/social-media', [SocialMediaSettingController::class, 'sto
 
 Route::get('/settings/hero-section', [HeroSectionSettingController::class, 'index'])->name('admin.hero_section.index');
 Route::post('/settings/hero-section', [HeroSectionSettingController::class, 'store'])->name('admin.hero_section.save');
+
+Route::get('/settings/app-settings', [AppSettingController::class, 'index'])->name('admin.app_settings.index');
+Route::post('/settings/app-settings', [AppSettingController::class, 'store'])->name('admin.app_settings.save');

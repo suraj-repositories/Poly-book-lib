@@ -938,19 +938,26 @@ input::placeholder{
 .front-web .on-mobile-nav{
     display: none;
 }
-.hero-section iframe.frame-style{
+ iframe.frame-style{
     width: 100%;
     height: 395px;
     border-radius: 5px;
 }
 
 @media (max-width: 450px) {
-    .hero-section iframe.frame-style{
+    iframe.frame-style{
         height: 190px;
     }
 }
 @media (max-width: 710px) {
-    .hero-section iframe.frame-style{
+     iframe.frame-style{
         height: 290px;
     }
+
+}
+.dash-bottom-border{
+    border-bottom: 1px dashed rgba(128, 128, 128, 0.288);
+}
+.dash-top-border{
+    border-top: 1px dashed rgba(128, 128, 128, 0.288);
 }

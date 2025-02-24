@@ -69,4 +69,15 @@ class Utility{
         return timeParts.join(', ');
     }
 
+
+    static convertGoogleMapsUrl(shareUrl) {
+        let match = fullUrl.match(/@([-.\d]+),([-.\d]+)/);
+        if (match) {
+            let lat = match[1];
+            let lng = match[2];
+
+            return `https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10000!2d${lng}!3d${lat}!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin`;
+        }
+        return null;
+    }
 }

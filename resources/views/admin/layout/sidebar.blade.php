@@ -159,7 +159,7 @@
                         </li>
                         <li class="sub-nav-item">
                             <i class='bx bx-minus'></i>
-                            <a class="sub-nav-link" href="{{ route('admin.files.create') }}">Contact Settings</a>
+                            <a class="sub-nav-link" href="{{ route('admin.app_settings.index') }}">Application Settings</a>
                         </li>
 
                     </ul>
