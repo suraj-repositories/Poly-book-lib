@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\Settings;
+use App\Mail\RegistrationMail;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -49,6 +53,14 @@ class AuthController extends Controller
             'password' => Hash::make( $validated['password']),
             'role' => 'USER'
         ]);
+
+        try{
+            if(Settings::get('registration_mail', 'off') == 'on'){
+                Mail::to($validated['email'])->send(new RegistrationMail());
+            }
+        }catch(\Exception $e){
+            Log::error('Error sending mail : ' . $e->getMessage());
+        }
 
         Auth::login($user);
         return redirect("/")->with('message', 'Regestration successful!');
