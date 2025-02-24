@@ -18,7 +18,7 @@
             </thead>
             <tbody>
 
-                @forelse ($popularBooks as $book)
+                @foreach ($popularBooks as $book)
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
@@ -29,21 +29,24 @@
                                 </div>
                             </div>
                         </td>
-                        <td> {{ $book->downloads_count}} </td>
-                        <td>0</td>
+                        <td> {{ $book->downloads_count }} </td>
+                        <td>{{ count($book->reviews ?? 0) }}</td>
                         <td>
-
-                            5 <iconify-icon icon="solar:star-bold-duotone" class="text-warning"> </iconify-icon>
-
-
+                            {{ $book->averageRating ?? 0 }}
+                             <iconify-icon icon="solar:star-bold-duotone" class="text-warning"> </iconify-icon>
                         </td>
                     </tr>
-                @empty
-                    @include('layout.no_data')
-                @endforelse
+                @endforeach
 
 
             </tbody>
         </table>
+
+
+        @if (count($popularBooks) <= 0)
+            <div class="mt-2">
+                @include('layout.no_data')
+            </div>
+        @endif
     </div>
 </div>

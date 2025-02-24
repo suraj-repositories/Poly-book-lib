@@ -165,21 +165,21 @@
                                         Registration</label>
                                 </div>
                                 <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
-                                    <input type="checkbox" class="form-check-input" id="mailtain" checked>
-                                    <label class="form-check-label" for="mailtain">Site Maintenance Mode</label>
+                                    <input type="checkbox" class="form-check-input" id="mailtainence" checked>
+                                    <label class="form-check-label" for="mailtainence">Site Maintenance Mode</label>
                                 </div>
                                 <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
-                                    <input type="checkbox" class="form-check-input" id="customCheckcolor4" checked>
-                                    <label class="form-check-label" for="customCheckcolor4"> Enable Social Login (Google,
+                                    <input type="checkbox" class="form-check-input" id="social_login" checked>
+                                    <label class="form-check-label" for="social_login"> Enable Social Login (Google,
                                         Facebook, etc.)</label>
                                 </div>
                                 <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
-                                    <input type="checkbox" class="form-check-input" id="customCheckcolor4" checked>
-                                    <label class="form-check-label" for="customCheckcolor4">Allow Guest Downloads</label>
+                                    <input type="checkbox" class="form-check-input" id="guest_downloads" checked>
+                                    <label class="form-check-label" for="guest_downloads">Allow Guest Downloads</label>
                                 </div>
                                 <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
-                                    <input type="checkbox" class="form-check-input" id="customCheckcolor4" checked>
-                                    <label class="form-check-label" for="customCheckcolor4"> Enable Social Media Sharing
+                                    <input type="checkbox" class="form-check-input" id="social_media_sharing" checked>
+                                    <label class="form-check-label" for="social_media_sharing"> Enable Social Media Sharing
                                         Buttons</label>
                                 </div>
 
