@@ -33,6 +33,11 @@ class AuthController extends Controller
         $user = User::where('email',$validated['email'])->first();
         if($user && Hash::check($validated['password'], $user->password)){
             Auth::login($user);
+
+            if($user->role == "ADMIN"){
+                return redirect()->route('admin.dashboard')->with('success', 'Login successfull!');
+            }
+
             return redirect("/")->with('success', 'Login successfull!');
         }
         return redirect('/login')->with('error', 'Wrong Credentials');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\BookController;
 use App\Http\Controllers\Web\BranchController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\MaintainenceController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\ReviewController;
 use App\Http\Controllers\Web\SemesterController;
@@ -66,11 +67,4 @@ Route::middleware('auth')->group(function(){
 
 });
 
-Route::get('send-mail', function(){
-    $mailData = [
-        'title'=> "Mail from ProjectsAndPrograms",
-        'body'=> "We appriciate your joining request."
-    ];
-    // dd(asset('/assets/images/emails/apple-store.png'), 1);
-    Mail::to('suraj2002fake@gmail.com')->send(new RegistrationMail($mailData));
-});
+Route::get('/under-maintainence', [MaintainenceController::class, 'index'])->name('web.under_maintainence');

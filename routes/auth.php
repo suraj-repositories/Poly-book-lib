@@ -3,9 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
-
-
-Route::middleware(['guest'])->group(function(){
+Route::middleware(['custom_guest'])->group(function(){
     Route::get('/login', [AuthController::class, 'loginPage'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.validate');
 

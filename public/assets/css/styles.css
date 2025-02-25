@@ -961,3 +961,12 @@ input::placeholder{
 .dash-top-border{
     border-top: 1px dashed rgba(128, 128, 128, 0.288);
 }
+.zoom-img-text,
+.zoom-img-text img,
+.zoom-img-text a{
+    zoom: 1.2;
+}
+
+.maintainence .filter-wesite-theme img{
+    filter: saturate(0.7)
+}

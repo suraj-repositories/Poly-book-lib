@@ -112,7 +112,8 @@
                                                         <!-- Main Title Text // -->
                                                         <h2 class="text"
                                                             style="color:#000000; font-family:'Poppins', Helvetica, Arial, sans-serif; font-size:28px; font-weight:500; font-style:normal; letter-spacing:normal; line-height:36px; text-transform:none; text-align:center; padding:0; margin:0">
-                                                            Welcome to {{ Settings::get('site_name', config('app.name')) }}
+                                                            Welcome to
+                                                            {{ Settings::get('site_name', config('app.name')) }}
                                                         </h2>
                                                     </td>
                                                 </tr>
@@ -124,7 +125,8 @@
                                                         <!-- Sub Title Text // -->
                                                         <h4 class="text"
                                                             style="color:#999999; font-family:'Poppins', Helvetica, Arial, sans-serif; font-size:16px; font-weight:500; font-style:normal; letter-spacing:normal; line-height:24px; text-transform:none; text-align:center; padding:0; margin:0">
-                                                            Getting Started With  {{ Settings::get('site_name', config('app.name')) }}
+                                                            Getting Started With
+                                                            {{ Settings::get('site_name', config('app.name')) }}
                                                         </h4>
                                                     </td>
                                                 </tr>
@@ -176,7 +178,9 @@
                                                                         <!-- Description Text// -->
                                                                         <p class="text"
                                                                             style="color:#666666; font-family:'Open Sans', Helvetica, Arial, sans-serif; font-size:14px; font-weight:400; font-style:normal; letter-spacing:normal; line-height:22px; text-transform:none; text-align:center; padding:0; margin:0">
-                                                                            Find thousands of books ready for instant download. No waiting, no hassle—just pure reading pleasure at your fingertips.
+                                                                            Find thousands of books ready for instant
+                                                                            download. No waiting, no hassle—just pure
+                                                                            reading pleasure at your fingertips.
                                                                         </p>
                                                                     </td>
                                                                 </tr>
@@ -246,7 +250,10 @@
                                                                         <!-- Description Text// -->
                                                                         <p class="text"
                                                                             style="color:#666666; font-family:'Open Sans', Helvetica, Arial, sans-serif; font-size:14px; font-weight:400; font-style:normal; letter-spacing:normal; line-height:22px; text-transform:none; text-align:center; padding:0; margin:0">
-                                                                            Browse and download books of all genres—fiction, non-fiction, academic, or self-help. Build your personal library and read at your convenience.
+                                                                            Browse and download books of all
+                                                                            genres—fiction, non-fiction, academic, or
+                                                                            self-help. Build your personal library and
+                                                                            read at your convenience.
                                                                         </p>
                                                                     </td>
                                                                 </tr>
@@ -317,7 +324,9 @@
                                                                         <!-- Description Text// -->
                                                                         <p class="text"
                                                                             style="color:#666666; font-family:'Open Sans', Helvetica, Arial, sans-serif; font-size:14px; font-weight:400; font-style:normal; letter-spacing:normal; line-height:22px; text-transform:none; text-align:center; padding:0; margin:0">
-                                                                            Discover new books, revisit old favorites, and expand your knowledge with just a few clicks. Your next great read awaits!
+                                                                            Discover new books, revisit old favorites,
+                                                                            and expand your knowledge with just a few
+                                                                            clicks. Your next great read awaits!
 
 
                                                                         </p>
@@ -436,7 +445,8 @@
                                         <!-- Brand Information // -->
                                         <p class="text"
                                             style="color:#777777; font-family:'Open Sans', Helvetica, Arial, sans-serif; font-size:12px; font-weight:400; font-style:normal; letter-spacing:normal; line-height:20px; text-transform:none; text-align:center; padding:0; margin:0;">
-                                            ©&nbsp;{{ Settings::get('site_name', config('app.name')) }}. | {{ Settings::get('address', config('app.address')) }}
+                                            ©&nbsp;{{ Settings::get('site_name', config('app.name')) }}. |
+                                            {{ Settings::get('address', config('app.address')) }}
                                     </td>
                                 </tr>
 
@@ -462,11 +472,13 @@
                                         <!-- Information of NewsLetter (Subscribe Info)// -->
                                         <p class="text"
                                             style="color:#777777; font-family:'Open Sans', Helvetica, Arial, sans-serif; font-size:12px; font-weight:400; font-style:normal; letter-spacing:normal; line-height:20px; text-transform:none; text-align:center; padding:0; margin:0;">
-                                            If you have any quetions please contact us <a href="mailto:{{ Settings::get('contact_email', config('app.contact_email')) }}"
+                                            If you have any quetions please contact us <a
+                                                href="mailto:{{ Settings::get('contact_email', config('app.contact_email')) }}"
                                                 style="color:#777777;text-decoration:underline;"
-                                                target="_blank">{{ Settings::get('contact_email', config('app.contact_email')) }}</a><br> <a href="{{ route('home') }}"
+                                                target="_blank">{{ Settings::get('contact_email', config('app.contact_email')) }}</a><br>
+                                            <a href="{{ route('home') }}"
                                                 style="color:#777777;text-decoration:underline;"
-                                                target="_blank">Unsubscribe</a> from our mailing lists
+                                                target="_blank">Subscribe</a> from our mailing lists
                                         </p>
                                     </td>
                                 </tr>
