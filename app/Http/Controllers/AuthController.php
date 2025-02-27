@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Facades\Settings;
 use App\Mail\RegistrationMail;
 use App\Models\User;
-use Illuminate\Contracts\View\View;
+use Exception;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -77,6 +79,31 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Logout successful!');
        }
        return redirect('/');
+    }
+
+    public function googleLogin(){
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function googleHandler(){
+        try{
+            $user = Socialite::driver('google')->user();
+
+            dd($user);
+            $findUser = User::where('email', $user->email)->first();
+            if(!$findUser){
+                $findUser = new User();
+                $findUser->name = $user->name;
+                $findUser->email = $user->email;
+                $findUser->password = Hash::make(Str::rand(12));
+                $findUser->role = 'USER';
+                $findUser->save();
+            }
+            Auth::login($findUser);
+            return redirect()->route('login');
+        }catch(Exception $e){
+            dd($e->getMessage());
+        }
     }
 
 }

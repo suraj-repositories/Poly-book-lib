@@ -59,7 +59,7 @@
                                     </div>
                                 </form>
 
-                                {{-- @include('auth.layout.social_media') --}}
+                                @include('auth.layout.social_media')
 
                             </div> <!-- end col -->
                         </div> <!-- end card-body -->
