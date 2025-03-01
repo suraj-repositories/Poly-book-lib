@@ -943,14 +943,28 @@ input::placeholder{
     height: 395px;
     border-radius: 5px;
 }
+.app-location iframe{
+    width: 100%;
+    height: 395px;
+    border-radius: 5px;
+}
+.front-web .app-location iframe{
+    height: 270px
+}
 
 @media (max-width: 450px) {
     iframe.frame-style{
         height: 190px;
     }
+    .app-location iframe{
+        height: 190px;
+    }
 }
 @media (max-width: 710px) {
      iframe.frame-style{
+        height: 290px;
+    }
+    .app-location iframe{
         height: 290px;
     }
 
@@ -969,4 +983,8 @@ input::placeholder{
 
 .maintainence .filter-wesite-theme img{
     filter: saturate(0.7)
+}
+
+.bg-progress-4{
+    background: #83DDCC;
 }

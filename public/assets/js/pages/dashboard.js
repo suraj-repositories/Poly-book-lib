@@ -1,3 +1,27 @@
+
+document.addEventListener("DOMContentLoaded", function (e) {
+
+    enableMemoryTracker("#memory-tracker");
+
+    enablePerformanceTracker("#dash-performance-chart");
+
+    enablePatternDonutPieChart("#donut-pie-chart");
+
+    document.querySelector("#download-analytics-png").addEventListener('click', function(){
+        downloadDiv('#capture', 'image/png', 'analytics-data.png');
+    });
+
+    document.querySelector("#download-analytics-jpeg").addEventListener('click', function(){
+        downloadDiv('#capture', 'image/jpeg', 'analytics-data.jpeg');
+    });
+
+    document.querySelector("#download-analytics-pdf").addEventListener('click', function(){
+        downloadPDF('#capture', 'analytics-data.pdf');
+    });
+
+
+});
+
 function enableMemoryTracker(selector) {
     const showMemoryUsage = document.querySelector(selector);
     let memoryUsed = 0;
@@ -260,58 +284,73 @@ function enablePerformanceTracker(selector){
 
 
 
-class VectorMap {
-    initWorldMapMarker() {
-        new jsVectorMap({
-            map: "world",
-            selector: "#world-map-markers",
-            zoomOnScroll: !0,
-            zoomButtons: !1,
-            markersSelectable: !0,
-            markers: [{
-                name: "Canada",
-                coords: [56.1304, -106.3468]
-            }, {
-                name: "Brazil",
-                coords: [-14.235, -51.9253]
-            }, {
-                name: "Russia",
-                coords: [61, 105]
-            }, {
-                name: "China",
-                coords: [35.8617, 104.1954]
-            }, {
-                name: "United States",
-                coords: [37.0902, -95.7129]
-            }],
-            markerStyle: {
-                initial: {
-                    fill: "#7f56da"
+
+function enablePatternDonutPieChart(selector){
+
+    const patternPieChart = document.querySelector(selector);
+    let data = '[]';
+    if (patternPieChart) {
+        data = patternPieChart.getAttribute('data-donut-chart-keys');
+    }
+
+
+    options = {
+        chart: {
+            height: 280,
+            type: "donut"
+        },
+        dataLabels: {
+            enabled: true
+        },
+        series: JSON.parse(data),
+        colors: colors = ["#5BC7B3", "#1BB394", "#83DDCC", "#5D7186", "#ed5565", "#ed5565", "#f9b931", "#1bb394", "#040505", "#1bb394"],
+        legend: {
+            show: 0,
+            position: "bottom",
+            horizontalAlign: "center",
+            verticalAlign: "middle",
+            floating: 1,
+            fontSize: "14px",
+            offsetX: 0,
+            offsetY: 7
+        },
+        responsive: [{
+            breakpoint: 600,
+            options: {
+                chart: {
+                    height: 240
                 },
-                selected: {
-                    fill: "#1bb394"
-                }
-            },
-            labels: {
-                markers: {
-                    render: e => e.name
-                }
-            },
-            regionStyle: {
-                initial: {
-                    fill: "rgba(169,183,197, 0.3)",
-                    fillOpacity: 1
+                legend: {
+                    show: !1
                 }
             }
-        })
-    }
-    init() {
-        this.initWorldMapMarker()
-    }
+        }]
+    };
+    (chart = new ApexCharts(document.querySelector(selector), options)).render();
 }
-document.addEventListener("DOMContentLoaded", function (e) {
-    (new VectorMap).init();
-    enableMemoryTracker("#memory-tracker");
 
-    enablePerformanceTracker("#dash-performance-chart");
-});
+function downloadDiv(selector, format, filename) {
+    const div = document.querySelector(selector);
+    html2canvas(div, { scale: 2 }).then(canvas => {
+        let link = document.createElement("a");
+        link.href = canvas.toDataURL(format);
+        link.download = filename;
+        link.click();
+    });
+}
+
+function downloadPDF(selector, filename) {
+    const { jsPDF } = window.jspdf;
+    const div = document.querySelector(selector);
+
+    html2canvas(div, { scale: 2 }).then(canvas => {
+        let imgData = canvas.toDataURL("image/png");
+        let pdf = new jsPDF('p', 'mm', 'a4');
+
+        let imgWidth = 210; // A4 width in mm
+        let imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        pdf.addImage(imgData, 'PNG', 0, 10, imgWidth, imgHeight);
+        pdf.save(filename);
+    });
+}

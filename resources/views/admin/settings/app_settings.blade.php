@@ -130,11 +130,8 @@
                                         </div>
 
                                         <div class="col-md-12">
-                                            <div class="mb-3">
-                                                <iframe class="frame-style" data-google-map="share"
-                                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3570.8964232962894!2d80.2854483!3d26.4912796!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399c383cda76b883%3A0x570e07ac70db62ee!2sGovernment%20Polytechnic%20Kanpur!5e0!3m2!1sen!2sin!4v1740333286845!5m2!1sen!2sin"
-                                                    style="border:0;" allowfullscreen="" loading="lazy"
-                                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                            <div class="mb-3 app-location">
+                                                {!! Settings::get('location', '') ?? '' !!}
                                             </div>
                                         </div>
 

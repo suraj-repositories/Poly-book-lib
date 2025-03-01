@@ -41,6 +41,8 @@
      <script src="{{asset('assets/js/config.min.js')}}"></script>
      <script src="{{asset('assets/vendor/jquery/jquery-3.7.1.js')}}"></script>
      <script src="{{asset('assets/vendor/datatable/datatable.js')}}"></script>
+     <script src="{{asset('assets/vendor/html2canvas/html2canvas.js')}}"></script>
+     <script src="{{asset('assets/vendor/jspdf/jspdf.js')}}"></script>
 
      <link href="{{asset('assets/css/styles.css')}}" rel="stylesheet" type="text/css" />
 
