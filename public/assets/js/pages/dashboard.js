@@ -347,7 +347,7 @@ function downloadPDF(selector, filename) {
         let imgData = canvas.toDataURL("image/png");
         let pdf = new jsPDF('p', 'mm', 'a4');
 
-        let imgWidth = 210; // A4 width in mm
+        let imgWidth = 210;
         let imgHeight = (canvas.height * imgWidth) / canvas.width;
 
         pdf.addImage(imgData, 'PNG', 0, 10, imgWidth, imgHeight);

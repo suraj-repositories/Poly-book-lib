@@ -45,7 +45,6 @@ class BookController extends Controller
         if($bookReviewCount > 0){
             $bookRating = $totalRatings / $bookReviewCount;
         }
-
         return view('web.books.book', compact('book', 'reviews', 'bookRating', 'bookReviewCount'));
     }
 
