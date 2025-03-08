@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\Subscriber;
+use App\Models\User;
 use App\Services\UserAgentService;
 use Illuminate\Http\Request;
+use Mockery\Matcher\Subset;
 
 class SubscriberController extends Controller
 {
@@ -23,6 +26,10 @@ class SubscriberController extends Controller
             'email' => 'required'
         ]);
 
+        if(Subscriber::where('email', $validated['email'])->exists()){
+            return response('Already Subscribed!');
+        }
+
         $ip = $request->ip();
         $userAgent = $request->header('User-Agent');
 
@@ -31,7 +38,7 @@ class SubscriberController extends Controller
         $os = $this->userAgentService->detectOS($userAgent);
         $location = $this->userAgentService->getLocationFromIP($ip);
 
-        Subscriber::create([
+        $subscriber = Subscriber::create([
             'email' => $validated['email'],
             'ip_address' => $ip,
             'user_agent' => $userAgent,
@@ -40,6 +47,7 @@ class SubscriberController extends Controller
             'os' => $os,
             'location' => $location
         ]);
+
 
         return response('OK');
     }

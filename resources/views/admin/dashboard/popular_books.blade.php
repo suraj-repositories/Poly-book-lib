@@ -32,7 +32,7 @@
                         <td> {{ $book->downloads_count }} </td>
                         <td>{{ count($book->reviews ?? 0) }}</td>
                         <td>
-                            {{ $book->averageRating ?? 0 }}
+                            {{ $book->averageRating() ?? 0 }}
                              <iconify-icon icon="solar:star-bold-duotone" class="text-warning"> </iconify-icon>
                         </td>
                     </tr>

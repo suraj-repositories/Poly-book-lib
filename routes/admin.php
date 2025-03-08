@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DownloadController;
 use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\HeroSectionSettingController;
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SocialMediaSettingController;
 use App\Http\Controllers\Admin\SubscriberController;
@@ -67,3 +68,6 @@ Route::post('/settings/hero-section', [HeroSectionSettingController::class, 'sto
 Route::get('/settings/app-settings', [AppSettingController::class, 'index'])->name('admin.app_settings.index');
 Route::post('/settings/app-settings', [AppSettingController::class, 'store'])->name('admin.app_settings.save');
 Route::post('/settings/on-off-setting', [AppSettingController::class, 'saveOrUpdateSetting'])->name('admin.on_off_setting.save');
+
+Route::get('/notification/clear-all', [NotificationController::class, 'clearAll'])->name('admin.notification.clear_all');
+Route::get('/notifications', [NotificationController::class, 'index'])->name('admin.notifications.index');

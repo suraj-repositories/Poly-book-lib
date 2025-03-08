@@ -12,9 +12,11 @@
     color: rgb(255, 122, 122);
     padding-left: 2px;
 }
-.text-theme{
+
+.text-theme {
     color: #10BC69;
 }
+
 .validation-error {
     color: #ed5565;
 }
@@ -239,7 +241,7 @@
     padding-left: 35px;
 }
 
- .preview-image-box {
+.preview-image-box {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -249,7 +251,7 @@
     height: 100%;
 }
 
- .preview-image-box .selected_file_image {
+.preview-image-box .selected_file_image {
     width: 200px;
     height: 200px;
     display: flex;
@@ -261,7 +263,7 @@
     border-radius: 10px;
 }
 
- .preview-image-box .selected_file_image img {
+.preview-image-box .selected_file_image img {
     position: absolute;
     height: 200px;
     width: 200px;
@@ -269,7 +271,7 @@
     left: 0;
 }
 
- .preview-image-box .selected_file_image .icon-container {
+.preview-image-box .selected_file_image .icon-container {
     position: absolute;
     height: 200px;
     width: 200px;
@@ -280,11 +282,11 @@
     justify-content: center;
 }
 
- .preview-image-box .selected_file_image .icon-container .icon-bg {
+.preview-image-box .selected_file_image .icon-container .icon-bg {
     font-size: 80px;
 }
 
- .preview-image-box .text-content {
+.preview-image-box .text-content {
     position: relative;
     top: 0;
     left: 0;
@@ -299,31 +301,31 @@
     opacity: 0;
 }
 
- .preview-image-box .selected_file_image:hover .text-content {
+.preview-image-box .selected_file_image:hover .text-content {
     transition: all 0.5s ease;
     opacity: 1;
     border-radius: 10px;
 }
 
- .preview-image-box .text-content:hover {
+.preview-image-box .text-content:hover {
     background-color: rgba(0, 0, 0, 0.267);
     color: white !important;
 }
 
- .preview-image-box .text-content .file_name {
+.preview-image-box .text-content .file_name {
     max-height: 200px;
     text-align: center;
     word-break: break-all;
     font-size: 14px;
 }
 
- .preview-image-box .text-content .size {
+.preview-image-box .text-content .size {
     font-size: 15px;
     font-weight: 600;
     color: white !important;
 }
 
- .preview-image-box .close-btn {
+.preview-image-box .close-btn {
     display: flex;
     transition: all 0.5s ease;
     position: absolute;
@@ -343,7 +345,7 @@
     cursor: pointer;
 }
 
- .preview-image-box .close-btn .cursor-pointer {
+.preview-image-box .close-btn .cursor-pointer {
     cursor: pointer;
 }
 
@@ -533,11 +535,12 @@
     align-items: center;
 }
 
-.front-web .main .book-actions .action-btn.not-available{
+.front-web .main .book-actions .action-btn.not-available {
     font-weight: 500;
     font-size: 18px;
 }
-.front-web .main .book-actions .action-btn.not-available .icon{
+
+.front-web .main .book-actions .action-btn.not-available .icon {
     font-size: 20px;
 }
 
@@ -656,30 +659,34 @@
     align-items: center;
     width: 100%;
     padding: 15px;
-  }
+}
 
-  .shareSocial {
+.shareSocial {
     display: flex;
     flex-flow: row;
     align-items: center;
     margin-bottom: 30px;
-  }
-  @media (max-width: 767px) {
+}
+
+@media (max-width: 767px) {
     .shareSocial {
-      flex-flow: column;
+        flex-flow: column;
     }
-  }
-  .shareSocial .socialTitle {
+}
+
+.shareSocial .socialTitle {
     margin: 0 15px 0 0;
     font-size: 20px;
-  }
-  @media (max-width: 767px) {
+}
+
+@media (max-width: 767px) {
     .shareSocial .socialTitle {
-      margin-bottom: 15px;
-      text-align: center;
+        margin-bottom: 15px;
+        text-align: center;
     }
-  }
-  .shareSocial .socialList {
+}
+
+.shareSocial .socialList {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -687,14 +694,17 @@
     justify-content: flex-start;
     justify-content: center;
     flex-flow: row wrap;
-  }
-  .shareSocial .socialList li {
+}
+
+.shareSocial .socialList li {
     margin: 5px;
-  }
-  .shareSocial .socialList li:first-child {
+}
+
+.shareSocial .socialList li:first-child {
     padding-left: 0;
-  }
-  .shareSocial .socialList li a {
+}
+
+.shareSocial .socialList li a {
     position: relative;
     display: flex;
     justify-content: center;
@@ -706,8 +716,9 @@
     background-color: #999;
     color: #fff;
     transition: 0.35s;
-  }
-  .shareSocial .socialList li a i {
+}
+
+.shareSocial .socialList li a i {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -715,32 +726,39 @@
     transform: scale(1) translate(-50%, -50%);
     transition: 0.35s;
     color: #ffffff;
-  }
-  .shareSocial .socialList li a:hover i {
+}
+
+.shareSocial .socialList li a:hover i {
     transform: scale(1.5) translate(-50%, -50%);
 
-  }
-  .shareSocial .socialList li:nth-child(1) a {
-    background-color: #135cb6;
-  }
-  .shareSocial .socialList li:nth-child(2) a {
-    background-color: #00aced;
-  }
-  .shareSocial .socialList li:nth-child(3) a {
-    background-color: #3C4148;
-  }
-  .shareSocial .socialList li:nth-child(4) a {
-    background-color: #111111;
-  }
-  .shareSocial .socialList li:nth-child(5) a {
-    background-color: #1FB381;
-  }
+}
 
-  .shareLink .permalink {
+.shareSocial .socialList li:nth-child(1) a {
+    background-color: #135cb6;
+}
+
+.shareSocial .socialList li:nth-child(2) a {
+    background-color: #00aced;
+}
+
+.shareSocial .socialList li:nth-child(3) a {
+    background-color: #3C4148;
+}
+
+.shareSocial .socialList li:nth-child(4) a {
+    background-color: #111111;
+}
+
+.shareSocial .socialList li:nth-child(5) a {
+    background-color: #1FB381;
+}
+
+.shareLink .permalink {
     position: relative;
     border-radius: 30px;
-  }
-  .shareLink .permalink .textLink {
+}
+
+.shareLink .permalink .textLink {
     text-align: center;
     padding: 12px 60px 12px 30px;
     height: 45px;
@@ -753,38 +771,45 @@
     background-color: #f2f2f2;
     outline: 0;
     -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     transition: all 0.3s ease;
-  }
-  @media (max-width: 767px) {
+}
+
+@media (max-width: 767px) {
     .shareLink .permalink .textLink {
-      width: 100%;
+        width: 100%;
     }
-  }
-  .shareLink .permalink .textLink:focus {
+}
+
+.shareLink .permalink .textLink:focus {
     border-color: #d8d8d8;
-  }
-  .shareLink .permalink .textLink::-moz-selection {
+}
+
+.shareLink .permalink .textLink::-moz-selection {
     color: #fff;
     background-color: #10BC69;
-  }
-  .shareLink .permalink .textLink::selection {
+}
+
+.shareLink .permalink .textLink::selection {
     color: #fff;
     background-color: #10BC69;
-  }
-  .shareLink .permalink .copyLink {
+}
+
+.shareLink .permalink .copyLink {
     position: absolute;
     top: 50%;
     right: 25px;
     cursor: pointer;
     transform: translateY(-50%);
-  }
-  .shareLink .permalink .copyLink:hover:after {
+}
+
+.shareLink .permalink .copyLink:hover:after {
     opacity: 1;
     transform: translateY(0) translateX(-50%);
-  }
-  .shareLink .permalink .copyLink:after {
+}
+
+.shareLink .permalink .copyLink:after {
     content: attr(tooltip);
     width: 140px;
     bottom: -40px;
@@ -800,35 +825,40 @@
     transform: translateY(-10px) translateX(-50%);
     transition: all 300ms ease;
     text-align: center;
-  }
-  .shareLink .permalink .copyLink i {
+}
+
+.shareLink .permalink .copyLink i {
     font-size: 20px;
     color: #10BC69;
-  }
+}
 
 
-table[data-table="laravel"] th div{
+table[data-table="laravel"] th div {
     display: flex;
     justify-content: space-between;
 }
-.cursor-default{
+
+.cursor-default {
     cursor: default;
 }
-.profile .profile-img{
+
+.profile .profile-img {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     flex-direction: column;
 }
-.profile .profile-img img{
+
+.profile .profile-img img {
     width: 200px;
     height: 200px;
     padding: 10px;
     border: 1px solid #cccccc57;
     border-radius: 50%;
 }
-.profile .profile-img .edit-image{
+
+.profile .profile-img .edit-image {
     border-radius: 50%;
     border: 1px solid #cccccc63;
     padding: 3px;
@@ -845,14 +875,16 @@ table[data-table="laravel"] th div{
     color: #0a3761;
     cursor: pointer;
 }
-.front-web .profile .book-img{
+
+.front-web .profile .book-img {
     max-width: 50px;
     max-height: 100px;
     border-radius: 5px;
     padding: 3px;
     border: 1px solid #cccccc63;
 }
-.front-web .profile .user-book{
+
+.front-web .profile .user-book {
     border-bottom: 2px solid rgba(134, 134, 134, 0.055);
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -860,7 +892,8 @@ table[data-table="laravel"] th div{
     align-items: center;
 
 }
-.front-web .profile .book-review{
+
+.front-web .profile .book-review {
     max-width: 50px;
     max-height: 100px;
     border: 1px solid #cccccc63;
@@ -871,15 +904,16 @@ table[data-table="laravel"] th div{
 .color-primary,
 .color-primary:focus,
 .color-primary:active,
-.color-primary:hover{
+.color-primary:hover {
     background-color: #10BC69 !important;
     color: white !important;
 }
+
 .cursor-pointer {
     cursor: pointer;
 }
 
-.front-web .header .nav-profile-image{
+.front-web .header .nav-profile-image {
     width: 45px;
     height: 45px;
     border: 1px solid #cccccc63;
@@ -893,27 +927,31 @@ table[data-table="laravel"] th div{
         display: none;
     }
 
-    .hero-section iframe.frame-style{
+    .hero-section iframe.frame-style {
         height: 355px;
     }
 }
+
 @media (min-width: 1201px) {
     .hide-on-large {
         display: none !important;
     }
 }
-@media (max-width: 420px){
-    .hero-section iframe.frame-style{
+
+@media (max-width: 420px) {
+    .hero-section iframe.frame-style {
         height: 355px;
     }
 }
 
-.top-users{
+.top-users {
     padding-bottom: 80px;
 }
-input::placeholder{
+
+input::placeholder {
     color: #6d7b8696;
 }
+
 .social-media .social-links a {
     display: flex;
     align-items: center;
@@ -924,67 +962,100 @@ input::placeholder{
     border: 1px solid color-mix(in srgb, #444444, transparent 50%);
     font-size: 16px;
     color: color-mix(in srgb, #444444, transparent 20%);
-    margin:  5px 5px;
+    margin: 5px 5px;
     transition: 0.3s;
     font-size: 22px;
 }
-.social-media .social-links a .bi-twitter-x{
+
+.social-media .social-links a .bi-twitter-x {
     font-size: 18px;
 }
 
-.front-web.mobile-nav-active .on-mobile-nav{
+.front-web.mobile-nav-active .on-mobile-nav {
     display: block;
 }
-.front-web .on-mobile-nav{
+
+.front-web .on-mobile-nav {
     display: none;
 }
- iframe.frame-style{
+
+iframe.frame-style {
     width: 100%;
     height: 395px;
     border-radius: 5px;
 }
-.app-location iframe{
+
+.app-location iframe {
     width: 100%;
     height: 395px;
     border-radius: 5px;
 }
-.front-web .app-location iframe{
+
+.front-web .app-location iframe {
     height: 270px
 }
 
 @media (max-width: 450px) {
-    iframe.frame-style{
+    iframe.frame-style {
         height: 190px;
     }
-    .app-location iframe{
+
+    .app-location iframe {
         height: 190px;
     }
 }
+
 @media (max-width: 710px) {
-     iframe.frame-style{
+    iframe.frame-style {
         height: 290px;
     }
-    .app-location iframe{
+
+    .app-location iframe {
         height: 290px;
     }
 
 }
-.dash-bottom-border{
+
+.dash-bottom-border {
     border-bottom: 1px dashed rgba(128, 128, 128, 0.288);
 }
-.dash-top-border{
+
+.dash-top-border {
     border-top: 1px dashed rgba(128, 128, 128, 0.288);
 }
+
 .zoom-img-text,
 .zoom-img-text img,
-.zoom-img-text a{
+.zoom-img-text a {
     zoom: 1.2;
 }
 
-.maintainence .filter-wesite-theme img{
+.maintainence .filter-wesite-theme img {
     filter: saturate(0.7)
 }
 
-.bg-progress-4{
+.bg-progress-4 {
     background: #83DDCC;
+}
+
+
+.first_search_bg {
+    animation: fadeBackground 2s ease-in-out forwards;
+}
+
+@keyframes fadeBackground {
+    from {
+        background-color: #97ffd762;
+        /* Dark background */
+    }
+
+    to {
+        background-color: rgba(255, 255, 255, 0);
+        /* Light background */
+    }
+}
+
+.w-eq-h {
+    width: 40px;
+    height: 40px;
 }

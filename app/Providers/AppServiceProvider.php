@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Contact;
 use App\Models\Setting;
+use App\Models\Subscriber;
+use App\Observers\ContactNotificationObserver;
+use App\Observers\SubscriberNotificationObserver;
 use App\Services\FileService;
 use App\Services\Impl\FileServiceImpl;
 use App\Services\Impl\UserAgentServiceImpl;
@@ -19,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+
         $this->app->singleton('settings', function () {
             return new SettingsService();
         });
@@ -33,12 +38,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Contact::observe(ContactNotificationObserver::class);
+
+        Subscriber::observe(SubscriberNotificationObserver::class);
+
         Paginator::useBootstrapFive();
 
         view()->composer('*', function ($view) {
             $view->with('settings', app('settings'));
         });
-        //
 
         if (app()->environment('local')) { Artisan::call('route:clear'); }
     }

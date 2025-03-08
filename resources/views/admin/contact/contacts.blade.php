@@ -87,7 +87,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($contacts as $contact)
-                                        <tr>
+                                        <tr class="{{ session()->has('first_id') && session('first_id') == $contact->id ? 'first_search_bg' : '' }}">
                                             {{-- <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""

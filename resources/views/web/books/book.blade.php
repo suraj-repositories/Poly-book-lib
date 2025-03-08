@@ -22,7 +22,8 @@
                                 <div class="d-flex align-items-center">
 
                                     @for ($i = 1; $i <= 5; $i++)
-                                        <iconify-icon icon="solar:star-bold" class=" {{ $i <= $bookRating ? 'text-warning' : '' }}"></iconify-icon>
+                                        <iconify-icon icon="solar:star-bold"
+                                            class=" {{ $i <= $bookRating ? 'text-warning' : '' }}"></iconify-icon>
                                     @endfor
 
                                     @if ($bookReviewCount > 0)
@@ -54,9 +55,12 @@
                                                 class="me-1 icon"></iconify-icon>
                                             Download</button>
                                     </form>
-                                    <button class="action-btn gold" data-bs-toggle="modal" data-bs-target="#shareModal">
-                                        <iconify-icon icon="solar:share-line-duotone" class="me-1 icon"></iconify-icon>
-                                        Share</button>
+
+                                    @if (Settings::get('social_media_sharing', config('app.social_media_sharing')) != 'off')
+                                        <button class="action-btn gold" data-bs-toggle="modal" data-bs-target="#shareModal">
+                                            <iconify-icon icon="solar:share-line-duotone" class="me-1 icon"></iconify-icon>
+                                            Share</button>
+                                    @endif
                                 @else
                                     <button class="action-btn not-available bg-light text-warning" disabled>
                                         <iconify-icon icon="twemoji:warning" class="me-2 icon"></iconify-icon>
@@ -65,77 +69,78 @@
                                 @endif
 
 
+                                @if (Settings::get('social_media_sharing', config('app.social_media_sharing')) != 'off')
+                                    <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered rounded-0">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-dark">
+                                                    <h1 class="modal-title fs-5 text-light" id="shareModalLabel">Share Book
+                                                    </h1>
+                                                    <button type="button" class="btn-close text-light btn-close-white"
+                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="shareArticle">
+                                                        <div class="shareSocial">
+                                                            <ul class="socialList">
 
-                                <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered rounded-0">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-dark">
-                                                <h1 class="modal-title fs-5 text-light" id="shareModalLabel">Share Book</h1>
-                                                <button type="button" class="btn-close text-light btn-close-white"
-                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="shareArticle">
-                                                    <div class="shareSocial">
-                                                        <ul class="socialList">
+                                                                <li>
+                                                                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
+                                                                        target="_blank">
+                                                                        <i class="bi bi-facebook"></i>
+                                                                    </a>
+                                                                </li>
 
-                                                            <li>
-                                                                <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}"
-                                                                    target="_blank">
-                                                                    <i class="bi bi-facebook"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a
-                                                                    href="mailto:?subject=Check this out&body={{ urlencode(url()->current()) }}">
-                                                                    <i class="bi bi-envelope"></i>
-                                                                </a>
-                                                            </li>
+                                                                <li>
+                                                                    <a href="https://t.me/share/url?url={{ urlencode(url()->current()) }}"
+                                                                        target="_blank">
+                                                                        <i class="bi bi-telegram"></i>
+                                                                    </a>
+                                                                </li>
 
-                                                            <li>
-                                                                <a href="https://t.me/share/url?url={{ urlencode(url()->current()) }}"
-                                                                    target="_blank">
-                                                                    <i class="bi bi-telegram"></i>
-                                                                </a>
-                                                            </li>
+                                                                <li>
+                                                                    <a
+                                                                        href="mailto:?subject=Check this out&body={{ urlencode(url()->current()) }}">
+                                                                        <i class="bi bi-envelope"></i>
+                                                                    </a>
+                                                                </li>
 
-                                                            <li>
-                                                                <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}"
-                                                                    target="_blank">
-                                                                    <i class="bi bi-twitter-x"></i>
-                                                                </a>
-                                                            </li>
+                                                                <li>
+                                                                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}"
+                                                                        target="_blank">
+                                                                        <i class="bi bi-twitter-x"></i>
+                                                                    </a>
+                                                                </li>
 
-                                                            <li>
-                                                                <a href="https://wa.me/?text={{ urlencode(url()->current()) }}"
-                                                                    target="_blank">
-                                                                    <i class="bi bi-whatsapp"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                                <li>
+                                                                    <a href="https://wa.me/?text={{ urlencode(url()->current()) }}"
+                                                                        target="_blank">
+                                                                        <i class="bi bi-whatsapp"></i>
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
 
-                                                    <div class="shareLink">
-                                                        <div class="permalink">
-                                                            <input class="textLink" id="text" type="text"
-                                                                name="shortlink" value="{{ url()->current() }}"
-                                                                id="copy-link" readonly="">
-                                                            <span class="copyLink" id="copy"
-                                                                tooltip="Copy to clipboard">
-                                                                <i class="bi bi-copy"></i>
-                                                            </span>
+                                                        <div class="shareLink">
+                                                            <div class="permalink">
+                                                                <input class="textLink" id="text" type="text"
+                                                                    name="shortlink" value="{{ url()->current() }}"
+                                                                    id="copy-link" readonly="">
+                                                                <span class="copyLink" id="copy"
+                                                                    tooltip="Copy to clipboard">
+                                                                    <i class="bi bi-copy"></i>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
+
                                                 </div>
 
                                             </div>
-
                                         </div>
                                     </div>
-                                </div>
-
-
+                                @endif
                             </div>
 
 

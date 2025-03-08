@@ -89,7 +89,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($subscribers as $subscriber)
-                                        <tr>
+                                        <tr class="{{ session()->has('first_id') && session('first_id') == $subscriber->id ? 'first_search_bg' : '' }}">
                                             {{-- <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""

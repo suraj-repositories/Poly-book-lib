@@ -10,9 +10,18 @@ use Illuminate\Http\Request;
 class SubscriberController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $subscribers = Subscriber::orderBy('id', 'desc')->get();
+        $first_id = null;
+        if($request->has('first_id')){
+            $first_id = $request->first_id;
+            session()->flash('first_id', $first_id);
+        }
+        $subscribers = Subscriber::orderByRaw(
+            "CASE WHEN id = ? THEN 0 ELSE 1 END, id DESC",
+            [$first_id]
+        )->get();
+
         $startDate = Carbon::now()->subDays(30)->startOfDay();
         $endDate = Carbon::now()->endOfDay();
         $last30days = Subscriber::whereBetween('created_at', [$startDate, $endDate])->count();
