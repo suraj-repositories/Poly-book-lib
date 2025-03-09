@@ -1082,3 +1082,16 @@ html[data-bs-theme="dark"] .unreaded::after{
 .unreaded {
     position: relative;
 }
+
+@media only screen and (max-width: 480px) {
+    .front-web .pagination .page-item{
+        margin-left: 2px !important;
+        margin-right: 2px !important;
+    }
+    .web-pagination-li-gap {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
