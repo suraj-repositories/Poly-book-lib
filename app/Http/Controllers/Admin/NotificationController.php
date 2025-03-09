@@ -13,8 +13,9 @@ class NotificationController extends Controller
     public function index(){
 
         $notifications = Notification::latest()->get();
+        $newNotificationsCount = Notification::where('is_read', false)->count();
 
-        return view('admin.notification.notification', compact('notifications'));
+        return view('admin.notification.notification', compact('notifications', 'newNotificationsCount'));
     }
 
     public function clearAll(){

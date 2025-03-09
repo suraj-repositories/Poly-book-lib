@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Notification;
 use App\Models\Subscriber;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,6 +17,8 @@ class SubscriberController extends Controller
         if($request->has('first_id')){
             $first_id = $request->first_id;
             session()->flash('first_id', $first_id);
+            Notification::where('notifiable_type', Subscriber::class)->where('notifiable_id', $first_id)->update(['is_read' => true]);
+
         }
         $subscribers = Subscriber::orderByRaw(
             "CASE WHEN id = ? THEN 0 ELSE 1 END, id DESC",

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\Notification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,9 @@ class ContactController extends Controller
         if($request->has('first_id')){
             $first_id = $request->first_id;
             session()->flash('first_id', $first_id);
+
+            Notification::where('notifiable_type', Contact::class)->where('notifiable_id', $first_id)->update(['is_read' => true]);
+
         }
         $contacts = Contact::orderByRaw(
             "CASE WHEN id = ? THEN 0 ELSE 1 END, id DESC",

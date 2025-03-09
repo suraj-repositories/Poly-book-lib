@@ -1046,16 +1046,39 @@ iframe.frame-style {
 @keyframes fadeBackground {
     from {
         background-color: #97ffd762;
-        /* Dark background */
     }
 
     to {
         background-color: rgba(255, 255, 255, 0);
-        /* Light background */
     }
 }
 
 .w-eq-h {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
+}
+.unreaded::after {
+    content: "";
+    width: 13px;
+    height: 13px;
+    background-color: #48a7ffe1;
+    position: absolute;
+    top: 0;
+    right: -1px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+html[data-bs-theme="dark"] .unreaded::after{
+    border: 2px solid #272E35;
+}
+
+.unreaded.unreaded-img::after{
+    position: absolute;
+    top: 0;
+    right: 9px;
+}
+
+.unreaded {
+    position: relative;
 }
