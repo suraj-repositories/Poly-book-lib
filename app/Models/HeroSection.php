@@ -13,16 +13,16 @@ class HeroSection extends Model
     protected $fillable = ['title', 'caption', 'video_url', 'hero_image', 'about_image'];
 
     public function getHeroImageURL(){
-        if($this->hero_image){
+        if(!empty($this->hero_image)){
             return url('storage/'.$this->hero_image);
         }
-        return asset(config('settings.default_profile_image'));
+        return asset(config('constants.default_hero_image'));
     }
     public function getAboutImageURL(){
-        if($this->about_image){
+        if(!empty($this->about_image)){
             return url('storage/'.$this->about_image);
         }
-        return asset(config('settings.default_profile_image'));
+        return asset(config('constants.default_about_image'));
     }
 
     public function getHeroImageSize(){

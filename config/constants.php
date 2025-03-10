@@ -12,6 +12,7 @@ return [
     'default_video_url' => 'https://youtu.be/jan5CFWs9ic',
     'default_hero_image' => '/assets/img/hero-img.png',
     'default_about_image' => '/assets/img/about.png',
+    'author_github_url' => 'https://github.com/ProjectsAndPrograms',
 
     'social_media_icons'=>[
 
