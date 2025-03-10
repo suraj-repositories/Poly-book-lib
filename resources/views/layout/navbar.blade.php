@@ -11,9 +11,9 @@
 
         <nav id="navmenu" class="navmenu">
             <ul>
-                <li><a href="{{ route('home') }}" class="active">Home</a></li>
-                <li><a href="{{ route('books') }}">Books</a></li>
-                <li class="dropdown"><a href="#"><span>Branches&nbsp;</span> <i
+                <li><a href="{{ route('home') }}" class="{{ Route::is('home') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('books') }}" class="{{ Route::is('books') ? 'active' : '' }}">Books</a></li>
+                <li class="dropdown"><a href="#" class="{{ Route::is('branches.semesters.books') || Route::is('branches.show') ? 'active' : '' }}"><span>Branches&nbsp;</span> <i
                             class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
 
@@ -53,8 +53,8 @@
                     </ul>
                 </li>
 
-                <li><a href="{{ route('about') }}">About</a></li>
-                <li><a href="{{ route('contact') }}">Contact Us</a></li>
+                <li><a href="{{ route('about') }}" class="{{ Route::is('about') ? 'active' : '' }}">About</a></li>
+                <li><a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Contact Us</a></li>
             </ul>
             <div class="d-flex align-items-center">
                 @auth
