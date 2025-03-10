@@ -101,8 +101,10 @@
                                                     <img src="{{ $review->user->getImageURL() ?? '#' }}" alt=""
                                                         class="avatar-xs rounded-circle me-2">
                                                     <div>
+                                                        <a href="{{ route('profile.index', $review->user->id) }}">
                                                         <h5 class="fs-14 m-0 fw-normal">{{ $review->user->name ?? '-' }}
                                                         </h5>
+                                                    </a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -111,8 +113,10 @@
                                                     <img src="{{ $review->book->getCoverPageUrl() ?? '#' }}" alt=""
                                                         class="avatar-xs rounded-circle me-2">
                                                     <div>
-                                                        <h5 class="fs-14 m-0 fw-normal">{{ $review->book->title ?? '-' }}
-                                                        </h5>
+                                                        <a href="{{ route('books.show', $review->book->id) }}">
+                                                            <h5 class="fs-14 m-0 fw-normal">{{ $review->book->title ?? '-' }}
+                                                            </h5>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>

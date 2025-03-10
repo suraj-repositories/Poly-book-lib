@@ -101,8 +101,11 @@
                                                     <img src="{{ $user->getImageURL() ?? '#' }}" alt=""
                                                         class="avatar-xs rounded-circle me-2">
                                                     <div>
-                                                        <h5 class="fs-14 m-0 fw-normal">{{ $user->name ?? '-' }}
-                                                        </h5>
+
+                                                        <a href="{{ route('profile.index', $user->id) }}">
+                                                            <h5 class="fs-14 m-0 fw-normal">{{ $user->name ?? '-' }}
+                                                            </h5>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>

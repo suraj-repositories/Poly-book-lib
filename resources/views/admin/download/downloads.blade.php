@@ -99,10 +99,13 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <img src="{{ $download->book->getCoverPageUrl() ?? "#" }}" alt=""
-                                                        class="avatar-xs rounded-circle me-2">
+                                                    <img src="{{ $download->book->getCoverPageUrl() ?? '#' }}"
+                                                        alt="" class="avatar-xs rounded-circle me-2">
                                                     <div>
-                                                        <h5 class="fs-14 m-0 fw-normal">{{ $download->book->title ?? "-" }}</h5>
+                                                        <a href="{{ route('books.show', $download->book->id) }}">
+                                                            <h5 class="fs-14 m-0 fw-normal">
+                                                                {{ $download->book->title ?? '-' }}</h5>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>
