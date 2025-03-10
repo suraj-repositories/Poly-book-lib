@@ -22,6 +22,32 @@
                     {{-- <span class="badge bg-success badge-pill text-end">new</span> --}}
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link menu-arrow" href="#sidebarSettings" data-bs-toggle="collapse"
+                    role="button" aria-expanded="false" aria-controls="sidebarSettings">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:settings-broken"></iconify-icon>
+                    </span>
+                    <span class="nav-text"> Settings </span>
+                </a>
+                <div class="collapse" id="sidebarSettings">
+                    <ul class="nav sub-navbar-nav">
+                        <li class="sub-nav-item">
+                            <i class='bx bx-minus'></i>
+                            <a class="sub-nav-link" href="{{ route('admin.social_media.index') }}">Social Media</a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <i class='bx bx-minus'></i>
+                            <a class="sub-nav-link" href="{{ route('admin.hero_section.index') }}">Hero Section</a>
+                        </li>
+                        <li class="sub-nav-item">
+                            <i class='bx bx-minus'></i>
+                            <a class="sub-nav-link" href="{{ route('admin.app_settings.index') }}">Application Settings</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
 
             <li class="menu-title">Poly</li>
 
@@ -138,33 +164,8 @@
                 </a>
             </li>
 
-            <li class="menu-title">Custom</li>
-            <li class="nav-item">
-                <a class="nav-link menu-arrow" href="#sidebarSettings" data-bs-toggle="collapse"
-                    role="button" aria-expanded="false" aria-controls="sidebarSettings">
-                    <span class="nav-icon">
-                        <iconify-icon icon="solar:settings-broken"></iconify-icon>
-                    </span>
-                    <span class="nav-text"> Settings </span>
-                </a>
-                <div class="collapse" id="sidebarSettings">
-                    <ul class="nav sub-navbar-nav">
-                        <li class="sub-nav-item">
-                            <i class='bx bx-minus'></i>
-                            <a class="sub-nav-link" href="{{ route('admin.social_media.index') }}">Social Media</a>
-                        </li>
-                        <li class="sub-nav-item">
-                            <i class='bx bx-minus'></i>
-                            <a class="sub-nav-link" href="{{ route('admin.hero_section.index') }}">Hero Section</a>
-                        </li>
-                        <li class="sub-nav-item">
-                            <i class='bx bx-minus'></i>
-                            <a class="sub-nav-link" href="{{ route('admin.app_settings.index') }}">Application Settings</a>
-                        </li>
+            {{-- <li class="menu-title">Custom</li> --}}
 
-                    </ul>
-                </div>
-            </li>
 
             <li class="nav-item">
                 <form action="{{route('logout')}}" method="POST" >
