@@ -45,7 +45,7 @@
 
         @if (count($popularBooks) <= 0)
             <div class="mt-2">
-                @include('layout.no_data')
+                <x-no-data text="No Record" icon="solar:notebook-broken" />
             </div>
         @endif
     </div>

@@ -11,21 +11,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([
-        //     UserTableSeeder::class,
-        //     BranchSeeder::class,
-        //     SemesterSeeder::class,
-        //     BranchSemesterSeeder::class,
-        //     BookSeeder::class,
-        //     SettingsSeeder::class,
-        //     FAQSeeder::class,
-        //     TestimonialSeeder::class,
-        // ]);
-
         $this->call([
+            UserTableSeeder::class,
+            BranchSeeder::class,
+            SemesterSeeder::class,
+            BranchSemesterSeeder::class,
+            BookSeeder::class,
             SettingsSeeder::class,
             FAQSeeder::class,
             TestimonialSeeder::class,
         ]);
+
+        // $this->call([
+        //     SettingsSeeder::class,
+        //     FAQSeeder::class,
+        //     TestimonialSeeder::class,
+        // ]);
     }
 }

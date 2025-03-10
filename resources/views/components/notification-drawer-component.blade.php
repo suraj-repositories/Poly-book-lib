@@ -67,7 +67,8 @@
                     </a>
                 @endif
             @empty
-                @include('layout.no_data')
+
+                <x-no-data text="No Notifications" icon="solar:bell-bing-broken" />
             @endforelse
 
             <!-- Item -->

@@ -1,9 +1,10 @@
 @forelse ($user->downloads->take(50) as $download)
     <div class="user-book">
-        <img src="{{ $download->book->getCoverPageUrl() ?? "#" }}" class="book-img me-3" alt="Book">
+        <img src="{{ $download->book->getCoverPageUrl() ?? '#' }}" class="book-img me-3" alt="Book">
         <div class="d-flex justify-content-between align-items-center w-100">
             <div class="heading">
-                <h5 class="mb-1"><a href="{{ route('books.show', $download->book ?? "_") }}" class="text-dark">{{ $download->book->title ?? '-' }}</a></h5>
+                <h5 class="mb-1"><a href="{{ route('books.show', $download->book ?? '_') }}"
+                        class="text-dark">{{ $download->book->title ?? '-' }}</a></h5>
                 <p class="mb-2 date">{{ \Carbon\Carbon::parse($download->created_at)->format('F d, Y') }}
                 </p>
             </div>
@@ -20,5 +21,5 @@
         </div>
     </div>
 @empty
-    @include('layout.no_data')
+    <x-no-data icon="line-md:downloading-loop" text="No Downloads Yet" />
 @endforelse

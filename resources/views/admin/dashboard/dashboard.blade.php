@@ -58,7 +58,7 @@
                                     </div>
 
                                     @empty
-                                        @include('layout.no_data')
+                                        <x-no-data  icon="solar:users-group-rounded-broken" text="No Record" />
                                     @endforelse
 
 

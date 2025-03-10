@@ -44,7 +44,7 @@
                 </div><!-- End testimonial item -->
 
             @empty
-                @include('layout.no_data')
+            <x-no-data  icon="duo-icons:message-3" text="No Data" />
             @endforelse
 
         </div>

@@ -5,7 +5,7 @@
             @include('web.semesters.semester_card')
         </div>
     @empty
-        @include('layout.no_data')
+    <x-no-data icon="solar:clipboard-broken" text="No Record" />
     @endforelse
 
 </div>

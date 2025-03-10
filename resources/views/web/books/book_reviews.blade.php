@@ -24,8 +24,7 @@
             </div>
         </div>
     @empty
-
-        @include('layout.no_data')
+        <x-no-data icon="duo-icons:message-3" text="No Review's Yet" />
     @endforelse
 
 </div>

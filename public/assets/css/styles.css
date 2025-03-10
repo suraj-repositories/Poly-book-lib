@@ -1095,3 +1095,33 @@ html[data-bs-theme="dark"] .unreaded::after{
         justify-content: center;
     }
 }
+
+.no-data-component{
+    width: 100%;
+    height: inherit;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.no-data-component .icon-box{
+    padding: 30px 30px;
+    background-color: #ffe58880;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.no-data-component .icon-box .icon{
+    font-size: 80px;
+    color: #FFC530D1;
+}
+
+.no-data-component .text{
+    font-size: 20px;
+    color: #898c9c;
+    margin-top: 10px;
+    font-weight: 600;
+}

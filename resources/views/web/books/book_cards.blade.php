@@ -33,7 +33,7 @@
 
 @empty
 
-    @include('layout.no_data')
+    <x-no-data icon="wpf:books" text="No Books Yet"/>
 @endforelse
 
 

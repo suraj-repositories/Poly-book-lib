@@ -48,8 +48,7 @@
                 @php break; @endphp
             @endif
         @empty
-
-            @include('layout.no_data')
+            <x-no-data  icon="game-icons:tree-branch" text="No Branches Yet" />
         @endforelse
 
     </div>
