@@ -5,11 +5,6 @@
     <div class="container-fluid branches">
 
         @include('layout.alert')
-
-        @if($errors->any())
-    {{ implode('', $errors->all('<div>:message</div>')) }}
-@endif
-
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -199,7 +194,7 @@
                                                     <img src="{{ $branch->getImageUrl() }}" alt=""
                                                         class="avatar-xs rounded-circle me-2">
                                                     <div>
-                                                        <h5 class="fs-14 m-0 fw-normal">{{ $branch->name }}</h5>
+                                                        <a href="{{ route('branches.show', $branch->id) }}"><h5 class="fs-14 m-0 fw-normal">{{ $branch->name }}</h5></a>
                                                     </div>
                                                 </div>
                                             </td>

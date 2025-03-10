@@ -25,15 +25,15 @@
                                 <img src="{{ $book->getCoverPageUrl() }}" alt="book"
                                     class="avatar-xs rounded-circle me-2">
                                 <div>
-                                    <h5 class="fs-14 m-0 fw-normal">{{ $book->title }}</h5>
+                                    <a  href="{{ route('books.show', $book->id) }}"> <h5 class="fs-14 m-0 fw-normal">{{ $book->title }}</h5></a>
                                 </div>
                             </div>
                         </td>
                         <td> {{ $book->downloads_count }} </td>
                         <td>{{ count($book->reviews ?? 0) }}</td>
                         <td>
-                            {{ $book->averageRating() ?? 0 }}
-                             <iconify-icon icon="solar:star-bold-duotone" class="text-warning"> </iconify-icon>
+                            <iconify-icon icon="solar:star-bold-duotone" class="text-warning"> </iconify-icon> x
+                            {{ round($book->averageRating() ?? 0) }}
                         </td>
                     </tr>
                 @endforeach

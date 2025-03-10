@@ -63,12 +63,12 @@
                                                     <img src="{{ $book->getCoverPageUrl() }}" alt=""
                                                         class="avatar-xs rounded-circle me-2">
                                                     <div>
-                                                        <h5 class="fs-14 m-0 fw-normal">{{ $book->title }}</h5>
+                                                        <a href="{{ route('books.show', $book->id) }}"><h5 class="fs-14 m-0 fw-normal">{{ $book->title }}</h5></a>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                {{$book->branchSemester->branch->name ?? "-"}}
+                                                <a href="{{ route('branches.show', $book->branchSemester->branch->id) }}">{{$book->branchSemester->branch->name ?? "-"}}</a>
                                             </td>
                                             <td> {{ $book->branchSemester->semester->title ?? "-" }}
                                                 <br><small>{{ $book->branchSemester->semester->sub_title ?? "-"}}</small>

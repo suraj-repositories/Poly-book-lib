@@ -33,8 +33,8 @@
                                             </div>
                                        </div> <!-- end card-title-->
 
-                                       <div class="alert alert-warning mt-3 text text-truncate mb-0" role="alert">
-                                            We regret to inform you that our server is currently experiencing technical difficulties.
+                                       <div class="alert alert-warning mt-3 text text-truncate text-center mb-0" role="alert">
+                                        Monitor your performance effortlessly with real-time insights, trends, and key metrics to stay ahead.
                                        </div>
 
                                        <div dir="ltr">

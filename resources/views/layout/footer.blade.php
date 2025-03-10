@@ -81,12 +81,12 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">PolyBookLib</strong> <span>All Rights Reserved</span>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">{{ config('app.name') }}</strong> <span>All Rights Reserved</span>
         </p>
         <div class="credits">
 
-            Designed by <a href="https://github.com/ProjectsAndPrograms" target="_blank">ProjectsAndPrograms</a>
-            Distributed by <a href="#">Poly-Book-Lib</a>
+            Designed by <a href="{{ config('constants.author_github_url') }}" target="_blank">{{ config('constants.author') }}</a>
+            Distributed by <a href="#">{{ config('app.name') }}</a>
         </div>
     </div>
 
