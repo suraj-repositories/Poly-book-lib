@@ -63,7 +63,7 @@
                              <a class="dropdown-item" href="pages-pricing.html">
                                   <i class="bx bx-wallet text-muted fs-18 align-middle me-1"></i><span class="align-middle">Pricing</span>
                              </a> --}}
-                             <a class="dropdown-item" href="pages-faqs.html">
+                             <a class="dropdown-item" href="{{ route('admin.help.index') }}">
                                   <i class="bx bx-help-circle text-muted fs-18 align-middle me-1"></i><span class="align-middle">Help</span>
                              </a>
                              {{-- <a class="dropdown-item" href="auth-lock-screen.html">

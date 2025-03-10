@@ -25,7 +25,7 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Book::paginate(1);
+        $books = Book::paginate(12);
         return view('web.books.books', compact('books'));
     }
 

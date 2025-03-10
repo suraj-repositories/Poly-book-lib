@@ -102,8 +102,60 @@ class AuthController extends Controller
             Auth::login($findUser);
             return redirect()->route('login');
         }catch(Exception $e){
-            dd($e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
+    public function githubLogin(){
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function githubHandler(Request $request){
+        try{
+            $user = Socialite::driver('github')->user();
+            $findUser = User::where('email', $user->email)->first();
+
+            if(!$findUser){
+                $findUser = new User();
+                $findUser->name = $user->name;
+                $findUser->email = $user->email;
+                $findUser->image = $user->avatar;
+                $findUser->password = Hash::make(Str::rand(12));
+                $findUser->role = 'USER';
+                $findUser->save();
+            }
+
+            Auth::login($findUser);
+            return redirect()->route('login');
+        }catch(Exception $e){
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function facebookPage(){
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function facebookRedirect(){
+        try{
+             $user = Socialite::driver('facebook')->user();
+             $findUser = User::where('email', $user->email)->first();
+
+             if(!$findUser){
+                $findUser = new User();
+                $findUser->name = $user->name;
+                $findUser->email = $user->email;
+                $findUser->password = Hash::make(Str::rand(12));
+                $findUser->role = 'USER';
+                $findUser->save();
+            }
+
+            Auth::login($findUser);
+            return redirect()->route('login');
+        }catch(Exception $e){
+             dd('Something went wrong!! : ' . $e->getMessage() );
+        }
+     }
+
 
 }

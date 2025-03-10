@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DownloadController;
 use App\Http\Controllers\Admin\FileController;
+use App\Http\Controllers\Admin\HelpController;
 use App\Http\Controllers\Admin\HeroSectionSettingController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReviewController;
@@ -71,3 +72,5 @@ Route::post('/settings/on-off-setting', [AppSettingController::class, 'saveOrUpd
 
 Route::get('/notification/clear-all', [NotificationController::class, 'clearAll'])->name('admin.notification.clear_all');
 Route::get('/notifications', [NotificationController::class, 'index'])->name('admin.notifications.index');
+
+Route::get('/help', [HelpController::class, 'index'])->name('admin.help.index');

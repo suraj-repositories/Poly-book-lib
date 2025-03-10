@@ -45,8 +45,6 @@ Route::get('/branches/{branch}/semesters/{semester}/books/{book}',
     [BranchController::class, 'showBook']
 )->name('branches.semesters.books.show');
 
-
-
 Route::get('/books', [BookController::class, 'index'])->name('books');
 Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 Route::post('/books/{book}/downloads', [BookController::class, 'downloadBook'])->middleware('guest_download')->name('books.download');
@@ -64,7 +62,6 @@ Route::middleware('auth')->group(function(){
 
     Route::post('/books/{book}/review', [ReviewController::class, 'store'])->name('books.review.store');
     Route::delete('/books/{book}/review/{review}', [ReviewController::class, 'destroy'])->name('books.review.delete');
-
 });
 
 Route::get('/under-maintainence', [MaintainenceController::class, 'index'])->name('web.under_maintainence');

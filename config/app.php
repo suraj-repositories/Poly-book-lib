@@ -27,6 +27,9 @@ return [
     'storage_size' => env('MAX_STORAGE_SIZE', '2147483648'),
     'tutorial_video_link' => env('TUTORIAL_VIDEO_LINK', 'https://youtu.be/jan5CFWs9ic'),
 
+    'owner_email' => 'suraj2002mail@gmail.com',
+    'owner_help_link' => 'https://github.com/suraj-repositories/Poly-book-lib/issues/new',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
