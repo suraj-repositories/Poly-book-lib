@@ -59,25 +59,28 @@ class Semester extends Model
         });
         return $books->values();
     }
+
     public function downloads()
     {
-        return $this->hasManyThrough(
-            BookDownload::class,
-            Book::class,
-            'branch_semester_id',
-            'book_id',
-            'id',
-            'id'
+        return Download::whereHasMorph(
+            'downloadable',
+            [Book::class],
+            function ($query) {
+                $query->whereIn('branch_semester_id', $this->branchSemesters()->pluck('id'));
+            }
         );
     }
+
     public function onBranchGetDownloads($branchId)
     {
-        return BookDownload::whereHas('book', function ($query) use ($branchId) {
-            $query->whereHas('branchSemester', function ($subQuery) use ($branchId) {
-                $subQuery->where('branch_id', $branchId)->where('semester_id', $this->id);
-            });
-        })->get();
+        return Download::whereHasMorph(
+            'downloadable',
+            [Book::class],
+            function ($query) use ($branchId) {
+                $query->whereHas('branchSemester', function ($subQuery) use ($branchId) {
+                    $subQuery->where('branch_id', $branchId)->where('semester_id', $this->id);
+                });
+            }
+        )->get();
     }
-
-
 }

@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use App\Services\Impl\FileServiceImpl;
+use App\Traits\Downloadable;
+use App\Traits\Purchasable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 
 class Book extends Model
 {
-    use HasFactory;
+    use HasFactory, Downloadable, Purchasable;
 
     protected $fileable = [
         'title',
@@ -49,7 +50,7 @@ class Book extends Model
 
     public function downloads()
     {
-        return $this->hasMany(BookDownload::class, 'book_id', 'id');
+        return $this->morphMany(Download::class, 'downloadable');
     }
 
     public function scopeOrderByDownloads($query)

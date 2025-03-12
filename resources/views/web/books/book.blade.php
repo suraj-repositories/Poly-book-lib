@@ -48,7 +48,7 @@
                                         <iconify-icon icon="solar:eye-bold-duotone" class="me-1 icon"></iconify-icon>
                                         Preview
                                     </a>
-                                    <form action="{{ route('books.download', $book->id) }}" method="POST">
+                                    <form action="{{ route('download', ['type' => 'book', 'id' => $book->id]) }}" method="GET">
                                         @csrf
                                         <button class="action-btn green">
                                             <iconify-icon icon="solar:download-square-bold-duotone"

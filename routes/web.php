@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\AboutController;
 use App\Http\Controllers\Web\BookController;
 use App\Http\Controllers\Web\BranchController;
 use App\Http\Controllers\Web\ContactController;
+use App\Http\Controllers\Web\DownloadController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MaintainenceController;
 use App\Http\Controllers\Web\ProfileController;
@@ -47,7 +48,9 @@ Route::get('/branches/{branch}/semesters/{semester}/books/{book}',
 
 Route::get('/books', [BookController::class, 'index'])->name('books');
 Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
-Route::post('/books/{book}/downloads', [BookController::class, 'downloadBook'])->middleware('guest_download')->name('books.download');
+
+Route::get('/donwload/{type}/{id}', [DownloadController::class, 'download'])->name('download');
+// Route::post('/books/{book}/downloads', [BookController::class, 'downloadBook'])->middleware('guest_download')->name('books.download');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 

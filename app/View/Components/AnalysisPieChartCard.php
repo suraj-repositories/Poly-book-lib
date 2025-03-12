@@ -2,8 +2,8 @@
 
 namespace App\View\Components;
 
-use App\Models\BookDownload;
 use App\Models\Contact;
+use App\Models\Download;
 use App\Models\Review;
 use App\Models\Subscriber;
 use Closure;
@@ -23,7 +23,7 @@ class AnalysisPieChartCard extends Component
     public function __construct()
     {
         //
-        $downloads = BookDownload::count();
+        $downloads = Download::count();
         $reviews = Review::count();
         $subscribers = Subscriber::count();
         $contact = Contact::count();

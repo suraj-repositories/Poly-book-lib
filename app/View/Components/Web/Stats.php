@@ -4,8 +4,8 @@ namespace App\View\Components\Web;
 
 use App\Facades\Settings;
 use App\Models\Book;
-use App\Models\BookDownload;
 use App\Models\Branch;
+use App\Models\Download;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -29,7 +29,7 @@ class Stats extends Component
 
         $branchCount = Branch::count();
         $bookCount = Book::count();
-        $downloadCount = BookDownload::count();
+        $downloadCount = Download::count();
 
         $start = Carbon::parse(Settings::get('app_start_date', config('app.app_start_date')));
         $end = Carbon::parse(date('Y-m-d H:i:s'));

@@ -2,7 +2,7 @@
 
 namespace App\View\Components;
 
-use App\Models\BookDownload;
+use App\Models\Download;
 use App\Models\User;
 use Carbon\Carbon;
 use Closure;
@@ -33,7 +33,7 @@ class PerformanceChart extends Component
             return Carbon::now()->subMonths($i)->format('M');
         })->reverse();
 
-        $downloadsRecord = BookDownload::selectRaw("DATE_FORMAT(created_at, '%b') AS month, COUNT(*) AS total_records")
+        $downloadsRecord = Download::selectRaw("DATE_FORMAT(created_at, '%b') AS month, COUNT(*) AS total_records")
             ->where('created_at', '>=', Carbon::now()->subMonths(12))
             ->groupBy('month')
             ->orderByRaw("MIN(created_at) ASC")
@@ -78,7 +78,7 @@ class PerformanceChart extends Component
         // --------------------------------------------
         // Fetch Book Downloads Data (Grouped by 15 Days)
         // --------------------------------------------
-        $downloads = BookDownload::selectRaw("
+        $downloads = Download::selectRaw("
             CONCAT(DATE_FORMAT(created_at, '%b'),
                    IF(DAY(created_at) <= 15, '-1', '-2')) AS half_month,
             COUNT(*) AS total_records
@@ -115,7 +115,7 @@ class PerformanceChart extends Component
             Carbon::now()->subDays($i)->format('d M') => 0
         ]);
 
-        $dailyDownloads = BookDownload::selectRaw("DATE(created_at) as date, COUNT(*) as total_records")
+        $dailyDownloads = Download::selectRaw("DATE(created_at) as date, COUNT(*) as total_records")
             ->where('created_at', '>=', $dailyStartDate)
             ->groupBy('date')
             ->get()

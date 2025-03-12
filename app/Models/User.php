@@ -55,12 +55,11 @@ class User extends Authenticatable
         if($this->image){
             return url('storage/'.$this->image);
         }
-        // return "https://api.dicebear.com/6.x/fun-emoji/svg?seed={$this->name}";
         return asset(config('settings.default_profile_image'));
     }
 
     public function downloads(){
-        return $this->hasMany(BookDownload::class, 'user_id', 'id');
+        return $this->hasMany(Download::class, 'user_id', 'id');
     }
 
     public function reviews(){
@@ -71,5 +70,11 @@ class User extends Authenticatable
     {
         return $query->withCount('downloads')->orderBy('downloads_count', 'desc');
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
 
 }

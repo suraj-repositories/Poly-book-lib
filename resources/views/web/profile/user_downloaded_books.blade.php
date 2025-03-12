@@ -9,7 +9,7 @@
                 </p>
             </div>
             <div class="d-flex mb-3">
-                <form action="{{ route('books.download', $download->book ?? null) }}" method="post">
+                <form action="{{ route('download', ['type' => 'book', 'id' => $download->book->id]) }}" method="GET">
                     @csrf
                     <button type="submit" class="border-0 bg-transparent p-0">
                         <iconify-icon icon="solar:download-minimalistic-line-duotone" class="fs-3 fw-bold"

@@ -3,9 +3,9 @@
 namespace App\View\Components;
 
 use App\Models\Book;
-use App\Models\BookDownload;
 use App\Models\Branch;
 use App\Models\Contact;
+use App\Models\Download;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -32,8 +32,8 @@ class DashboardAnalysisCards extends Component
         $branchCount = Branch::count();
         $branchCountLastMonth = Branch::whereBetween('created_at', [$startDate, $endDate])->count();
 
-        $downloadCount = BookDownload::count();
-        $downloadCountLastMonth = BookDownload::whereBetween('created_at', [$startDate, $endDate])->count();
+        $downloadCount = Download::count();
+        $downloadCountLastMonth = Download::whereBetween('created_at', [$startDate, $endDate])->count();
 
         $contactCount = Contact::count();
         $contactCountLastMonth = Contact::whereBetween('created_at', [$startDate, $endDate])->count();

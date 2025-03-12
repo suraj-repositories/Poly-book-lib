@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
-use App\Models\BookDownload;
 use App\Models\Review;
 use App\Services\FileService;
 use App\Services\UserAgentService;
@@ -48,32 +47,4 @@ class BookController extends Controller
         return view('web.books.book', compact('book', 'reviews', 'bookRating', 'bookReviewCount'));
     }
 
-    public function downloadBook(Book $book, Request $request)
-    {
-
-        if (!isset($book->file) || !$this->fileService->fileExists($book->file->file_path)) {
-            abort(404, 'Book Not Available!');
-        }
-
-        $ip = $request->ip();
-        $userAgent = $request->header('User-Agent');
-
-        $deviceType = $this->userAgentService->detectDevice($userAgent);
-        $browser = $this->userAgentService->detectBrowser($userAgent);
-        $os = $this->userAgentService->detectOS($userAgent);
-        $location = $this->userAgentService->getLocationFromIP($ip);
-
-        BookDownload::create([
-            'book_id' => $book->id,
-            'user_id' => Auth::id(),
-            'ip_address' => $ip,
-            'user_agent' => $userAgent,
-            'device_type' => $deviceType,
-            'browser' => $browser,
-            'os' => $os,
-            'location' => $location
-        ]);
-
-        return response()->download(storage_path("app/public/{$book->file->file_path}"));
-    }
 }
