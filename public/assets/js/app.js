@@ -700,6 +700,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
     new FileIcon().init();
     new QuillEditor().init();
     new Youtube().init();
+    new InputValidatorUI().init();
 });
 
 
@@ -1225,11 +1226,11 @@ class QuillEditor {
         });
     }
 
-    getQuillEditorObject(selector){
+    getQuillEditorObject(selector) {
 
         const divElement = document.querySelector(selector);
 
-        if(divElement){
+        if (divElement) {
             let quillObj = new Quill(divElement, {
                 theme: 'snow',
                 modules: {
@@ -1254,12 +1255,12 @@ class QuillEditor {
 
 }
 
-class Youtube{
-    init(){
+class Youtube {
+    init() {
         this.enableYoutubeVideoUsingShareLink();
     }
 
-    enableYoutubeVideoUsingShareLink(){
+    enableYoutubeVideoUsingShareLink() {
         function getEmbedUrl(shareUrl) {
             let videoId = shareUrl.split('/').pop();
             return `https://www.youtube.com/embed/${videoId}`;
@@ -1267,6 +1268,22 @@ class Youtube{
         document.querySelectorAll('[data-youtube-video="share"]').forEach(element => {
             element.src = getEmbedUrl(element.getAttribute('src'));
 
+        });
+    }
+}
+
+class InputValidatorUI {
+    init() {
+        this.enableInputDanger();
+    }
+
+    enableInputDanger() {
+        document.querySelectorAll('.dynamic_input').forEach(input => {
+            input.addEventListener('keyup', function () {
+                if (input.classList.contains('text-danger')) {
+                    input.classList.remove('text-danger')
+                }
+            });
         });
     }
 }

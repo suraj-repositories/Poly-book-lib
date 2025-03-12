@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\HelpController;
 use App\Http\Controllers\Admin\HeroSectionSettingController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SocialMediaSettingController;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\UserController;
@@ -74,3 +75,5 @@ Route::get('/notification/clear-all', [NotificationController::class, 'clearAll'
 Route::get('/notifications', [NotificationController::class, 'index'])->name('admin.notifications.index');
 
 Route::get('/help', [HelpController::class, 'index'])->name('admin.help.index');
+
+Route::get('/search', [SearchController::class, 'page_search'])->name('admin.search.page_search');

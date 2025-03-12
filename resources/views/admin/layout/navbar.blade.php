@@ -10,9 +10,10 @@
                    </div>
 
                    <!-- App Search-->
-                   <form class="app-search d-none d-md-block me-auto">
+                   <form action="{{ route('admin.search.page_search') }}" method="GET" class="app-search d-none d-md-block me-auto">
+                    @csrf
                         <div class="position-relative">
-                             <input type="search" class="form-control" placeholder="Search..." autocomplete="off" value="">
+                             <input type="search" class="form-control dynamic_input {{ session()->has('search_success') ? ( session('search_success') ? '' : 'text-danger' ) : '' }}" placeholder="Search..." autocomplete="off" value="{{ session()->has('search_success') ? ( session('search_success') ? '' : session('search') ) : '' }}" name="search">
                              <iconify-icon icon="solar:magnifer-broken" class="search-widget-icon"></iconify-icon>
                         </div>
                    </form>
