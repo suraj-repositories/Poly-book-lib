@@ -19,7 +19,7 @@
          <div class="row align-items-center">
               <div class="col-lg-7">
 
-                 <div id="donut-pie-chart" data-donut-chart-keys="{{ json_encode(array_values($analyticData)) }}"></div>
+                 <div id="donut-pie-chart" data-donut-chart-keys="{{ json_encode(array_keys($analyticData)) }}" data-donut-chart-values="{{ json_encode(array_values($analyticData)) }}"></div>
 
               </div>
               <div class="col-lg-5" dir="ltr">
@@ -67,11 +67,11 @@
                         <div class="row align-items-center mb-3">
                              <div class="col">
                                   <div class="progress progress-soft progress-sm">
-                                       <div class="progress-bar bg-success" role="progressbar" style="width: {{ $percentages['contact'] }}%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+                                       <div class="progress-bar bg-success" role="progressbar" style="width: {{ $percentages['contacts'] }}%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                              </div>
                              <div class="col-auto">
-                                  <p class="mb-0 fs-13 fw-semibold">{{ $analyticData['contact'] }}</p>
+                                  <p class="mb-0 fs-13 fw-semibold">{{ $analyticData['contacts'] }}</p>
                              </div>
                         </div>
 

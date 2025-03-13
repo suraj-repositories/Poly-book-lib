@@ -289,8 +289,10 @@ function enablePatternDonutPieChart(selector){
 
     const patternPieChart = document.querySelector(selector);
     let data = '[]';
+    let keys = '[]';
     if (patternPieChart) {
-        data = patternPieChart.getAttribute('data-donut-chart-keys');
+        data = patternPieChart.getAttribute('data-donut-chart-values');
+        keys = patternPieChart.getAttribute('data-donut-chart-keys');
     }
 
 
@@ -302,8 +304,9 @@ function enablePatternDonutPieChart(selector){
         dataLabels: {
             enabled: true
         },
+        labels: JSON.parse(keys),
         series: JSON.parse(data),
-        colors: colors = ["#5BC7B3", "#1BB394", "#83DDCC", "#5D7186", "#ed5565", "#ed5565", "#f9b931", "#1bb394", "#040505", "#1bb394"],
+        colors: colors = [ "#5D7186", "#5BC7B3", "#1BB394", "#83DDCC", "#ed5565", "#ed5565", "#f9b931", "#1bb394", "#040505", "#1bb394"],
         legend: {
             show: 0,
             position: "bottom",

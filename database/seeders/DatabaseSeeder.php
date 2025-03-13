@@ -20,12 +20,14 @@ class DatabaseSeeder extends Seeder
             SettingsSeeder::class,
             FAQSeeder::class,
             TestimonialSeeder::class,
+            PagesTableSeeder::class,
         ]);
 
         // $this->call([
         //     SettingsSeeder::class,
         //     FAQSeeder::class,
         //     TestimonialSeeder::class,
+        //     PagesTableSeeder::class,
         // ]);
     }
 }

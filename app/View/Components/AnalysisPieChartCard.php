@@ -31,7 +31,7 @@ class AnalysisPieChartCard extends Component
         $this->analyticData = [
             'downloads' => $downloads,
             'subscribers' => $subscribers,
-            'contact' => $contact,
+            'contacts' => $contact,
             'reviews' => $reviews,
         ];
 
@@ -41,7 +41,7 @@ class AnalysisPieChartCard extends Component
             $this->percentages = [
                 'downloads' => $downloads / $total * 100,
                 'subscribers' => $subscribers / $total * 100,
-                'contact' => $contact / $total * 100,
+                'contacts' => $contact / $total * 100,
                 'reviews' => $reviews / $total * 100,
             ];
         }
@@ -49,7 +49,7 @@ class AnalysisPieChartCard extends Component
             $this->percentages = [
                 'downloads' => 0,
                 'subscribers' => 0,
-                'contact' => 0,
+                'contacts' => 0,
                 'reviews' => 0,
             ];
         }
