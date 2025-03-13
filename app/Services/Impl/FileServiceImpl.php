@@ -17,8 +17,8 @@ class FileServiceImpl implements FileService
         return $file->storeAs($folder, $uniqueFileName, $disk);
     }
 
-    public function fileExists($filePath){
-        if ($filePath && Storage::disk('public')->exists($filePath)) {
+    public function fileExists($filePath, $disk = 'public'){
+        if ($filePath && Storage::disk($disk)->exists($filePath)) {
             return true;
         }
         return false;

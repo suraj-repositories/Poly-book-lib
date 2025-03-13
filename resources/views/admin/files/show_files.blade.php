@@ -59,11 +59,7 @@
                                                 </div>
                                             </td> --}}
                                             <td>{{ $loop->iteration }}</td>
-                                            {{-- <td>
-                                                <div class="image-box">
-                                                    <img src="{{ $file->getFileUrl() }}" alt="file image">
-                                                </div>
-                                            </td> --}}
+
                                             <td>
                                                 <div class="d-flex align-items-center">
 

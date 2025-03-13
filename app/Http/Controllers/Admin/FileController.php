@@ -24,7 +24,7 @@ class FileController extends Controller
 
         foreach ($files as $file) {
             $filePath = $file->file_path;
-            $size = Storage::disk('public')->exists($filePath) ? $this->fileService->getSizeByPath($filePath) : '-';
+            $size = Storage::disk('private')->exists($filePath) ? $this->fileService->getSizeByPath($filePath) : '-';
             $file->size = $size;
             $file->icon = $this->fileService->getIconFromExtension($this->fileService->getExtensionByPath($filePath));
         }
@@ -46,7 +46,7 @@ class FileController extends Controller
         $file = $request->file('file');
         $fileName = $file->getClientOriginalName();
         $mimeType = $file->getClientMimeType();
-        $filePath = $this->fileService->uploadFile($request->file('file'), "files", 'public');
+        $filePath = $this->fileService->uploadFile($request->file('file'), "files", 'private');
         $fileSize = $file->getSize();
         File::create([
             'file_path' =>  $filePath,
@@ -86,7 +86,7 @@ class FileController extends Controller
             return response()->json(['error' => 'Invalid request'], 400);
         }
 
-        $tempDir = Storage::path('public/files/temp/'.$fileName);
+        $tempDir = Storage::path('private/files/temp/'.$fileName);
         if (!file_exists($tempDir)) {
             mkdir($tempDir, 0777, true);
         }
@@ -96,7 +96,7 @@ class FileController extends Controller
 
         if (count(scandir($tempDir)) - 2 === (int) $totalChunks) {
             $finalFileName = "F-" . rand(100, 999) . $fileName;
-            $finalPath = Storage::path('public/files/'.$finalFileName);
+            $finalPath = Storage::path('private/files/'.$finalFileName);
             $finalFile = fopen($finalPath, 'w');
 
             for ($i = 0; $i < $totalChunks; $i++) {
@@ -118,7 +118,7 @@ class FileController extends Controller
                 'file_path' =>  'files/' . $finalFileName,
                 'file_name' => substr($fileName, strpos($fileName, '_x_') + 3),
                 'mime_type' => $mimeType,
-                'file_size' => Storage::disk('public')->size('files/' . $finalFileName) ?? null
+                'file_size' => Storage::disk('private')->size('files/' . $finalFileName) ?? null
             ]);
 
             return response()->json(['message' => 'Upload complete']);
@@ -134,7 +134,7 @@ class FileController extends Controller
             return response()->json(['error' => 'Invalid file name'], 400);
         }
 
-        $dir = Storage::path('public/files/temp/'.$fileName);
+        $dir = Storage::path('private/files/temp/'.$fileName);
         $this->fileService->deleteDirectoryIfExists($dir);
 
         return response()->json(['success' => true,'message' => 'File upload canceled!']);

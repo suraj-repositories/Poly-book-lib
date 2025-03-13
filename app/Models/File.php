@@ -22,22 +22,23 @@ class File extends Model
         'fileable_type',
     ];
 
+    // public function getFileUrl()
+    // {
 
+    //     if (Storage::disk('private')->exists($this->file_path)) {
+    //         return route('file.serve', ['type' => $this->fileable_type , 'id'=>$this->fileable_id, 'filepath' => $this->file_path]);
+    //     }
+    //     return abort(404, 'Resource Not Available');
 
-    public function getFileUrl()
-    {
-        if (Storage::disk('public')->exists($this->file_path)) {
-            return url('storage/' . $this->file_path);
-        }
-        return config('constants.question_mark_image_a4');
-    }
+    // }
 
     public function extension()
     {
-        if (Storage::disk('public')->exists($this->file_path)) {
-            return pathinfo($this->file_path, PATHINFO_EXTENSION) ?? null;
+        if ($this->file_path && Storage::disk('private')->exists($this->file_path)) {
+            return pathinfo($this->file_path, PATHINFO_EXTENSION) ?: null;
         }
         return null;
+
     }
 
     public function extensionIcon()

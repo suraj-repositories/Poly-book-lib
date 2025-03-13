@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\BookController;
 use App\Http\Controllers\Web\BranchController;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\DownloadController;
+use App\Http\Controllers\Web\FileController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MaintainenceController;
 use App\Http\Controllers\Web\ProfileController;
@@ -52,6 +53,8 @@ Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show')
 Route::get('/donwload/{type}/{id}', [DownloadController::class, 'download'])->middleware('guest_download')->name('download');
 Route::post('/donwload/{type}/{id}/purchase', [DownloadController::class, 'purchase'])->middleware('json.auth')->name('download.payment.widget');
 Route::get('/donwload/{type}/{id}/success', [DownloadController::class, 'paymentSuccess'])->middleware('auth')->name('download.payment.success');
+
+Route::get('/private-files/{type}/{id}/{filepath}', [FileController::class, 'serve'])->where('filepath', '.*')->name('file.serve');
 
 // Route::post('/books/{book}/downloads', [BookController::class, 'downloadBook'])->middleware('guest_download')->name('books.download');
 

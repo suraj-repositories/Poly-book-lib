@@ -34,7 +34,7 @@ class DownloadController extends Controller
 
         $item = $modelClass::findOrFail($id);
 
-        if (!isset($item->file) || !$this->fileService->fileExists($item->file->file_path)) {
+        if (!isset($item->file) || !$this->fileService->fileExists($item->file->file_path, 'private')) {
             abort(404, 'Resource Not Available!');
         }
 
@@ -65,7 +65,7 @@ class DownloadController extends Controller
                 'os' => $os,
                 'location' => $location
             ]);
-            return response()->download(storage_path("app/public/{$item->file->file_path}"));
+            return response()->download(storage_path("app/private/{$item->file->file_path}"));
         }
 
         return redirect()->back()->with('error', 'You must purchase this item first.');
@@ -87,7 +87,7 @@ class DownloadController extends Controller
 
         $item = $modelClass::findOrFail($id);
 
-        if (!isset($item->file) || !$this->fileService->fileExists($item->file->file_path)) {
+        if (!isset($item->file) || !$this->fileService->fileExists($item->file->file_path, 'private')) {
             abort(404, 'Resource Not Available!');
         }
 

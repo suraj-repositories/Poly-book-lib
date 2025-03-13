@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="book-actions mb-3 flex-wrap">
-                                @if (optional($book->file)->getFileUrl())
+                                @if (optional($book->file)->file_path)
 
                                     @if ($book->price > 0 && (Auth::check() ? !Auth::user()->isPurchased('book', $book->id) : true))
                                         <button class="action-btn green" id="makePaymentButton"
@@ -55,7 +55,8 @@
                                             Buy &nbsp;
                                         </button>
                                     @else
-                                        <a href="{{ $book->file->getFileUrl() }}" target="_blank"
+
+                                        <a href="{{ route('file.serve', ['type'=>'book', 'id' => $book->id, 'filepath'=> $book->file->file_path]) }}" target="_blank"
                                             class="action-btn secondary">
                                             <iconify-icon icon="solar:eye-bold-duotone" class="me-1 icon"></iconify-icon>
                                             Preview

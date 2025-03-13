@@ -9,8 +9,8 @@
 
         <section id="service-details" class="service-details section">
             <div class="container">
+                @include('layout.alert')
                 <div class="row gy-5 justify-content-center">
-
                     <div class="col-lg-8 ps-lg-4 order-lg-1 book-data" data-aos="fade-up" data-aos-delay="200">
                         <div id="team" class="team section mt-0 pt-0 w-100">
 
