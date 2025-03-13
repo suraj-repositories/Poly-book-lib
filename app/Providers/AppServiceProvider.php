@@ -5,8 +5,10 @@ namespace App\Providers;
 use App\Models\Contact;
 use App\Models\Setting;
 use App\Models\Subscriber;
+use App\Models\User;
 use App\Observers\ContactNotificationObserver;
 use App\Observers\SubscriberNotificationObserver;
+use App\Observers\UserRegistrationMailObserver;
 use App\Services\FileService;
 use App\Services\Impl\FileServiceImpl;
 use App\Services\Impl\UserAgentServiceImpl;
@@ -38,6 +40,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        User::observe(UserRegistrationMailObserver::class);
+
         Contact::observe(ContactNotificationObserver::class);
 
         Subscriber::observe(SubscriberNotificationObserver::class);
