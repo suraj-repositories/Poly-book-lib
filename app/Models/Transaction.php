@@ -11,13 +11,13 @@ class Transaction extends Model
 
     protected $fillable = [
         'user_id',
+        'purchasable_id',
+        'purchasable_type',
         'transaction_id',
         'amount',
-        'type',
         'status',
         'payment_method',
         'metadata',
-        'transaction_date'
     ];
 
     public function purchasable()

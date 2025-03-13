@@ -47,22 +47,26 @@ class User extends Authenticatable
     ];
 
 
-    public function hasRole($role){
-        return ($this->role === $role) ? true:false;
+    public function hasRole($role)
+    {
+        return ($this->role === $role) ? true : false;
     }
 
-    public function getImageURL(){
-        if($this->image){
-            return url('storage/'.$this->image);
+    public function getImageURL()
+    {
+        if ($this->image) {
+            return url('storage/' . $this->image);
         }
         return asset(config('settings.default_profile_image'));
     }
 
-    public function downloads(){
+    public function downloads()
+    {
         return $this->hasMany(Download::class, 'user_id', 'id');
     }
 
-    public function reviews(){
+    public function reviews()
+    {
         return $this->hasMany(Review::class);
     }
 
@@ -75,6 +79,26 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class);
     }
+    public function isPurchased($type, $modelId)
+    {
+        $modelClass = $this->getModelClass($type);
 
+        if (!$modelClass) {
+            return false;
+        }
 
+        return $this->transactions()
+            ->where('purchasable_id', $modelId)
+            ->where('purchasable_type', $modelClass)
+            ->where('status', 'completed')
+            ->exists();
+    }
+
+    private function getModelClass($type)
+    {
+        return match ($type) {
+            'book' => Book::class,
+            default => null,
+        };
+    }
 }

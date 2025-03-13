@@ -49,7 +49,10 @@ Route::get('/branches/{branch}/semesters/{semester}/books/{book}',
 Route::get('/books', [BookController::class, 'index'])->name('books');
 Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show');
 
-Route::get('/donwload/{type}/{id}', [DownloadController::class, 'download'])->name('download');
+Route::get('/donwload/{type}/{id}', [DownloadController::class, 'download'])->middleware('guest_download')->name('download');
+Route::post('/donwload/{type}/{id}/purchase', [DownloadController::class, 'purchase'])->middleware('json.auth')->name('download.payment.widget');
+Route::get('/donwload/{type}/{id}/success', [DownloadController::class, 'paymentSuccess'])->middleware('auth')->name('download.payment.success');
+
 // Route::post('/books/{book}/downloads', [BookController::class, 'downloadBook'])->middleware('guest_download')->name('books.download');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');

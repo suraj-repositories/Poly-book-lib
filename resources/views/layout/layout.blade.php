@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>@yield('title') | {{ config('app.name') }}</title>
 
+    <meta name="app-name" content="{{ config('app.name') }}">
     <meta name="author" content="{{ config('constants.author') }}">
     <meta name="description" content="for students">
     <meta name="keywords" content="polytechnic books">
@@ -34,6 +35,7 @@
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/custom-pagination.css') }}" rel="stylesheet">
+
 
     @vite(['resources/js/app.js'])
     @routes
@@ -68,11 +70,10 @@
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor.js') }}"></script>
     <!-- Main JS File -->
+    <script src="{{ asset('assets/vendor/razorpay/checkout.js') }}"></script>
+    <script src="{{ asset('assets/js/payment.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
-
-
-<!-- Mirrored from themewagon.github.io/eNno/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Jan 2025 13:30:10 GMT -->
 
 </html>

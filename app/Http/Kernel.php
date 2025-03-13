@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\JsonAuthMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -58,6 +59,7 @@ class Kernel extends HttpKernel
         'custom_guest' => \App\Http\Middleware\CustomGuestMiddleware::class,
         'maintainence' => \App\Http\Middleware\MaintainenceMiddleware::class,
         'guest_download' => \App\Http\Middleware\GuestDownloadMiddleware::class,
+        'json.auth' => \App\Http\Middleware\JsonAuthMiddleware::class,
 
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

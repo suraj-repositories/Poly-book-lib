@@ -49,4 +49,9 @@ return [
         'redirect' => 'http://localhost:8000/auth/facebook/callback',
     ],
 
+    'razorpay' => [
+        'key' => env('RAZORPAY_KEY'),
+        'secret' => env('RAZORPAY_SECRET'),
+    ],
+
 ];

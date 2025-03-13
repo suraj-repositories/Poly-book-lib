@@ -30,6 +30,8 @@ return [
     'owner_email' => 'suraj2002mail@gmail.com',
     'owner_help_link' => 'https://github.com/suraj-repositories/Poly-book-lib/issues/new',
 
+    'razorpay_public_key' => env('RAZORPAY_KEY', ''),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

@@ -44,17 +44,32 @@
 
                             <div class="book-actions mb-3 flex-wrap">
                                 @if (optional($book->file)->getFileUrl())
-                                    <a href="{{ $book->file->getFileUrl() }}" target="_blank" class="action-btn secondary">
-                                        <iconify-icon icon="solar:eye-bold-duotone" class="me-1 icon"></iconify-icon>
-                                        Preview
-                                    </a>
-                                    <form action="{{ route('download', ['type' => 'book', 'id' => $book->id]) }}" method="GET">
-                                        @csrf
-                                        <button class="action-btn green">
-                                            <iconify-icon icon="solar:download-square-bold-duotone"
-                                                class="me-1 icon"></iconify-icon>
-                                            Download</button>
-                                    </form>
+
+                                    @if ($book->price > 0 && (Auth::check() ? !Auth::user()->isPurchased('book', $book->id) : true))
+                                        <button class="action-btn green" id="makePaymentButton"
+                                            data-price="{{ $book->price }}" data-model="book"
+                                            data-model-id="{{ $book->id }}"
+                                            data-razorpay-key="{{ config('app.razorpay_public_key') }}">
+                                            <iconify-icon icon="solar:wallet-money-outline"
+                                                class="me-2 icon"></iconify-icon>
+                                            Buy &nbsp;
+                                        </button>
+                                    @else
+                                        <a href="{{ $book->file->getFileUrl() }}" target="_blank"
+                                            class="action-btn secondary">
+                                            <iconify-icon icon="solar:eye-bold-duotone" class="me-1 icon"></iconify-icon>
+                                            Preview
+                                        </a>
+                                        <form action="{{ route('download', ['type' => 'book', 'id' => $book->id]) }}"
+                                            method="GET">
+                                            @csrf
+                                            <button class="action-btn green">
+                                                <iconify-icon icon="solar:download-square-bold-duotone"
+                                                    class="me-1 icon"></iconify-icon>
+                                                Download</button>
+                                        </form>
+                                    @endif
+
 
                                     @if (Settings::get('social_media_sharing', config('app.social_media_sharing')) != 'off')
                                         <button class="action-btn gold" data-bs-toggle="modal" data-bs-target="#shareModal">
@@ -173,9 +188,9 @@
                             <div>
                                 <nav>
                                     <div class="nav nav-tabs mb-3">
-                                        <button class="nav-link  active" type="button" role="tab" id="nav-about-tab"
-                                            data-bs-toggle="tab" data-bs-target="#nav-about" aria-controls="nav-about"
-                                            aria-selected="true">Description</button>
+                                        <button class="nav-link  active" type="button" role="tab"
+                                            id="nav-about-tab" data-bs-toggle="tab" data-bs-target="#nav-about"
+                                            aria-controls="nav-about" aria-selected="true">Description</button>
                                         <button class="nav-link " type="button" role="tab" id="nav-mission-tab"
                                             data-bs-toggle="tab" data-bs-target="#nav-mission"
                                             aria-controls="nav-mission" aria-selected="false">Reviews</button>
