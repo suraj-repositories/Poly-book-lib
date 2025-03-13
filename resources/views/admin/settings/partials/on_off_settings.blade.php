@@ -22,12 +22,6 @@
                 Facebook, etc.)</label>
         </div>
         <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
-            <input type="checkbox" class="form-check-input" id="social_registeration" name="social_registrtion"
-                {{ Settings::get('social_registrtion', 'off') == 'on' ? 'checked' : '' }}>
-            <label class="form-check-label" for="social_registeration"> Enable Social Registration (Google,
-                Facebook, etc.)</label>
-        </div>
-        <div class="form-check form-checkbox-warning pb-2 mb-2 dash-bottom-border">
             <input type="checkbox" class="form-check-input" id="guest_downloads" name="guest_download"
                 {{ Settings::get('guest_download', 'off') == 'on' ? 'checked' : '' }}>
             <label class="form-check-label" for="guest_downloads">Allow Guest Downloads</label>
