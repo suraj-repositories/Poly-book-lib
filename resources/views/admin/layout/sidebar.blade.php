@@ -163,6 +163,15 @@
                     <span class="nav-text">Reviews</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('admin.transaction.index') }}">
+                    <span class="nav-icon">
+                        <iconify-icon icon="solar:wallet-money-broken"></iconify-icon>
+
+                    </span>
+                    <span class="nav-text">Transactions</span>
+                </a>
+            </li>
 
             {{-- <li class="menu-title">Custom</li> --}}
 

@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SearchController;
 use App\Http\Controllers\Admin\SocialMediaSettingController;
 use App\Http\Controllers\Admin\SubscriberController;
+use App\Http\Controllers\Admin\TransactonController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -77,3 +78,5 @@ Route::get('/notifications', [NotificationController::class, 'index'])->name('ad
 Route::get('/help', [HelpController::class, 'index'])->name('admin.help.index');
 
 Route::get('/search', [SearchController::class, 'page_search'])->name('admin.search.page_search');
+
+Route::get('/transactions', [TransactonController::class, 'index'])->name('admin.transaction.index');

@@ -79,6 +79,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class);
     }
+
+    public function transactionsDescOrder(){
+        return $this->hasMany(Transaction::class)->latest();
+    }
+
     public function isPurchased($type, $modelId)
     {
         $modelClass = $this->getModelClass($type);

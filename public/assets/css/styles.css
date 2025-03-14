@@ -1175,3 +1175,6 @@ html[data-bs-theme="dark"] .unreaded::after {
 .text-on-primary {
     color: white !important;
 }
+.pt-1-px{
+    padding-top: 1px !important;
+}

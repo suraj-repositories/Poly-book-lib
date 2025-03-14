@@ -32,6 +32,10 @@ class Book extends Model
         return Storage::url($this->cover_image);
     }
 
+    public function getImageURL(){
+        return $this->getCoverPageUrl();
+    }
+
     public function getCoverImageSize()
     {
         $fileService = new FileServiceImpl();
