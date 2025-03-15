@@ -20,7 +20,14 @@
 .validation-error {
     color: #ed5565;
 }
+.link-underline-secondary{
+    text-decoration: underline;
 
+}
+.link-underline-secondary:hover{
+    text-decoration: none;
+    color: #10BC69 !important;
+}
 .branches .dz-remove {
     display: none !important;
 }
@@ -270,6 +277,7 @@
     top: 0;
     left: 0;
 }
+
 
 .preview-image-box .selected_file_image .icon-container {
     position: absolute;
@@ -1210,7 +1218,7 @@ html[data-bs-theme="dark"] .unreaded::after {
     border: 1px solid #cccccc63;
     border-radius: 50%;
     padding: 2px;
-    font-size: 28px;
+    font-size: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
