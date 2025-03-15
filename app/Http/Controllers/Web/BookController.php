@@ -24,7 +24,12 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Book::paginate(12);
+        $books = Book::whereIn('id', function ($query) {
+            $query->selectRaw('MIN(id)')
+                ->from('books')
+                ->groupBy('title');
+        })->paginate(12);
+
         return view('web.books.books', compact('books'));
     }
 

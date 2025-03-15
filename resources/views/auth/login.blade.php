@@ -25,7 +25,7 @@
 
                             <h2 class="fw-bold text-center fs-18">Login</h2>
                             <p class="text-muted text-center mt-1 mb-4">Enter your email address and password to access
-                               access panel.</p>
+                               your panel.</p>
 
 
 

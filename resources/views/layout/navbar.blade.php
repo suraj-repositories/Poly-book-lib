@@ -13,8 +13,9 @@
             <ul>
                 <li><a href="{{ route('home') }}" class="{{ Route::is('home') ? 'active' : '' }}">Home</a></li>
                 <li><a href="{{ route('books') }}" class="{{ Route::is('books') ? 'active' : '' }}">Books</a></li>
-                <li class="dropdown"><a href="#" class="{{ Route::is('branches.semesters.books') || Route::is('branches.show') ? 'active' : '' }}"><span>Branches&nbsp;</span> <i
-                            class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <li class="dropdown"><a href="#"
+                        class="{{ Route::is('branches.semesters.books') || Route::is('branches.show') ? 'active' : '' }}"><span>Branches&nbsp;</span>
+                        <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                     <ul>
 
                         @forelse ($branches as $branch)
@@ -54,10 +55,11 @@
                 </li>
 
                 <li><a href="{{ route('about') }}" class="{{ Route::is('about') ? 'active' : '' }}">About</a></li>
-                <li><a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Contact Us</a></li>
+                <li><a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Contact Us</a>
+                </li>
             </ul>
             <div class="d-flex align-items-center">
-                <button class="search-btn ms-3 px-1 hide-on-large SearchButton ">
+                <button class="search-btn ms-3 px-1 hide-on-large SearchButton {{ Auth::check() ? 'login' : 'not-login' }}">
                     <iconify-icon icon="radix-icons:magnifying-glass" class="m-0 p-0"></iconify-icon>
                 </button>
                 @auth
@@ -76,8 +78,11 @@
         </nav>
 
         @guest
-            <a class="btn-getstarted me-1 bg-secondary hide-sm-600" href="{{ route('register') }}">SignUp</a>
-            <a class="btn-getstarted ms-1" href="{{ route('login') }}">SingIn</a>
+        <a class="btn-getstarted me-1 bg-secondary hide-sm-600" href="{{ route('register') }}">SignUp</a>
+        <a class="btn-getstarted ms-1" href="{{ route('login') }}">SingIn</a>
+        <button class="search-btn ms-3 hide-on-sm SearchButton">
+            <iconify-icon icon="radix-icons:magnifying-glass" class="m-0 p-0"></iconify-icon>
+        </button>
         @endguest
 
         @auth

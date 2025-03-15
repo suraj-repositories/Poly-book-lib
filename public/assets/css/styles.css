@@ -977,6 +977,21 @@ table[data-table="laravel"] th div {
     .search-btn.hide-on-sm{
         display: none;
     }
+    .mobile-nav-active .search-btn.hide-on-large.not-login{
+        margin-top: 12px;
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+    }
+
+    .search-btn.hide-on-large.not-login:not(.mobile-nav-active .search-btn.hide-on-large.not-login) {
+        margin-left: 0 !important;
+        margin-right: 5px;
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
 }
 
 @media (min-width: 1201px) {

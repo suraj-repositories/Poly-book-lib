@@ -32,7 +32,8 @@ class Book extends Model
         return Storage::url($this->cover_image);
     }
 
-    public function getImageURL(){
+    public function getImageURL()
+    {
         return $this->getCoverPageUrl();
     }
 
@@ -57,6 +58,13 @@ class Book extends Model
         return $this->morphMany(Download::class, 'downloadable');
     }
 
+    public function titleDownloadCount()
+    {
+        return Download::whereIn('downloadable_id', Book::where('title', $this->title)->pluck('id'))
+            ->where('downloadable_type', Book::class)
+            ->count();
+    }
+
     public function scopeOrderByDownloads($query)
     {
         return $query->withCount('downloads')->orderBy('downloads_count', 'desc');
@@ -67,8 +75,21 @@ class Book extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function titleReviewCount()
+    {
+        return Review::whereIn('book_id', Book::where('title', $this->title)->pluck('id'))
+            ->count();
+    }
+
+
     public function averageRating()
     {
         return $this->reviews()->avg('rating');
+    }
+
+    public function titleAverageRating()
+    {
+        return Review::whereIn('book_id', Book::where('title', $this->title)->pluck('id'))
+            ->avg('rating');
     }
 }

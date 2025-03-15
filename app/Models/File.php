@@ -50,7 +50,7 @@ class File extends Model
     public function size()
     {
         $fileService = new FileServiceImpl();
-        return $fileService->getSizeByPath($this->file_path);
+        return $fileService->getSizeByPath($this->file_path, 'private');
     }
 
     public function books()
