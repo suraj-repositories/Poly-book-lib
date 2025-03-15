@@ -62,8 +62,9 @@
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" name="terms"
                                                 id="checkbox-signin">
-                                            <label class="form-check-label" for="checkbox-signin">I accept Terms and
-                                                Condition</label>
+                                            <label class="form-check-label" for="checkbox-signin">I accept
+                                                <a href="{{ route('terms.index') }}" class="text-primary">Terms and Condition</a>
+                                            </label>
                                         </div>
                                         @error('terms')
                                             <small class="text-danger">{{ $message }}</small>

@@ -14,6 +14,7 @@ use App\Http\Controllers\Web\ReviewController;
 use App\Http\Controllers\Web\SearchController;
 use App\Http\Controllers\Web\SemesterController;
 use App\Http\Controllers\Web\SubscriberController;
+use App\Http\Controllers\Web\TermsController;
 use App\Mail\RegistrationMail;
 use Faker\Guesser\Name;
 use GuzzleHttp\Middleware;
@@ -75,3 +76,5 @@ Route::middleware('auth')->group(function(){
 Route::get('/under-maintainence', [MaintainenceController::class, 'index'])->name('web.under_maintainence');
 
 Route::post('/search', [SearchController::class, 'search'])->name('web.search');
+
+Route::get('/terms', [TermsController::class, 'index'])->name('terms.index');

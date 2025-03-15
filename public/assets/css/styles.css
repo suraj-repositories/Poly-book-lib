@@ -384,6 +384,9 @@
     width: 100%;
 }
 
+.front-web .terms h4{
+    font-family: inherit;
+}
 
 .front-web .semesters .branch-img img {
     width: 100%;

@@ -846,6 +846,7 @@ section,
   font-size: 52px;
   text-transform: uppercase;
   line-height: 1;
+  user-select: none;
 }
 
 .section-title p {

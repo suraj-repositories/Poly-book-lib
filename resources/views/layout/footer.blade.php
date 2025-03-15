@@ -44,7 +44,7 @@
                     <li><i class="bi bi-chevron-right"></i> <a href="{{ route('home') }}">Home</a></li>
                     <li><i class="bi bi-chevron-right"></i> <a href="{{ route('about') }}">About us</a></li>
                     <li><i class="bi bi-chevron-right"></i> <a href="{{ route('contact') }}">Contact us</a></li>
-                    <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of Services</a></li>
+                    <li><i class="bi bi-chevron-right"></i> <a href="{{ route('terms.index') }}">Terms of Services</a></li>
                 </ul>
             </div>
 
