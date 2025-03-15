@@ -18,13 +18,7 @@ return [
         'admin.app_settings.index' => ['app setting', 'map', 'email', 'setting', 'settings', 'application'],
         'admin.notifications.index' => ['notifications', 'alert', 'messages'],
         'admin.downloads.index' => ['download', 'downloaders', 'downloads'],
+        'admin.transaction.index' => ['transactions', 'payments', 'money']
 
-    ],
-    'web' => [
-        'home' => ['home', 'homepage', 'main page'],
-        'about' => ['about', 'about us', 'company info'],
-        'contact' => ['contact', 'contact us', 'reach out'],
-        'branches' => ['branches', 'cources'],
-        'books' => ['books', 'notes', 'book']
-    ],
+    ]
 ];
