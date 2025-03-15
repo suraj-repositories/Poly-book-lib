@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\MaintainenceController;
 use App\Http\Controllers\Web\ProfileController;
 use App\Http\Controllers\Web\ReviewController;
+use App\Http\Controllers\Web\SearchController;
 use App\Http\Controllers\Web\SemesterController;
 use App\Http\Controllers\Web\SubscriberController;
 use App\Mail\RegistrationMail;
@@ -56,8 +57,6 @@ Route::get('/donwload/{type}/{id}/success', [DownloadController::class, 'payment
 
 Route::get('/private-files/{type}/{id}/{filepath}', [FileController::class, 'serve'])->where('filepath', '.*')->name('file.serve');
 
-// Route::post('/books/{book}/downloads', [BookController::class, 'downloadBook'])->middleware('guest_download')->name('books.download');
-
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
@@ -74,3 +73,5 @@ Route::middleware('auth')->group(function(){
 });
 
 Route::get('/under-maintainence', [MaintainenceController::class, 'index'])->name('web.under_maintainence');
+
+Route::post('/search', [SearchController::class, 'search'])->name('web.search');

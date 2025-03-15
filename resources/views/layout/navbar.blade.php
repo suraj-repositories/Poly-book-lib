@@ -57,16 +57,20 @@
                 <li><a href="{{ route('contact') }}" class="{{ Route::is('contact') ? 'active' : '' }}">Contact Us</a></li>
             </ul>
             <div class="d-flex align-items-center">
+                <button class="search-btn ms-3 px-1 hide-on-large SearchButton ">
+                    <iconify-icon icon="radix-icons:magnifying-glass" class="m-0 p-0"></iconify-icon>
+                </button>
                 @auth
                     @if (Auth::user()->hasRole('ADMIN'))
                         <a class="btn-getstarted hide-on-large on-mobile-nav"
                             href="{{ route('admin.dashboard') }}">Dashboard</a>
                     @endif
-                    <a href="{{ route('profile.index', Auth::id()) }}" class="ms-3 hide-on-large">
+                    <a href="{{ route('profile.index', Auth::id()) }}" class="px-1 hide-on-large">
                         <img src="{{ Auth::user()->getImageURL() }}" class="nav-profile-image profile-image-preview"
                             alt="Profile Image">
                     </a>
                 @endauth
+
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </div>
         </nav>
@@ -81,6 +85,10 @@
             @if (Auth::user()->hasRole('ADMIN'))
                 <a class="btn-getstarted hide-on-sm" href="{{ route('admin.dashboard') }}">Dashboard</a>
             @endif
+
+            <button class="search-btn ms-3 hide-on-sm SearchButton">
+                <iconify-icon icon="radix-icons:magnifying-glass" class="m-0 p-0"></iconify-icon>
+            </button>
 
             <a href="{{ route('profile.index', Auth::id()) }}" class="ms-3 hide-on-sm">
                 <img src="{{ Auth::user()->getImageURL() }}" class="nav-profile-image  profile-image-preview"

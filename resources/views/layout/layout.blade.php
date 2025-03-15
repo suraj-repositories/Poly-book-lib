@@ -58,6 +58,8 @@
 
     <div id="preloader"></div>
 
+    @include('web.search.search')
+
     <!-- Vendor JS Files -->
 
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -72,6 +74,7 @@
     <!-- Main JS File -->
     <script src="{{ asset('assets/vendor/razorpay/checkout.js') }}"></script>
     <script src="{{ asset('assets/js/payment.js') }}"></script>
+    <script src="{{ asset('assets/js/search.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
