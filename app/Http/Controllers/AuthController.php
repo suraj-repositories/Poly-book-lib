@@ -60,9 +60,11 @@ class AuthController extends Controller
         return redirect("/")->with('message', 'Regestration successful!');
     }
 
-    public function logout(){
+    public function logout(Request $request){
        if(Auth::check()){
         Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect('/login')->with('success', 'Logout successful!');
        }
        return redirect('/');
