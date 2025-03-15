@@ -48,7 +48,7 @@
                                     <div class="mb-3">
 
                                         <label class="form-label" for="password">Password</label>
-                                        <input type="text" id="password" class="form-control" name="password"
+                                        <input type="password" id="password" class="form-control" name="password"
                                             placeholder="Enter your password">
                                         @error('password')
                                             <small class="text-danger">{{ $message }}</small>

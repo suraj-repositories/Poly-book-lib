@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="password">Password</label>
-                                        <input type="text" id="password" name="password" class="form-control"
+                                        <input type="password" id="password" name="password" class="form-control"
                                             placeholder="Enter your password">
                                         @error('password')
                                             <small class="text-danger">{{ $message }}</small>
