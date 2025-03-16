@@ -79,18 +79,17 @@
                                             </td>
 
                                             <td>
-                                                <button data-btn-type="copy" data-copy-text="{{ route('download', ['type' => 'book', 'id' => $book->id]) }}" class="btn btn-sm btn-soft-secondary me-1" title="Copy download link">
+                                                <button data-btn-type="copy" data-copy-text="{{ route('download', ['type' => 'book', 'id' => $book->id]) }}" class="btn btn-sm btn-soft-secondary me-1 my-1" title="Copy download link">
                                                     <i class='bx bx-copy fs-16'></i>
-                                                    {{-- <i class='bx bx-check-circle fs-16' ></i> --}}
                                                 </button>
-                                                <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-sm btn-soft-secondary me-1" title="Edit">
+                                                <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-sm btn-soft-secondary me-1 my-1" title="Edit">
                                                     <i class="bx bx-edit fs-16"></i>
                                                 </a>
                                                 <form action="{{ route('admin.books.destroy', $book->id) }}"
                                                     class="d-inline" method="post">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-soft-danger" title="Delete"><i
+                                                    <button type="submit" class="btn btn-sm btn-soft-danger my-1" title="Delete"><i
                                                             class="bx bx-trash fs-16"></i></button>
                                                 </form>
 
