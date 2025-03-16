@@ -696,11 +696,11 @@ document.addEventListener('DOMContentLoaded', function (e) {
     new SwiperSlider().init();
     new ToastNotification().init();
     new _DataTable().init();
-    // new DropZone().init();
     new FileIcon().init();
     new QuillEditor().init();
     new Youtube().init();
     new InputValidatorUI().init();
+    new Copy().init();
 });
 
 
@@ -1284,6 +1284,41 @@ class InputValidatorUI {
                     input.classList.remove('text-danger')
                 }
             });
+        });
+    }
+}
+
+
+class Copy {
+    init() {
+        this.enableCopyButtons('[data-btn-type="copy"]');
+    }
+
+    enableCopyButtons(selector) {
+        const buttons = document.querySelectorAll(selector);
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => this._handleCopy(button));
+        });
+    }
+
+    _handleCopy(button) {
+        const textToCopy = button.getAttribute('data-copy-text');
+        const originalContent = button.innerHTML;
+
+        if (textToCopy) {
+            this._copyToClipboard(textToCopy);
+            button.innerHTML = `<i class='bx bx-check-circle fs-16'></i>`;
+
+            setTimeout(() => {
+                button.innerHTML = originalContent;
+            }, 500);
+        }
+    }
+
+    _copyToClipboard(text) {
+        navigator.clipboard.writeText(text).catch(err => {
+            console.error("Failed to copy text: ", err);
         });
     }
 }
