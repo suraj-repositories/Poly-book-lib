@@ -24,7 +24,7 @@ class FileController extends Controller
 
         foreach ($files as $file) {
             $filePath = $file->file_path;
-            $size = Storage::disk('private')->exists($filePath) ? $this->fileService->getSizeByPath($filePath) : '-';
+            $size = Storage::disk('private')->exists($filePath) ? $this->fileService->getSizeByPath($filePath, 'private') : '-';
             $file->size = $size;
             $file->icon = $this->fileService->getIconFromExtension($this->fileService->getExtensionByPath($filePath));
         }
