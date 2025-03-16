@@ -23,7 +23,7 @@ class TestimonialSeeder extends Seeder
             "Discover a world of knowledge and adventure with our extensive book collection. Download your favorite titles effortlessly and enjoy seamless reading anytime, anywhere, on any device!"
         ];
 
-        $users = User::orderBy('id', 'asc')->take(5)->get();
+        $users = User::orderBy('id', 'asc')->where('role', 'user')->take(5)->get();
 
         foreach($users as $index => $user){
             Testimonial::create([
