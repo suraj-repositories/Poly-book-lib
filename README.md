@@ -61,6 +61,7 @@ PolyBookLib an hobby project created for book download. Someone got this idea wh
 
 explore even more and more...
 
+# 📷 Screenshots
 
 ### WebSite
 <div style="display: flex;flex-direction: column; grid-gap: 10px;">
@@ -141,7 +142,7 @@ Installation
 setup your .env file correctly it contains database credentials - you can use `.env.example` for example of my .env
 
 
-## Contributing
+## 🧡 Contributing
 
 Pull requests are welcome. For major changes, please open an issue first
 to discuss what you would like to change.
