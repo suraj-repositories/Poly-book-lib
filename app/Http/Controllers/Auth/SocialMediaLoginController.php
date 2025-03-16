@@ -26,7 +26,6 @@ class SocialMediaLoginController extends Controller
         try {
             $user = Socialite::driver('google')->user();
 
-            dd($user);
             $findUser = User::where('email', $user->email)->first();
             if (!$findUser) {
                 $findUser = new User();
@@ -39,7 +38,7 @@ class SocialMediaLoginController extends Controller
             Auth::login($findUser);
             return redirect()->route('login');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('error', empty($e->getMessage()) ? "Something went wrong!" : $e->getMessage());
         }
     }
 
@@ -67,7 +66,7 @@ class SocialMediaLoginController extends Controller
             Auth::login($findUser);
             return redirect()->route('login');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('error', empty($e->getMessage()) ? "Something went wrong!" : $e->getMessage());
         }
     }
 
@@ -94,7 +93,7 @@ class SocialMediaLoginController extends Controller
             Auth::login($findUser);
             return redirect()->route('login');
         } catch (Exception $e) {
-            dd('Something went wrong!! : ' . $e->getMessage());
+            return redirect()->back()->with('error', empty($e->getMessage()) ? "Something went wrong!" : $e->getMessage());
         }
     }
 }
