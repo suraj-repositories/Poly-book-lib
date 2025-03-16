@@ -79,7 +79,7 @@
                                             </td>
 
                                             <td>
-                                                <button data-btn-type="copy" data-copy-text="{{ route('download', ['type' => 'book', 'id' => $book->id]) }}" class="btn btn-sm btn-soft-secondary me-1 my-1" title="Copy download link">
+                                                <button data-btn-type="copy" data-copy-text="{{ route('download', ['type' => 'book', 'id' => $book->id]) }}" class="btn btn-sm btn-soft-success me-1 my-1" title="Copy download link">
                                                     <i class='bx bx-copy fs-16'></i>
                                                 </button>
                                                 <a href="{{ route('admin.books.edit', $book->id) }}" class="btn btn-sm btn-soft-secondary me-1 my-1" title="Edit">
