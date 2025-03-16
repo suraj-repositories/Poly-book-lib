@@ -115,7 +115,7 @@ explore even more and more...
 </div>
 <br>
 
-## HOW TO USE?
+## 🛠 HOW TO USE?
 
 
  Step-1: **[Install Composer](https://getcomposer.org/)** <br>
